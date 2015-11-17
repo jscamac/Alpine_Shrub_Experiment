@@ -1,8 +1,12 @@
 packages:
+  - plyr
   - dplyr
   - tidyr
   - lubridate
   - rstan
+  - ggplot2
+  - grid
+  - gridExtra
 
 sources:
   - 'R/data_processing.R'
