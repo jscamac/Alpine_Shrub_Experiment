@@ -1,0 +1,271 @@
+packages:
+  - dplyr
+  - tidyr
+  - lubridate
+  - rstan
+
+sources:
+  - 'R/data_processing.R'
+  - 'R/models.R'
+  - 'R/model_output_processing.R'
+  - 'R/figures.R'
+
+plot_options:
+  A4_landscape:
+    width: 11.69
+    height: 8.27
+  
+  A4_portrait:
+    width: 8.27
+    height: 11.69
+    
+    
+targets:
+  all:
+    depends:
+      - export_processed_data
+      - export_model_fits
+      - figures
+      
+  export_processed_data:
+    depends:
+      - processed_data/complete_field_survey_data.rds
+      - processed_data/complete_otc_seedling_data.rds
+  
+  export_model_fits:
+    depends:
+      - models/poadist_censored_model.rds
+      - models/gap_dynamic_model.rds
+      - models/non_tussock_otc_growth_model.rds
+      - models/tussock_otc_growth_model.rds
+      - models/non_tussock_otc_mortality_model.rds
+      - models/tussock_otc_mortality_model.rds
+      - models/greaus_seedling_density_model.rds
+      - models/asttry_seedling_density_model.rds
+      - models/greaus_seedling_max_ht_model.rds
+      - models/asttry_seedling_max_ht_model.rds
+      
+  figures:
+    depends:
+      - figures/fig_1.pdf
+      - figures/fig_2.pdf
+      - figures/fig_3.pdf
+      - figures/fig_4.pdf
+      - figures/fig_5.pdf
+      - figures/fig_2_sup.pdf
+      - figures/fig_3_sup.pdf
+    
+  #------------- Clean data --------------------------- 
+  
+  cleaned_poa_distances:
+    command: clean_raw_censored_poa('raw_data/raw_poa_distances.csv')
+    cleanup_level: purge
+    check: exists
+    
+  median_poa_distances:
+    command: calculate_median_poa_distances(cleaned_poa_distances, poadist_censored_model)
+    cleanup_level: purge
+    
+  cleaned_otc_seedling_data:
+    command: clean_seedling_data('raw_data/seedling_growth.csv')
+    cleanup_level: purge
+
+  complete_otc_seedling_data:
+    command: merge_seedling_poa(cleaned_otc_seedling_data, median_poa_distances)
+    cleanup_level: purge
+    
+  non_tussock_otc_growth_data:
+    command: get_growth_data(complete_otc_seedling_data, FALSE)
+    cleanup_level: purge
+    
+  tussock_otc_growth_data:
+    command: get_growth_data(complete_otc_seedling_data, TRUE)
+    cleanup_level: purge
+    
+  non_tussock_otc_mortality_data:
+    command: get_mortality_data(complete_otc_seedling_data, FALSE)
+    cleanup_level: purge  
+    
+  tussock_otc_mortality_data:
+    command: get_mortality_data(complete_otc_seedling_data, TRUE)
+    cleanup_level: purge
+    
+  cleaned_unburnt_data:
+    command: clean_unburnt_data('raw_data/shrub_density_heights_unburnt.csv')
+    cleanup_level: purge
+    
+  summarised_unburnt_data:
+    command: summarise_unburnt_data(cleaned_unburnt_data)
+    cleanup_level: purge
+    
+  cleaned_burnt_density_data:
+    command: clean_burnt_density('raw_data/shrub_density_burnt.csv')
+    cleanup_level: purge
+    
+  summarised_burnt_height_data:
+    command: clean_burnt_ht('raw_data/seedling_heights_burnt.csv')
+    cleanup_level: purge
+    
+  site_vars:
+    command: read.csv('raw_data/site_variables.csv')
+    cleanup_level: purge
+    
+  complete_field_survey_data:
+    command: merge_all_quadrat_data(summarised_unburnt_data,
+                                    cleaned_burnt_density_data,
+                                    summarised_burnt_height_data,
+                                    site_vars)
+    cleanup_level: purge
+    
+    
+  #------------- Run stan models ---------------------------
+
+  non_tussock_otc_growth_model:
+    command: run_non_tussock_growth_analysis(non_tussock_otc_growth_data, 50)
+    cleanup_level: purge
+    
+  tussock_otc_growth_model:
+    command: run_tussock_growth_analysis(tussock_otc_growth_data)
+    cleanup_level: purge
+
+  non_tussock_otc_mortality_model:
+    command: run_non_tussock_mortalilty_model(non_tussock_otc_mortality_data)
+    cleanup_level: purge
+    
+  tussock_otc_mortality_model:
+    command: run_tussock_mortality_model(tussock_otc_mortality_data)
+    cleanup_level: purge
+    
+  greaus_seedling_density_model:
+    command: run_density_model(complete_field_survey_data, I("Grevillea"))
+    cleanup_level: purge
+    
+  asttry_seedling_density_model:
+    command: run_density_model(complete_field_survey_data, I("Asterolasia"))
+    cleanup_level: purge  
+    
+  greaus_seedling_max_ht_model:
+    command: run_max_height_model(complete_field_survey_data, I("Grevillea"))
+    cleanup_level: purge
+    
+  asttry_seedling_max_ht_model:
+    command: run_max_height_model(complete_field_survey_data, I("Asterolasia"))
+    cleanup_level: purge
+
+  gap_dynamic_model:
+    command: run_gap_dynamic_model(median_poa_distances, 20)
+    cleanup_level: purge
+    
+  poadist_censored_model:
+    command: run_censored_model(cleaned_poa_distances)
+    cleanup_level: purge
+    check: exists
+
+    
+  #------------ Export processed data ---------------------------
+
+  processed_data/complete_otc_seedling_data.rds:
+    command: saveRDS(complete_otc_seedling_data, target_name)
+    cleanup_level: purge
+    
+  processed_data/complete_field_survey_data.rds:
+    command: saveRDS(complete_field_survey_data, target_name)
+    cleanup_level: purge
+    
+    
+  #------------- Export stan models ---------------------------
+  
+  models/poadist_censored_model.rds:
+    command: saveRDS(poadist_censored_model, target_name)
+    cleanup_level: purge
+    
+  models/non_tussock_otc_growth_model.rds:
+    command: saveRDS(non_tussock_otc_growth_model, target_name)
+    cleanup_level: purge
+    
+  models/tussock_otc_growth_model.rds:
+    command: saveRDS(tussock_otc_growth_model, target_name)
+    cleanup_level: purge   
+
+  models/non_tussock_otc_mortality_model.rds:
+    command: saveRDS(non_tussock_otc_mortality_model, target_name)
+    cleanup_level: purge
+    
+  models/tussock_otc_mortality_model.rds:
+    command: saveRDS(tussock_otc_mortality_model, target_name)
+    cleanup_level: purge
+
+  models/gap_dynamic_model.rds:
+    command: saveRDS(gap_dynamic_model, target_name)
+    cleanup_level: purge
+    
+  models/greaus_seedling_density_model.rds:
+    command: saveRDS(greaus_seedling_density_model, target_name)
+    cleanup_level: purge
+    
+  models/asttry_seedling_density_model.rds:
+    command: saveRDS(asttry_seedling_density_model, target_name)
+    cleanup_level: purge
+    
+  models/greaus_seedling_max_ht_model.rds:
+    command: saveRDS(greaus_seedling_max_ht_model, target_name)
+    cleanup_level: purge
+
+  models/asttry_seedling_max_ht_model.rds:
+    command: saveRDS(asttry_seedling_max_ht_model, target_name)
+    cleanup_level: purge
+  
+  #------------- make figures ---------------------------
+
+  figures/fig_1.pdf:
+    command: density_count_plots(greaus_seedling_density_model, I('Grevillea'))
+    plot: A4_landscape
+    
+  figures/fig_2.pdf:
+    command: obs_pred_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
+    plot: A4_landscape
+    
+  figures/fig_3.pdf:
+    command: non_tussock_mortality_plot(non_tussock_otc_mortality_model)
+    plot: A4_landscape
+    
+  figures/fig_4.pdf:
+    command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
+    plot: A4_portrait
+    
+  figures/fig_5.pdf:
+    command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model, gap_dynamic_model)
+    plot: A4_landscape
+    
+  figures/fig_2_sup.pdf:
+    command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'))
+    plot: A4_landscape
+    
+  figures/fig_3_sup.pdf:
+    command: gap_dynamics_plot(gap_dynamic_model)
+    plot: A4_landscape
+    
+
+    
+  
+
+  
+    
+    
+
+
+
+
+
+# paper
+#  downloads/style.csl:
+#    command: get_amnat_csl(target_name)
+
+#  ms.pdf:
+#    command: pandoc_build("ms.md")
+
+#  ms.md:
+#    knitr: true
+#    depends:
+#      - data/refs.bib
+#     - downloads/style.csl
