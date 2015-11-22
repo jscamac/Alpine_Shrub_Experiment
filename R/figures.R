@@ -269,3 +269,89 @@ gap_dynamics_plot <- function(gap_dynamic_model) {
     grid.arrange(p1,p2, ncol=2)
 }
 
+examine_plot_microclimates <- function(hourly_microclimate, 
+                                       subset_sensor = 'CAmbient_Temp', 
+                                       stat ='mean', 
+                                       subset_site = 'ITEX2.0',
+                                       ylab = expression('Ambient temperature '(~degree~C)),
+                                       xlim = NULL) {
+  chamber_dates <- readRDS('raw_data/chamber_dates.rds')
+  
+  dat <- filter(hourly_microclimate, sensor == subset_sensor & site == subset_site)
+  dat <- aggregate_microclimate_to_day(dat, aggregate_level = 'plot')
+  if(is.null(xlim)) {
+  min_date <- min(dat$date)
+  max_date <- max(dat$date)
+  xlim <- c(min_date,max_date)
+  }
+  
+  ggplot(dat, aes_string(x = 'date',y = stat, colour='treatment'), axis.line = element_line()) +
+    scale_colour_manual('',values = c("CTL" ="blue","OTC" ="red")) +
+    geom_rect(data = chamber_dates, aes(xmin = chambers_in, xmax = chambers_out, 
+                                        ymin = -Inf, ymax = Inf), alpha = 0.2, inherit.aes=FALSE) + 
+    geom_path() +
+    ylab(ylab) +
+    scale_x_date(expand=c(0,0), limits = xlim) +
+    partial_plot_theme(strips = TRUE) +
+    facet_wrap(~ plot, ncol=2, scales='fixed')
+}
+
+plot_microclim_trt_diff <- function(hourly_microclimate, 
+                                    subset_site = 'ITEX2.0', 
+                                    subset_sensor = 'CAmbient_Temp', 
+                                    stat = 'mean', 
+                                    ylab= NULL) {
+  if(is.null(ylab)) {
+    ylab <- subset_sensor
+  }
+  chamber_dates <- readRDS('raw_data/chamber_dates.rds')
+  dat <- filter(hourly_microclimate, sensor == subset_sensor & site == subset_site)
+  dat <- aggregate_microclimate_to_day(dat, aggregate_level = 'site') %>%
+    select(site,sensor,date,treatment, get(stat)) %>%
+    dcast(site + sensor + date ~ treatment, value.var = stat) %>%
+    mutate(difference = OTC - CTL)
+  min_date <- min(dat$date)
+  max_date <- max(dat$date)
+  
+  no_otc_dates <- findInterval(dat$date, as.Date(t(chamber_dates[, 2:3])), rightmost.closed=TRUE)
+  otc_on_dates <- filter(dat, (no_otc_dates %% 2) == 0)
+  mean_diff <- mean(otc_on_dates$difference)
+                           
+  
+  ggplot(dat, aes(x = date,y = difference), axis.line = element_line()) + 
+    geom_rect(data = chamber_dates, aes(xmin = chambers_in, xmax = chambers_out, 
+                                        ymin = -Inf, ymax = Inf), alpha = 0.2, inherit.aes=FALSE) + 
+    geom_path() +
+    geom_hline(aes(yintercept = mean_diff), col='red', alpha=0.6, size = 1) +
+    geom_hline(aes(yintercept = 0), col='blue', alpha=0.6, size= 1) +
+    scale_x_date(expand=c(0,0), limits =c(min_date,max_date)) +
+    ylab(ylab) +
+    partial_plot_theme(strips = FALSE)
+}
+
+microclimate_diff_plots <- function(hourly_microclimate, subset_site='ITEX2.0', stat, stat_label ='Mean') {
+  p1 <- plot_microclim_trt_diff(hourly_microclimate, 
+                                subset_sensor = 'CAmbient_Temp',
+                                stat = stat,
+                                ylab = substitute(bold(stat_label~'ambient temperature'~paste(degree, C)),list(stat_label=stat_label)))
+  
+  p2 <- plot_microclim_trt_diff(hourly_microclimate, 
+                                subset_sensor = 'CTemp_3cmBG',
+                                stat = stat,
+                                ylab = substitute(bold(stat_label~'soil temperature'~paste(degree, C)),list(stat_label=stat_label)))
+  
+  p3 <- plot_microclim_trt_diff(hourly_microclimate, 
+                                subset_sensor = 'CRH',
+                                stat = stat,
+                                ylab = substitute(bold(stat_label~'relative humidyt (%)'~paste(degree, C)),list(stat_label=stat_label)))
+    
+
+  p4 <- plot_microclim_trt_diff(hourly_microclimate, 
+                                subset_sensor = 'CMoisture3to10cmBG',
+                                stat = stat,
+                                ylab = expression(bold('Mean volumetric water content (%)')))
+  
+  grid.arrange(p1,p2,p3,p4, ncol=2)
+      
+}
+
