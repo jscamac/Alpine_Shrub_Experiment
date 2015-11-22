@@ -333,23 +333,23 @@ microclimate_diff_plots <- function(hourly_microclimate, subset_site='ITEX2.0', 
   p1 <- plot_microclim_trt_diff(hourly_microclimate, 
                                 subset_sensor = 'CAmbient_Temp',
                                 stat = stat,
-                                ylab = substitute(bold(stat_label~'ambient temperature'~paste(degree, C)),list(stat_label=stat_label)))
+                                ylab = substitute(bold(stat_label~'ambient temperature'~paste('(',degree, C,')')),list(stat_label=stat_label)))
   
   p2 <- plot_microclim_trt_diff(hourly_microclimate, 
                                 subset_sensor = 'CTemp_3cmBG',
                                 stat = stat,
-                                ylab = substitute(bold(stat_label~'soil temperature'~paste(degree, C)),list(stat_label=stat_label)))
+                                ylab = substitute(bold(stat_label~'soil temperature'~paste('(',degree, C,')')),list(stat_label=stat_label)))
   
   p3 <- plot_microclim_trt_diff(hourly_microclimate, 
                                 subset_sensor = 'CRH',
                                 stat = stat,
-                                ylab = substitute(bold(stat_label~'relative humidity (%)'~paste(degree, C)),list(stat_label=stat_label)))
+                                ylab = substitute(bold(stat_label~'relative humidity (%)'),list(stat_label=stat_label)))
     
 
   p4 <- plot_microclim_trt_diff(hourly_microclimate, 
                                 subset_sensor = 'CMoisture3to10cmBG',
                                 stat = stat,
-                                ylab = expression(bold('Mean volumetric water content (%)')))
+                                ylab = substitute(bold(stat_label~'volumetric water content (%)'),list(stat_label=stat_label)))
   
   grid.arrange(p1,p2,p3,p4, ncol=2)
       
