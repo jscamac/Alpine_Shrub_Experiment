@@ -2,11 +2,12 @@ packages:
   - plyr
   - dplyr
   - tidyr
-  - lubridate
   - rstan
   - ggplot2
   - grid
   - gridExtra
+  - lubridate
+  - reshape2
 
 sources:
   - 'R/data_processing.R'
@@ -35,6 +36,9 @@ targets:
     depends:
       - processed_data/complete_field_survey_data.rds
       - processed_data/complete_otc_seedling_data.rds
+      - processed_data/hourly_microclimate_data.rds
+      - processed_data/daily_microclimate_data.rds
+      - processed_data/overall_microclimate_summary.rds
   
   export_model_fits:
     depends:
@@ -58,7 +62,9 @@ targets:
       - figures/fig_5.pdf
       - figures/fig_2_sup.pdf
       - figures/fig_3_sup.pdf
-    
+      - figures/mean_microclimate.pdf
+      - figures/mean_min_microclimate.pdf
+      - figures/mean_max_microclimate.pdf
   #------------- Clean data --------------------------- 
   
   cleaned_poa_distances:
@@ -121,6 +127,17 @@ targets:
                                     site_vars)
     cleanup_level: purge
     
+  hourly_microclimate_data:
+    command: process_hourly_microclimate('raw_data/otc_microstation_data.rds','raw_data/microstation_metadata.csv',I('ITEX2.0'),FALSE)
+    cleanup_level: purge
+  
+  daily_microclimate_data:
+    command: aggregate_microclimate_to_day(hourly_microclimate_data)
+    cleanup_level: purge
+    
+  overall_microclimate_summary:
+    command: calculate_overall_treatment_effects(hourly_microclimate_data, TRUE)
+    cleanup_level: purge
     
   #------------- Run stan models ---------------------------
 
@@ -176,6 +193,17 @@ targets:
     command: saveRDS(complete_field_survey_data, target_name)
     cleanup_level: purge
     
+  processed_data/hourly_microclimate_data.rds:
+    command: saveRDS(hourly_microclimate_data, target_name)
+    cleanup_level: purge
+    
+  processed_data/daily_microclimate_data.rds:
+    command: saveRDS(daily_microclimate_data, target_name)
+    cleanup_level: purge
+    
+  processed_data/overall_microclimate_summary.rds:
+    command: saveRDS(overall_microclimate_summary, target_name)
+    cleanup_level: purge
     
   #------------- Export stan models ---------------------------
   
@@ -248,18 +276,18 @@ targets:
   figures/fig_3_sup.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
     plot: A4_landscape
-    
-
-    
   
-
-  
+  figures/mean_microclimate.pdf:
+    command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean'), stat_label = I('Mean'))
+    plot: A4_landscape
     
+  figures/mean_min_microclimate.pdf:
+    command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_min'), stat_label = I('Mean minimum'))
+    plot: A4_landscape
     
-
-
-
-
+  figures/mean_max_microclimate.pdf:
+    command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_max'), stat_label = I('Mean maximum'))
+    plot: A4_landscape
 
 # paper
 #  downloads/style.csl:
