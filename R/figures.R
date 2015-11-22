@@ -343,7 +343,7 @@ microclimate_diff_plots <- function(hourly_microclimate, subset_site='ITEX2.0', 
   p3 <- plot_microclim_trt_diff(hourly_microclimate, 
                                 subset_sensor = 'CRH',
                                 stat = stat,
-                                ylab = substitute(bold(stat_label~'relative humidyt (%)'~paste(degree, C)),list(stat_label=stat_label)))
+                                ylab = substitute(bold(stat_label~'relative humidity (%)'~paste(degree, C)),list(stat_label=stat_label)))
     
 
   p4 <- plot_microclim_trt_diff(hourly_microclimate, 
