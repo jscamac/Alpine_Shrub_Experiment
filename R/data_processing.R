@@ -292,5 +292,212 @@ simulate_covariate_range <- function(data) {
                    sim_adult_den =  seq(round(dat['min','greaus_tran_adultden'],-1),round(dat['max','greaus_tran_adultden'],-1),length.out = 100))
 }
 
+# Process climate data
 
+process_hourly_microclimate <- function(rds_file_path, meta_data_path, subset_site=NULL, include_raw_data=FALSE) {
+  dat <- readRDS(rds_file_path)
+  metadat <- read.csv(meta_data_path)
+  
+  if(!all(unique(dat$Site) %in% metadat$Site)) {
+    stop("Please check that site is spelt correctly for all observations. Only ITEX1U or ITEX2.0 accepted")
+  }
+  
+  if(!all(do.call(paste, unique(dat[, c('Site', 'Plot', 'Treatment')])) %in% 
+          do.call(paste, unique(metadat[, c('Site', 'Plot', 'Treatment')])))) {
+    stop("Please check that treatment is correctly assigned to all plots")
+  }
+  
+  if(!is.null(subset_site)){
+    dat <- filter(dat, Site==subset_site)
+    metadat <- filter(metadat, Site==subset_site)
+  }
+  metalogger <- metadat[which(metadat$Microstation==1),]
+  if(!all(unique(paste0(dat$Site,dat$Plot)) %in% paste0(metalogger$Site,metalogger$Plot))) {
+    stop("Some observations are from plots with no logger. Please double check data. If new logger installed, please add to the metadata file")
+  }
+  
+  # Below adds a datetime field. This corrects times according to daylight savings. 
+  # The +1000 declares that the times are currently in UTC+1000 (i.e. AEST).
+  # It also removes data that is errenous due to loggers failing or battery power being too low.
+  # Plot 6 has been malfunctioning since October 2011. As such the data collected from this logger is deemed unusable.
+  # Plot 2 and 19 have had on going battery issues. Most of the data recorded appears correct but occassionally
+  # the day before the logger batteries die the sensors error.
+  # Processing rules are based on minimum and maximum temperatures observed from other nearby sites & expert judgement.
+  # We purposely didn't make the rules too strict so that rare extremes were not removed.
+  dat <- dat %>%
+    mutate(Datetime = fast_strptime(paste(Date, hour(hms(as.character(Time))), '+1000'), '%d/%m/%y %H %z', tz="Australia/Melbourne"),
+           Date = as.Date(Datetime),
+           Plot = as.integer(as.character(Plot)),
+           Time = NULL,
+           CAmbient_Temp = ifelse(Ambient_Temp > 50 |
+                                    Ambient_Temp < - 30 |
+                                    Date >= '2011-10-01' & Site == 'ITEX2.0' & Plot == 6 |
+                                    Date == '2011-10-17' & Site == 'ITEX2.0' & Plot == 2 |
+                                    Date == '2015-04-30' & Site == 'ITEX2.0' & Plot == 2 |
+                                    Date == '2014-11-11' & Site == 'ITEX2.0' & Plot == 19 |
+                                    Date == '2015-03-13' & Site == 'ITEX2.0' & Plot == 19 |
+                                    Date >= '2012-03-10' & Date <= '2012-04-01' & Site == 'ITEX2.0' & Plot == 2 |
+                                    Date >= '2013-10-19' & Date <= '2013-10-24' & Site == 'ITEX2.0' & Plot == 19, 
+                                  NA, Ambient_Temp),
+           CTemp_3cmBG = ifelse(Temp_3cmBG > 80 | 
+                                  Temp_3cmBG < -30 |
+                                  Date >= '2011-10-01' & Site == 'ITEX2.0' & Plot == 6 |
+                                  Date == '2011-10-17' & Site == 'ITEX2.0' & Plot == 2 |
+                                  Date == '2015-04-30' & Site == 'ITEX2.0' & Plot == 2 |
+                                  Date == '2014-11-11' & Site == 'ITEX2.0' & Plot == 19 |
+                                  Date == '2015-03-13' & Site == 'ITEX2.0' & Plot == 19 |
+                                  Date >= '2012-03-10' & Date <= '2012-04-01' & Site == 'ITEX2.0' & Plot == 2 |
+                                  Date >= '2013-10-19' & Date <= '2013-10-24' & Site == 'ITEX2.0' & Plot == 19, 
+                                NA, Temp_3cmBG),
+           CRH = ifelse(Ambient_Temp > 50 |
+                          Ambient_Temp < -30 |
+                          Date >= '2011-10-01' & Site == 'ITEX2.0' & Plot == 6 |
+                          Date == '2011-10-17' & Site == 'ITEX2.0' & Plot == 2 |
+                          Date == '2015-04-30' & Site == 'ITEX2.0' & Plot == 2 |
+                          Date == '2014-11-11' & Site == 'ITEX2.0' & Plot == 19 |
+                          Date == '2015-03-13' & Site == 'ITEX2.0' & Plot == 19 |
+                          Date >= '2012-03-10' & Date <= '2012-04-01' & Site == 'ITEX2.0' & Plot == 2 |
+                          Date >= '2013-10-19' & Date <= '2013-10-24' & Site == 'ITEX2.0' & Plot == 19,
+                        NA, RH),
+           CDewPt = ifelse(DewPt < -50 |
+                             DewPt > 50 |
+                             Ambient_Temp > 50 |
+                             Ambient_Temp < -30 |
+                             Date >= '2011-10-01' & Site == 'ITEX2.0' & Plot == 6 |
+                             Date == '2011-10-17' & Site == 'ITEX2.0' & Plot == 2 |
+                             Date == '2015-04-30' & Site == 'ITEX2.0' & Plot == 2 |
+                             Date == '2014-11-11' & Site == 'ITEX2.0' & Plot == 19 |
+                             Date == '2015-03-13' & Site == 'ITEX2.0' & Plot == 19 |
+                             Date >= '2012-03-10' & Date <= '2012-04-01' & Site == 'ITEX2.0' & Plot == 2 |
+                             Date >= '2013-10-19' & Date <= '2013-10-24' & Site == 'ITEX2.0' & Plot == 19, 
+                           NA, DewPt),
+           CMoisture_3cmBG = ifelse(Moisture_3cmBG < 0 |
+                                      Moisture_3cmBG > 1 |
+                                      Date >= '2011-10-01' & Site == 'ITEX2.0' & Plot == 6 |
+                                      Date == '2011-10-17' & Site == 'ITEX2.0' & Plot == 2 |
+                                      Date == '2015-04-30' & Site == 'ITEX2.0' & Plot == 2 |
+                                      Date == '2014-11-11' & Site == 'ITEX2.0' & Plot == 19 |
+                                      Date == '2015-03-13' & Site == 'ITEX2.0' & Plot == 19 |
+                                      Date >= '2012-03-10' & Date <= '2012-04-01' & Site == 'ITEX2.0' & Plot == 2 |
+                                      Date >= '2013-10-19' & Date <= '2013-10-24' & Site == 'ITEX2.0' & Plot == 19,  
+                                    NA, Moisture_3cmBG*100),
+           CMoisture_10cmBG = ifelse(Moisture_10cmBG < 0 |
+                                       Moisture_10cmBG > 1 |
+                                       Date >= '2011-10-01' & Site == 'ITEX2.0' & Plot == 6 |
+                                       Date == '2011-10-17' & Site == 'ITEX2.0' & Plot == 2 |
+                                       Date == '2015-04-30' & Site == 'ITEX2.0' & Plot == 2 |
+                                       Date == '2014-11-11' & Site == 'ITEX2.0' & Plot == 19 |
+                                       Date == '2015-03-13' & Site == 'ITEX2.0' & Plot == 19 |
+                                       Date >= '2012-03-10' & Date <= '2012-04-01' & Site == 'ITEX2.0' & Plot == 2 |
+                                       Date >= '2013-10-19' & Date <= '2013-10-24' & Site == 'ITEX2.0' & Plot == 19,
+                                     NA, Moisture_10cmBG*100),
+           CMoisture3to10cmBG = (CMoisture_3cmBG + CMoisture_10cmBG)/2) %>%
+    gather(Sensor, Clim_value, -Site, -Plot, -Treatment, -Datetime,-Date) %>%
+    group_by(Site, Plot, Treatment, Datetime, Sensor) %>%
+    summarise(Clim_value = mean(Clim_value, na.rm=TRUE)) %>%
+    ungroup()
+  
+  all_dates <- data.frame(Datetime = seq.POSIXt(range(dat$Datetime)[1], range(dat$Datetime)[2], 'hour', 
+                                                tz='Australia/Melbourne'))
+  
+  meta <- select(metalogger, Site, Plot, Treatment)
+  meta <- meta[rep(seq_len(nrow(meta)), each=nrow(all_dates)),] %>%
+    mutate(Datetime = rep(all_dates$Datetime, nrow(metalogger)))
+  
+  meta <- meta[rep(seq_len(nrow(meta)), each=length(unique(dat$Sensor))),] %>%
+    mutate(Sensor = rep(unique(dat$Sensor), length.out=n()))
+  
+  complete <- left_join(meta, dat) %>%
+    mutate(
+      Date = as.Date(Datetime),
+      Hour = hour(Datetime),
+      Clim_value = ifelse(is.nan(Clim_value),NA,Clim_value)) %>%
+    select(Site, Plot,Treatment,Datetime,Date,Hour,Sensor,Clim_value) %>%
+    arrange(Site,Sensor,Plot, Datetime) %>%
+    setNames(tolower(names(.)))
+  
+  if(include_raw_data==TRUE){
+    complete
+  }
+  else {
+    filter(complete, !sensor %in% c('Ambient_Temp','RH','DewPt', 'Temp_3cmBG','Moisture_3cmBG', 'Moisture_10cmBG'))
+  }
+}
+
+# Max and Min functions that return NA instead of -inf when no observations present.
+mymax <- function(...,na.rm=FALSE) {
+  if(!is.infinite(x<-suppressWarnings(max(...,na.rm=na.rm)))) x else NA
+}
+mymin <- function(...,na.rm=FALSE) {
+  if(!is.infinite(x<-suppressWarnings(min(...,na.rm=na.rm)))) x else NA
+}
+
+# Microclimate aggregation function
+
+aggregate_microclimate_to_day <- function(hourly_microclimate, aggregate_level = 'site') {
+  
+  if(!aggregate_level %in% c('site','plot','treatment')) {
+    stop("Can only aggregate to 'site','plot','treatment'")
+  }
+  
+  # Calculates plot averages
+  if(aggregate_level =='plot'){
+    res <- hourly_microclimate %>% 
+      group_by(site,plot,treatment,sensor,date) %>%
+      summarise(n = sum(!is.na(clim_value)),
+                mean = mean(clim_value, na.rm = TRUE),
+                min = mymin(clim_value, na.rm = TRUE),
+                max = mymax(clim_value, na.rm = TRUE)) %>%
+      ungroup()
+  }
+  # Calculates treatment averages for each site (if site is not subsetted)
+  # Uses plot means - as plots are the unit of replication
+  if(aggregate_level =='site'){
+    res <- hourly_microclimate %>% 
+      group_by(site,plot,treatment,sensor,date) %>%
+      summarise(mean = mean(clim_value, na.rm = TRUE),
+                min = mymin(clim_value, na.rm = TRUE),
+                max = mymax(clim_value, na.rm = TRUE)) %>%
+      ungroup() %>%
+      group_by(site,treatment,sensor,date) %>%
+      summarise(n = sum(!is.na(mean)),
+                mean = mean(mean,na.rm=TRUE), 
+                mean_min = mymin(min, na.rm=TRUE), 
+                mean_max = mymax(max, na.rm=TRUE)) %>%
+      ungroup()
+  }
+  return(res)
+}
+
+calculate_overall_treatment_effects <- function(hourly_microclimate, calculate_trt_difference = TRUE) {
+  chamber_dates <- readRDS('raw_data/chamber_dates.rds')
+  no_otc_dates <- findInterval(hourly_microclimate$date, as.Date(t(chamber_dates[, 2:3])), rightmost.closed=TRUE)
+  hourly_microclimate <- filter(hourly_microclimate, (no_otc_dates %% 2) == 0) # removes periods when no otcs were not on
+  
+  dat <- aggregate_microclimate_to_day(hourly_microclimate,aggregate_level = 'site')
+  
+  if(calculate_trt_difference == TRUE) {
+    res <- dat %>% select(site,treatment,sensor, date, mean, mean_min, mean_max) %>%
+      gather(clim_stat, value, -site,-treatment,-sensor,-date) %>%
+      spread(treatment, value) %>%
+      mutate(difference = OTC - CTL) %>%
+      group_by(site,sensor, clim_stat) %>%
+      summarise(grand_mean = mean(difference, na.rm = TRUE),
+                st_err = sd(difference, na.rm = TRUE) /sqrt(sum(!is.na(difference))),
+                ci = 1.96 * st_err,
+                `2.5%` = grand_mean - ci,
+                `97.5%` = grand_mean + ci)
+  } else {
+    res <- dat %>% select(site, treatment,sensor, date, mean, mean_min, mean_max) %>%
+      gather(clim_stat, value, -site,-treatment,-sensor,-date) %>%
+      group_by(site,sensor, clim_stat) %>%
+      summarise(grand_mean = mean(value, na.rm = TRUE),
+                st_err = sd(value, na.rm = TRUE) /sqrt(n()),
+                ci = 1.96 * st_err,
+                `2.5%` = grand_mean - ci,
+                `97.5%` = grand_mean + ci)
+  }
+  return(res)
+}
+  
   
