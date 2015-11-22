@@ -263,7 +263,7 @@ max_ht_plots <- function(greaus_max_ht_model,asttry_max_ht_model, ylim=c(0,35)) 
 
 gap_dynamics_plot <- function(gap_dynamic_model) {
   coeffs <- summarise_coefficients(gap_dynamic_model, params = c('alpha','b_otc'))
-  predictions <- summarise_otc_model_predictions('gap_dynamics',model)
+  predictions <- summarise_otc_model_predictions('gap_dynamics',gap_dynamic_model)
   p1 <- coefficient_plot(coeffs,y_axis_labels = c('Intercept', 'otc'), xlab = 'log coefficients')
   p2 <- gap_dynamics_curve(predictions)
     grid.arrange(p1,p2, ncol=2)
@@ -315,14 +315,14 @@ plot_microclim_trt_diff <- function(hourly_microclimate,
   
   no_otc_dates <- findInterval(dat$date, as.Date(t(chamber_dates[, 2:3])), rightmost.closed=TRUE)
   otc_on_dates <- filter(dat, (no_otc_dates %% 2) == 0)
-  mean_diff <- mean(otc_on_dates$difference)
+  mean_diff <- data.frame(mean = mean(otc_on_dates$difference))
                            
   
   ggplot(dat, aes(x = date,y = difference), axis.line = element_line()) + 
     geom_rect(data = chamber_dates, aes(xmin = chambers_in, xmax = chambers_out, 
                                         ymin = -Inf, ymax = Inf), alpha = 0.2, inherit.aes=FALSE) + 
     geom_path() +
-    geom_hline(aes(yintercept = mean_diff), col='red', alpha=0.6, size = 1) +
+    geom_hline(data = mean_diff, aes(yintercept = mean), col='red', alpha=0.6, size = 1) +
     geom_hline(aes(yintercept = 0), col='blue', alpha=0.6, size= 1) +
     scale_x_date(expand=c(0,0), limits =c(min_date,max_date)) +
     ylab(ylab) +
