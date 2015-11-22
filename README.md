@@ -25,5 +25,5 @@ remake::install_missing_packages()
 Now we have everything we need to reprocess the raw data, run the models and produce the figures. We can do all of this using a single command in R.
 
 ```
-remake()
+remake() #NOTE: This involves running 10 stan models and can take up to 1 hour
 ```
