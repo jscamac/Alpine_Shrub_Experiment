@@ -13,9 +13,9 @@ Climate change is increasing fire frequency and severity worldwide, but it is no
 We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate this reproducibility the entire workflow has been written in [remake](https://github.com/richfitz/remake). Below outlines the instructions on how to clone this repository and build the entire analysis and figures.
 
 ## Rebuilding repository
-First copy the repository to your local computer.
+First copy the repository to your local computer. Then open R in this directory.
 Once this is done we must install `remake` dependencies that are not on CRAN.
-To do this open an R session and install [devtools](https://github.com/hadley/devtools) if you haven't already.
+To do this install [devtools](https://github.com/hadley/devtools) if you haven't already by running the following in R:
 ```
 install.packages("devtools")
 ```
@@ -33,6 +33,8 @@ This project also depends on several packages. Now that `remake` is installed we
 ```
 remake::install_missing_packages()
 ```
+If you already have `rstan` installed please ensure you have version 2.8.0 or greater.
+
 Now we have everything we need to reprocess the raw data, run the models and produce the figures. We can do all of this using a single command in R.
 
 ```
