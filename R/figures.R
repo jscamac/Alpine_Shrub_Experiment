@@ -27,18 +27,19 @@ coefficent_plot_theme <- function() {
 
 
 # Plot observed height growth
-plot_obs_growth <- function(observed_data, scales ='free', ncol=4, 
+plot_obs_growth <- function(observed_data, response ='ht', scales ='free', ncol=4, 
                             ylab = 'Observed height (cm)', 
                             xlab ='Observation year', 
                             ylim = c(0,50)) {
   
-  summary_obs <- summarise_otc_ht_obs(observed_data)
-  
-  ggplot(observed_data, aes(x = date,y = ht, colour=as.factor(otc))) + 
-    geom_path(alpha = 0.4, aes(group = ind)) +
-    geom_path(data = summary_obs, aes(x=date,y=ht),size=1.5,alpha =0.8) +
-    geom_pointrange(data= summary_obs,aes(ymin = lower_95ci, ymax=upper_95ci),size=0.7) +
-    scale_colour_manual('',values = c("0" ="sky blue","1" ="orange","ctl" ="blue","otc" ="red")) +
+  summary_obs <- summarise_otc_growth_obs(observed_data, response)
+  observed_data$otc <- factor(ifelse(observed_data$otc==1, 'otc','ctl'))
+    
+  ggplot() + 
+  geom_path(data = observed_data, aes_string(x = 'date',y = response, colour='otc', group = 'ind'), alpha = 0.4) +
+  geom_path(data = summary_obs, aes(x=date, y=mean, col=factor(paste0(otc, '_mean'))), size=1, alpha=0.8) +
+  geom_pointrange(data= summary_obs,aes(x= date, y=mean,ymin = lower_95ci, ymax=upper_95ci, col=factor(paste0(otc, '_mean'))),size=0.5) +
+  scale_colour_manual('', values = c("ctl" ="sky blue","otc" ="orange", "otc_mean"="red", "ctl_mean"="blue")) +
     partial_plot_theme(strips = TRUE) + 
     ylim(ylim) +
     ylab(ylab) + 
@@ -149,8 +150,8 @@ gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Median 
 # PANEL PLOTS
 
 # Observed and predicted growth curves
-obs_pred_growth <- function(observed_data, non_tussock_otc_growth_model) {
-  p1 <- plot_obs_growth(observed_data)
+obs_pred_ht_growth <- function(observed_data, non_tussock_otc_growth_model) {
+  p1 <- plot_obs_growth(observed_data,'ht')
   p2 <- plot_growth_curves(non_tussock_otc_growth_model)
   grid.arrange(p1, p2, ncol=1)
 }
