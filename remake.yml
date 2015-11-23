@@ -65,6 +65,7 @@ targets:
       - figures/mean_microclimate.pdf
       - figures/mean_min_microclimate.pdf
       - figures/mean_max_microclimate.pdf
+      - figures/observed_dbh_growth.pdf
   #------------- Clean data --------------------------- 
   
   cleaned_poa_distances:
@@ -254,7 +255,7 @@ targets:
     plot: A4_landscape
     
   figures/fig_2.pdf:
-    command: obs_pred_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
+    command: obs_pred_ht_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
     plot: A4_landscape
     
   figures/fig_3.pdf:
@@ -287,6 +288,10 @@ targets:
     
   figures/mean_max_microclimate.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_max'), stat_label = I('Mean maximum'))
+    plot: A4_landscape
+    
+  figures/observed_dbh_growth.pdf:
+    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (mm)'), ylim=I(c(0,35)))
     plot: A4_landscape
 
 # paper
