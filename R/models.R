@@ -560,7 +560,7 @@ run_non_tussock_mortalilty_model <- function(data) {
                          pars = c("mu_alpha","mu_b_otc",
                                   "sigma_alpha","sigma_b_otc","sigma_plot","sigma_ind",
                                   "alpha","b_otc", "p_death_otc","p_death_ctl"), 
-                         control=list(adapt_delta=0.995, stepsize=0.0001, max_treedepth =15),
+                         control=list(adapt_delta=0.999, stepsize=0.0001, max_treedepth =15),
                          chains = 3,
                          iter = 2000))
   return(fit)
