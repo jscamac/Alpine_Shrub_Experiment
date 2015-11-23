@@ -51,7 +51,8 @@ clean_seedling_data <- function(csv_file) {
            date = as.Date(as.character(date), format="%d/%m/%y"),
            year = as.numeric(julian(date, as.Date("2010-05-15", "%Y-%m-%d")))/365.25, 
            may_sample = ifelse(month(date) >=4 & month(date) <=5, 1,0),
-           ht = ht/10) %>%
+           ht = ht/10,
+           stem_diam = (fbd + bd)/2) %>%
     arrange(ind,plot, date) %>%
     group_by(ind) %>% 
     mutate(only_1_census = max(ifelse(census==1 & died==1, 1,0))) %>%
@@ -61,13 +62,15 @@ clean_seedling_data <- function(csv_file) {
            initial_ht = ifelse(replaced==1, ht[census==1], ht[census==0]),
            initial_fbd = ifelse(replaced==1, fbd[census==1], fbd[census==0]),
            initial_bd = ifelse(replaced==1, bd[census== 1], bd[census== 0]),
+           initial_stem_diam = ifelse(replaced==1, stem_diam[census== 1], stem_diam[census== 0]),
            ht = ifelse(replaced==1 & census==0, initial_ht, ht),
            fbd = ifelse(replaced==1 & census==0, initial_fbd, fbd),
-           bd = ifelse(replaced==1 & census==0, initial_bd, bd)) %>%
+           bd = ifelse(replaced==1 & census==0, initial_bd, bd),
+           stem_diam = ifelse(replaced==1 & census==0, initial_bd, stem_diam)) %>%
     ungroup() %>%
     select(site,community,plot,otc,inter_tussock,
            spp,ind,census,may_sample,date,year,ht,initial_ht,
-           fbd,initial_fbd,bd,initial_bd,died)
+           fbd,initial_fbd,bd,initial_bd,initial_stem_diam,stem_diam,died)
   return(seedling_data)
 }
 
@@ -76,7 +79,7 @@ merge_seedling_poa <- function(cleaned_seedling_data, median_poa_distances) {
   data <-merge(cleaned_seedling_data,median_poa_distances, by=c('plot','otc','ind','date'), all.x=TRUE)
   data <- select(data,site,community,plot,otc,inter_tussock,spp,ind,census,may_sample,
                  date,year,initial_median_poadist,median_poadist,initial_ht,ht,
-                 initial_fbd,fbd,initial_bd,bd,died)
+                 initial_fbd,fbd,initial_bd,bd,initial_stem_diam,stem_diam,died)
   return(data)
 }
 
@@ -86,11 +89,11 @@ get_growth_data <- function(full_seedling_data, inter_tussock = TRUE) {
     filter(full_seedling_data, may_sample==1 & died==0 & inter_tussock==1) %>%
       droplevels() %>%
       select(site,community,plot,otc,spp,ind,census,date,year,
-             median_poadist,initial_ht,ht)
+             median_poadist,initial_ht,ht, stem_diam)
   } else {
     filter(full_seedling_data, may_sample==1 & died==0 & inter_tussock==0) %>%
       droplevels() %>%
-      select(site,community,plot,otc,spp,ind,census,date,year,initial_ht,ht)
+      select(site,community,plot,otc,spp,ind,census,date,year,initial_ht,ht,initial_stem_diam,stem_diam)
   }
 }
 
@@ -105,7 +108,7 @@ get_mortality_data <- function(complete_otc_seedling_data, inter_tussock=TRUE) {
              dead_next_census = dead_next_census(died)) %>%
       ungroup() %>%
       filter(died==0 & !is.na(census_interval)) %>%
-      select(site,community,plot,otc,spp,ind,census,date,year,ht,
+      select(site,community,plot,otc,spp,ind,census,date,year,ht,stem_diam,
              median_poadist,census_interval,dead_next_census)
   } else{
     complete_otc_seedling_data %>%
@@ -117,7 +120,7 @@ get_mortality_data <- function(complete_otc_seedling_data, inter_tussock=TRUE) {
       ungroup() %>%
       filter(died==0 & !is.na(census_interval)) %>%
       droplevels() %>%
-      select(site,community,plot,otc,spp,ind,census,date,year,ht,census_interval,dead_next_census)
+      select(site,community,plot,otc,spp,ind,census,date,year,ht,stem_diam,census_interval,dead_next_census)
   }
 }
 
@@ -231,21 +234,21 @@ export_data <- function(data, filename) {
 }
 
 # Summarise height observations
-summarise_otc_ht_obs <- function(observed_data) {
+summarise_otc_growth_obs <- function(observed_data, response ='ht') {
   observed_data %>%
     mutate(otc = factor(otc,labels = c('ctl','otc'))) %>%
     group_by(otc, spp, date) %>%
-    summarise(n = n(),
-              ln_mn = mean(log(ht)),
-              ln_sd = sd(log(ht)),
-              ln_ci = 1.96* (ln_sd/sqrt(n)),
-              ln_lower_95_ci = ln_mn - ln_ci,
-              ln_upper_95_ci = ln_mn + ln_ci) %>%
+    summarise_(n = ~n(),
+              ln_mn = lazyeval::interp(~mean(log(response)), response = as.symbol(response)),
+              ln_sd = lazyeval::interp(~sd(log(response)), response = as.symbol(response))) %>%
+    mutate(ln_ci = 1.96* (ln_sd/sqrt(n)),
+           ln_lower_95_ci = ln_mn - ln_ci,
+           ln_upper_95_ci = ln_mn + ln_ci) %>%
   ungroup %>%
-    mutate(ht = exp(ln_mn),
+    mutate(mean = exp(ln_mn),
            lower_95ci = exp(ln_lower_95_ci),
            upper_95ci = exp(ln_upper_95_ci)) %>%
-    select(otc, spp, date, n, ht, lower_95ci, upper_95ci)
+    select(otc, spp, date, n, mean, lower_95ci, upper_95ci)
 }
 
 # Calculates density and height model covariate distributions
