@@ -55,17 +55,17 @@ targets:
       
   figures:
     depends:
-      - figures/fig_1.pdf
-      - figures/fig_2.pdf
-      - figures/fig_3.pdf
-      - figures/fig_4.pdf
-      - figures/fig_5.pdf
-      - figures/fig_2_sup.pdf
-      - figures/fig_3_sup.pdf
+      - figures/greaus_seedling_density.pdf
+      - figures/seedling_obs_pred_height.pdf
+      - figures/mortality.pdf
+      - figures/seedling_max_height.pdf
+      - figures/tussock_seedling_ht_mortality.pdf
+      - figures/asttry_seedling_density.pdf
+      - figures/intertussock_gap_dynamics.pdf
       - figures/mean_microclimate.pdf
       - figures/mean_min_microclimate.pdf
       - figures/mean_max_microclimate.pdf
-      - figures/observed_dbh_growth.pdf
+      - figures/obs_dbh_growth.pdf
   #------------- Clean data --------------------------- 
   
   cleaned_poa_distances:
@@ -250,31 +250,31 @@ targets:
   
   #------------- make figures ---------------------------
 
-  figures/fig_1.pdf:
+  figures/greaus_seedling_density.pdf:
     command: density_count_plots(greaus_seedling_density_model, I('Grevillea'))
     plot: A4_landscape
     
-  figures/fig_2.pdf:
+  figures/seedling_obs_pred_height.pdf:
     command: obs_pred_ht_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
     plot: A4_landscape
     
-  figures/fig_3.pdf:
+  figures/mortality.pdf:
     command: non_tussock_mortality_plot(non_tussock_otc_mortality_model)
     plot: A4_landscape
     
-  figures/fig_4.pdf:
+  figures/seedling_max_height.pdf:
     command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
     plot: A4_portrait
     
-  figures/fig_5.pdf:
-    command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model, gap_dynamic_model)
+  figures/tussock_seedling_ht_mortality.pdf:
+    command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model)
     plot: A4_landscape
     
-  figures/fig_2_sup.pdf:
+  figures/asttry_seedling_density.pdf:
     command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'))
     plot: A4_landscape
     
-  figures/fig_3_sup.pdf:
+  figures/intertussock_gap_dynamics.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
     plot: A4_landscape
   
@@ -290,7 +290,7 @@ targets:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_max'), stat_label = I('Mean maximum'))
     plot: A4_landscape
     
-  figures/observed_dbh_growth.pdf:
+  figures/obs_dbh_growth.pdf:
     command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (mm)'), ylim=I(c(0,35)))
     plot: A4_landscape
 
