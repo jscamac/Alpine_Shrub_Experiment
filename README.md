@@ -34,7 +34,7 @@ This project also depends on several packages. Now that `remake` is installed we
 remake::install_missing_packages()
 ```
 
-This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. As such, we require that you have `rstan` 2.8.0 or greater. If this `rstan` hasn't been installed before the previous step would have installed the latest. If you have an older version you can update it by running:
+This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. As such, we require that you have `rstan` 2.8.0 or greater. If you have an older version of `rstan` you can update it by running:
 ```
 install.packages("rstan", dependencies = TRUE)
 ```
@@ -44,3 +44,10 @@ Now we have everything we need to reprocess the raw data, run the models and pro
 ```
 remake::make() #NOTE: This involves running 10 stan models and can take up to 1 hour or longer depending on computer hardware specifications.
 ```
+
+If you only wish to extract the processed (i.e. errors removed) datasets just run:
+
+```
+remake::make("export_processed_data") # Note this still requires some models to run in order to estimate missing poa distances.
+```
+
