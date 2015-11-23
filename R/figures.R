@@ -157,7 +157,7 @@ obs_pred_ht_growth <- function(observed_data, non_tussock_otc_growth_model) {
 }
 
 # Partial plots for growth and mortality against poa distance size
-tussock_plots <- function(tussock_growth_model, tussock_mortality_model, gap_dynamic_model) {
+tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
   growth <- summarise_coefficients(tussock_growth_model, c('alpha','b_otc','b_poadist','b_otc_x_poadist'))
   mortality <- summarise_coefficients(tussock_mortality_model, c('alpha','b_otc','b_poadist','b_otc_x_poadist'))
   growth_preds <- summarise_otc_model_predictions('tussock_growth',tussock_growth_model)
