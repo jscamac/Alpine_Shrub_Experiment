@@ -143,7 +143,7 @@ targets:
   #------------- Run stan models ---------------------------
 
   non_tussock_otc_growth_model:
-    command: run_non_tussock_growth_analysis(non_tussock_otc_growth_data, 50)
+    command: run_non_tussock_growth_analysis(non_tussock_otc_growth_data, 70)
     cleanup_level: purge
     
   tussock_otc_growth_model:
@@ -175,7 +175,7 @@ targets:
     cleanup_level: purge
 
   gap_dynamic_model:
-    command: run_gap_dynamic_model(median_poa_distances, 20)
+    command: run_gap_dynamic_model(median_poa_distances, 10)
     cleanup_level: purge
     
   poadist_censored_model:
