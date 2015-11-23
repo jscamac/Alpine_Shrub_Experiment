@@ -42,7 +42,7 @@ install.packages("rstan", dependencies = TRUE)
 Now we have everything we need to reprocess the raw data, run the models and produce the figures. We can do all of this using a single command in R.
 
 ```
-remake::make() #NOTE: This involves running 10 stan models and can take up to 1 hour or longer depending on computer hardware specifications.
+remake::make() #NOTE: This involves running 10 stan models and can take up to 1.5 hours or longer depending on computer hardware specifications.
 ```
 
 If you only wish to extract the processed (i.e. errors removed) datasets just run:
