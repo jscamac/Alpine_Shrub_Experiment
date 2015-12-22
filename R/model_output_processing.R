@@ -141,10 +141,7 @@ extract_hmax_year <- function(summarised_predictions) {
 summarise_density_predictions <- function(model, species='Grevillea', quantiles = c(0.025, 0.975)) {
   if(species =='Grevillea') {
     samples <- rstan::extract(model$fit, 
-                              pars = c('p_absent_unburnt', 'p_absent_burnt',
-                                       'p_absent_severity', 'p_absent_altitude',
-                                       'p_absent_twi', 'p_absent_adult_density',
-                                       'pred_count_unburnt', 'pred_count_burnt',
+                              pars = c('pred_count_unburnt', 'pred_count_burnt',
                                        'pred_count_severity', 'pred_count_altitude',
                                        'pred_count_twi', 'pred_count_adult_density'))
     
@@ -152,9 +149,7 @@ summarise_density_predictions <- function(model, species='Grevillea', quantiles 
   }
   if(species =='Asterolasia') {
     samples <- rstan::extract(model$fit, 
-                              pars =c('p_absent_unburnt', 'p_absent_burnt',
-                                      'p_absent_severity', 'p_absent_altitude',
-                                      'p_absent_twi', 'pred_count_unburnt', 
+                              pars =c('pred_count_unburnt', 
                                       'pred_count_burnt', 'pred_count_severity', 
                                       'pred_count_altitude', 'pred_count_twi'))
     
@@ -182,32 +177,20 @@ summarise_density_predictions <- function(model, species='Grevillea', quantiles 
     }
   }, x =samples, name =names(samples), SIMPLIFY = FALSE)
   
-  p_absent_b_ub <- plyr::ldply(summary_df[c('p_absent_unburnt','p_absent_burnt')], .id='predictor')
   pred_count_b_ub <- plyr::ldply(summary_df[c('pred_count_unburnt','pred_count_burnt')], .id='predictor')
   
   if(species =='Grevillea') {
-    count_model <- c(list(burnt_unburnt = pred_count_b_ub, severity = summary_df$pred_count_severity,
-                          altitude = summary_df$pred_count_altitude, twi =summary_df$pred_count_twi,
-                          adult_density = summary_df$pred_count_adult_density))
-    
-    absence_model <- c(list(burnt_unburnt = p_absent_b_ub, severity = summary_df$p_absent_severity,
-                            altitude = summary_df$p_absent_altitude, twi = summary_df$p_absent_twi,
-                            adult_density = summary_df$p_absent_adult_density))
+    res <- c(list(burnt_unburnt = pred_count_b_ub, severity = summary_df$pred_count_severity,
+           altitude = summary_df$pred_count_altitude, twi =summary_df$pred_count_twi,
+           adult_density = summary_df$pred_count_adult_density))
   }
   
   if(species =='Asterolasia') {
-    count_model <- c(list(burnt_unburnt = pred_count_b_ub, severity = summary_df$pred_count_severity,
-                          altitude = summary_df$pred_count_altitude, twi =summary_df$pred_count_twi))
-    
-    absence_model <- c(list(burnt_unburnt = p_absent_b_ub, severity = summary_df$p_absent_severity,
-                            altitude = summary_df$p_absent_altitude, twi = summary_df$p_absent_twi))
+    res <-  c(list(burnt_unburnt = pred_count_b_ub, severity = summary_df$pred_count_severity,
+                   altitude = summary_df$pred_count_altitude, twi =summary_df$pred_count_twi))
   }
-  
-  res <- list()
-  res[['absence_model']] <- absence_model
-  res[['count_model']] <- count_model
   return(res)
-}
+  }
 
 
 summarise_max_ht_predictions <- function(model, quantiles = c(0.025, 0.975)) {
