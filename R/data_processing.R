@@ -52,6 +52,8 @@ clean_seedling_data <- function(csv_file) {
            year = as.numeric(julian(date, as.Date("2010-05-15", "%Y-%m-%d")))/365.25, 
            may_sample = ifelse(month(date) >=4 & month(date) <=5, 1,0),
            ht = ht/10,
+           fbd = fbd/10,
+           bd = bd/10,
            stem_diam = (fbd + bd)/2) %>%
     arrange(ind,plot, date) %>%
     group_by(ind) %>% 
