@@ -252,7 +252,7 @@ targets:
 
   figures/greaus_seedling_density.pdf:
     command: density_count_plots(greaus_seedling_density_model, I('Grevillea'))
-    plot: A4_landscape
+    plot: A4_portrait
     
   figures/seedling_obs_pred_height.pdf:
     command: obs_pred_ht_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
@@ -264,7 +264,7 @@ targets:
     
   figures/seedling_max_height.pdf:
     command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
-    plot: A4_portrait
+    plot: A4_landscape
     
   figures/tussock_seedling_ht_mortality.pdf:
     command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model)
@@ -272,7 +272,7 @@ targets:
     
   figures/asttry_seedling_density.pdf:
     command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'))
-    plot: A4_landscape
+    plot: A4_portrait
     
   figures/intertussock_gap_dynamics.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
@@ -291,7 +291,7 @@ targets:
     plot: A4_landscape
     
   figures/obs_dbh_growth.pdf:
-    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (mm)'), ylim=I(c(0,35)))
+    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (mm)'), ylim=I(c(0,3.5)))
     plot: A4_landscape
 
 # paper
