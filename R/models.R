@@ -94,10 +94,10 @@ run_censored_model <- function(data) {
     raw_census ~ normal(0,1);
     raw_plot ~ normal(0,1);
     raw_ind ~ normal(0,1);
-    sigma_log_census ~ cauchy(0, 5);
-    sigma_log_plot ~ cauchy(0, 5);
-    sigma_log_ind ~ cauchy(0, 5);
-    sigma_log_obs ~ cauchy(0, 5);
+    sigma_log_census ~ cauchy(0, 25);
+    sigma_log_plot ~ cauchy(0, 25);
+    sigma_log_ind ~ cauchy(0, 25);
+    sigma_log_obs ~ cauchy(0, 25);
     
     y_obs ~ lognormal(log_y_obs_hat, sigma_log_obs);
     y_censored ~ lognormal(log_y_censored_hat, sigma_log_obs);
@@ -192,9 +192,9 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
     b_otc ~ normal(0, 5);
     raw_plot ~ normal(0,1);
     raw_ind ~ normal(0,1);
-    sigma_plot ~ cauchy(0, 5);
-    sigma_ind ~ cauchy(0, 5);
-    sigma_log_obs ~ cauchy(0, 5);
+    sigma_plot ~ cauchy(0, 25);
+    sigma_ind ~ cauchy(0, 25);
+    sigma_log_obs ~ cauchy(0, 25);
     
     y_obs ~ lognormal(log_y_obs_hat, sigma_log_obs);
   }
@@ -299,12 +299,12 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
     }
     
     #Priors
-    mu_alpha ~ normal(0,1);
-    mu_b_otc ~ normal(0,1);
-    sigma_alpha ~ cauchy(0,2.5);
-    sigma_b_otc ~ cauchy(0,2.5);
-    sigma_plot ~ cauchy(0,2.5);
-    sigma_ind ~ cauchy(0,2.5);
+    mu_alpha ~ normal(0,0.5);
+    mu_b_otc ~ normal(0,0.5);
+    sigma_alpha ~ cauchy(0,25);
+    sigma_b_otc ~ cauchy(0,25);
+    sigma_plot ~ cauchy(0,25);
+    sigma_ind ~ cauchy(0,25);
     sigma_obs ~ cauchy(0,25);
   }
   generated quantities {
@@ -424,8 +424,8 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
     b_otc ~ normal(0, 0.5);
     b_poadist ~ normal(0, 0.5);
     b_otc_x_poadist ~ normal(0, 0.5);
-    sigma_plot ~ cauchy(0,2.5);
-    sigma_ind ~ cauchy(0,2.5);
+    sigma_plot ~ cauchy(0,25);
+    sigma_ind ~ cauchy(0,25);
     sigma_obs ~ cauchy(0,25);
   }
   generated quantities{
@@ -534,12 +534,12 @@ run_non_tussock_mortalilty_model <- function(data) {
     raw_b_otc ~ normal(0,1);
     raw_plot ~ normal(0,1);
     raw_ind ~ normal(0,1);
-    mu_alpha ~ normal(0,5);
-    mu_b_otc ~ normal(0,5);
-    sigma_alpha ~ cauchy(0,2.5);
-    sigma_b_otc ~ cauchy(0,2.5);
-    sigma_plot ~ cauchy(0,2.5);
-    sigma_ind ~ cauchy(0,2.5);
+    mu_alpha ~ cauchy(0,2.5);
+    mu_b_otc ~ cauchy(0,2.5);
+    sigma_alpha ~ cauchy(0,25);
+    sigma_b_otc ~ cauchy(0,25);
+    sigma_plot ~ cauchy(0,25);
+    sigma_ind ~ cauchy(0,25);
   }
   generated quantities {
     real p_death_ctl[n_spp];
@@ -650,12 +650,12 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
     #Priors
     raw_plot ~ normal(0,1);
     raw_ind ~ normal(0,1);
-    alpha ~ normal(0,5);
-    b_otc ~ normal(0,5);
-    b_poadist ~ normal(0,5);
-    b_otc_x_poadist ~ normal(0,5);
-    sigma_plot ~ cauchy(0,2.5);
-    sigma_ind ~ cauchy(0,2.5);
+    alpha ~ cauchy(0,2.5);
+    b_otc ~ cauchy(0,2.5);
+    b_poadist ~ cauchy(0,2.5);
+    b_otc_x_poadist ~ cauchy(0,2.5);
+    sigma_plot ~ cauchy(0,25);
+    sigma_ind ~ cauchy(0,25);
   }
   generated quantities{
   real p_death_ctl[n_preds];
@@ -811,24 +811,24 @@ model { # Define priors and likelihood
   # PRIORS
   a_raw_transect ~ normal(0,1);
   b_raw_transect ~ normal(0,1);
-  a_site_mu ~ normal(0, 5);
-  a_site_sigma ~ cauchy(0, 2.5);
+  a_site_mu ~ cauchy(0, 2.5);
+  a_site_sigma ~ cauchy(0, 25);
   a_raw_site ~ normal(0,1);
-  a_unburnt ~ normal(0,5);
-  a_severity ~ normal(0,5);
-  a_altitude ~ normal(0,5);
-  a_twi ~ normal(0,5);
-  a_transect_sigma ~ cauchy(0,2.5);
+  a_unburnt ~ cauchy(0,2.5);
+  a_severity ~ cauchy(0,2.5);
+  a_altitude ~ cauchy(0,2.5);
+  a_twi ~ cauchy(0,2.5);
+  a_transect_sigma ~ cauchy(0,25);
   %s
 
-  b_site_mu ~ normal(0, 5);
-  b_site_sigma ~ cauchy(0, 2.5);
+  b_site_mu ~ normal(0, 2.5);
+  b_site_sigma ~ cauchy(0, 25);
   b_raw_site ~ normal(0,1);
-  b_unburnt ~ normal(0,5);
-  b_severity ~ normal(0,5);
-  b_altitude ~ normal(0,5);
-  b_twi ~ normal(0,5);
-  b_transect_sigma ~ cauchy(0,2.5);
+  b_unburnt ~ normal(0,2.5);
+  b_severity ~ normal(0,2.5);
+  b_altitude ~ normal(0,2.5);
+  b_twi ~ normal(0,2.5);
+  b_transect_sigma ~ cauchy(0,25);
   %s
 
   
@@ -886,7 +886,7 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
    ifelse(species =='Grevillea', "real b_adult_density;",""),
    ifelse(species =='Grevillea', "a_adult_density * cs_adult_den[transect[i]] +",""),
    ifelse(species =='Grevillea', "b_adult_density * cs_adult_den[transect[i]] +",""),
-   ifelse(species =='Grevillea', "a_adult_density ~ normal(0, 5);",""),
+   ifelse(species =='Grevillea', "a_adult_density ~ cauchy(0, 2.5);",""),
    ifelse(species =='Grevillea', "b_adult_density ~ normal(0, 5);",""),
    ifelse(species =='Grevillea', "real p_absent_adult_density[n_sims];",""),
    ifelse(species =='Grevillea', "real pred_count_adult_density[n_sims];",""),
@@ -995,12 +995,12 @@ stan_data <-
   y ~ lognormal(log_max_ht_hat, sigma_log_obs);
   
   raw_site ~ normal(0,1);
-  log_b_severity ~ normal(0,5);
-  log_b_altitude ~ normal(0,5);
-  log_b_twi ~ normal(0,5);
-  mu_log_site ~ normal(0,5);
-  sigma_log_site ~ cauchy(0,2.5);
-  sigma_log_obs ~ cauchy(0, 2.5);
+  log_b_severity ~ normal(0,2.5);
+  log_b_altitude ~ normal(0,2.5);
+  log_b_twi ~ normal(0,2.5);
+  mu_log_site ~ normal(0,2.5);
+  sigma_log_site ~ cauchy(0,25);
+  sigma_log_obs ~ cauchy(0, 25);
 }
 generated quantities { # Calculate log likelihood, residuals or make predictions
   
