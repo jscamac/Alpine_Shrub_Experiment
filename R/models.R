@@ -745,20 +745,10 @@ model=sprintf("
     %s
   }
 parameters{ # Declare parameters the models must estimate
-  real a_site_mu;
-  real<lower=0> a_site_sigma;
-  real a_raw_site[n_sites];
-  real a_unburnt;
-  real a_severity;
-  real a_altitude;
-  real a_twi;
-  real a_raw_transect[n_transects];
-  real<lower=0> a_transect_sigma;
-  %s
 
-  real b_site_mu;
-  real<lower=0> b_site_sigma;
-  real b_raw_site[n_sites];
+  real alpha_mu;
+  real<lower=0> alpha_sigma;
+  real raw_alpha[n_sites];
   real b_unburnt;
   real b_severity;
   real b_altitude;
@@ -771,33 +761,21 @@ parameters{ # Declare parameters the models must estimate
 }
 transformed parameters { # Declare and define derived variables used in model
   real count[n_obs];
-  real p_absent[n_obs];
-  real a_site[n_sites];
-  real b_site[n_sites];
+  real alpha[n_sites];
   real a_transect[n_transects];
   real b_transect[n_transects];
   
 
      for (t in 1:n_transects) {
-     a_transect[t] <- a_raw_transect[t] * a_transect_sigma;
      b_transect[t] <- b_raw_transect[t] * b_transect_sigma;
      }
 
   for (s in 1:n_sites) {
-  a_site[s] <- a_raw_site[s] * a_site_sigma + a_site_mu;
-  b_site[s] <- b_raw_site[s] * b_site_sigma + b_site_mu;
+  alpha[s] <- raw_alpha[s] * alpha_sigma + alpha_mu;
   }
   
   for (i in 1:n_obs) {
-    p_absent[i] <-  a_site[site[i]] + 
-                    a_unburnt * (1-burnt[site[i]]) + 
-                    a_severity * (cs_severity[site[i]] * burnt[site[i]]) +
-                    a_altitude * cs_altitude[site[i]] + 
-                    a_twi * cs_twi[site[i]] + 
-                    %s
-                    a_transect[transect[i]];
-
-    count[i] <- exp(b_site[site[i]] + 
+    count[i] <- exp(alpha[site[i]] + 
                     b_unburnt * (1-burnt[site[i]]) + 
                     b_severity * (cs_severity[site[i]] * burnt[site[i]]) +
                     b_altitude * cs_altitude[site[i]] + 
@@ -809,53 +787,26 @@ transformed parameters { # Declare and define derived variables used in model
 model { # Define priors and likelihood
   
   # PRIORS
-  a_raw_transect ~ normal(0,1);
-  b_raw_transect ~ normal(0,1);
-  a_site_mu ~ cauchy(0, 2.5);
-  a_site_sigma ~ cauchy(0, 25);
-  a_raw_site ~ normal(0,1);
-  a_unburnt ~ cauchy(0,2.5);
-  a_severity ~ cauchy(0,2.5);
-  a_altitude ~ cauchy(0,2.5);
-  a_twi ~ cauchy(0,2.5);
-  a_transect_sigma ~ cauchy(0,25);
-  %s
-
-  b_site_mu ~ normal(0, 2.5);
-  b_site_sigma ~ cauchy(0, 25);
-  b_raw_site ~ normal(0,1);
+  raw_alpha ~ normal(0,1);
+  alpha_mu ~ normal(0, 2.5);
+  alpha_sigma ~ cauchy(0, 25);
   b_unburnt ~ normal(0,2.5);
   b_severity ~ normal(0,2.5);
   b_altitude ~ normal(0,2.5);
   b_twi ~ normal(0,2.5);
+  b_raw_transect ~ normal(0,1);
   b_transect_sigma ~ cauchy(0,25);
   %s
 
   
   # Likelihood
-  
-  for (i in 1:n_obs){
-    if (y[i] == 0) { # seedlings absent
-      increment_log_prob(log_sum_exp(bernoulli_logit_log(1, p_absent[i]),
-                                     bernoulli_logit_log(0, p_absent[i])
-                                     + neg_binomial_2_log(y[i], count[i], phi)));
-    } else { # if present
-      increment_log_prob(bernoulli_logit_log(0, p_absent[i])
-                         + neg_binomial_2_log(y[i], count[i], phi));
-    }
-  }
+    y ~ neg_binomial_2(count, phi);
 }
 generated quantities { # Calculate log likelihood, residuals or make predictions
   
   # Parameters to calculate log likelihood
   
   # Predictions
-  real p_absent_unburnt;
-  real p_absent_burnt;
-  real p_absent_severity[n_sims];
-  real p_absent_altitude[n_sims];
-  real p_absent_twi[n_sims];
-  %s
   real pred_count_unburnt;
   real pred_count_burnt;
   real pred_count_severity[n_sims];
@@ -864,54 +815,38 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
   %s
 
   # Partial dependencies
-  p_absent_unburnt <- inv_logit(a_site_mu + a_unburnt);
-  p_absent_burnt<-  inv_logit(a_site_mu);
-  pred_count_unburnt <- inv_logit(b_site_mu + b_unburnt);
-  pred_count_burnt<- inv_logit(b_site_mu);
+
+  pred_count_unburnt <- exp(alpha_mu + b_unburnt);
+  pred_count_burnt<- exp(alpha_mu);
 
   for(i in 1:n_sims) {
-  p_absent_severity[i] <- inv_logit(a_site_mu + a_severity * cs_sim_severity[i]);
-  p_absent_altitude[i] <- inv_logit(a_site_mu + a_altitude * cs_sim_altitude[i]);
-  p_absent_twi[i] <- inv_logit(a_site_mu + a_twi *cs_sim_twi[i]);
-  %s
-  
-  pred_count_severity[i] <- exp(b_site_mu + b_severity * cs_sim_severity[i]);
-  pred_count_altitude[i] <- exp(b_site_mu + b_altitude * cs_sim_altitude[i]);
-  pred_count_twi[i] <- exp(b_site_mu + b_twi * cs_sim_twi[i]);
+  pred_count_severity[i] <- exp(alpha_mu + b_severity * cs_sim_severity[i]);
+  pred_count_altitude[i] <- exp(alpha_mu + b_altitude * cs_sim_altitude[i]);
+  pred_count_twi[i] <- exp(alpha_mu + b_twi * cs_sim_twi[i]);
   %s
   }
 }",ifelse(species =='Grevillea', "real cs_adult_den[n_transects];", ""),
    ifelse(species =='Grevillea', "real cs_sim_adult_den[n_sims];",""),
-   ifelse(species =='Grevillea', "real a_adult_density;",""),
    ifelse(species =='Grevillea', "real b_adult_density;",""),
-   ifelse(species =='Grevillea', "a_adult_density * cs_adult_den[transect[i]] +",""),
    ifelse(species =='Grevillea', "b_adult_density * cs_adult_den[transect[i]] +",""),
-   ifelse(species =='Grevillea', "a_adult_density ~ cauchy(0, 2.5);",""),
-   ifelse(species =='Grevillea', "b_adult_density ~ normal(0, 5);",""),
-   ifelse(species =='Grevillea', "real p_absent_adult_density[n_sims];",""),
+   ifelse(species =='Grevillea', "b_adult_density ~ normal(0, 2.5);",""),
    ifelse(species =='Grevillea', "real pred_count_adult_density[n_sims];",""),
-   ifelse(species =='Grevillea', "p_absent_adult_density[i] <- inv_logit(a_site_mu + a_adult_density * cs_sim_adult_den[i]);",""),
-   ifelse(species =='Grevillea', "pred_count_adult_density[i] <- exp(b_site_mu + b_adult_density * cs_sim_adult_den[i]);",""))
+   ifelse(species =='Grevillea', "pred_count_adult_density[i] <- exp(alpha_mu + b_adult_density * cs_sim_adult_den[i]);",""))
 
 
   rstan_options(auto_write = TRUE)
   options(mc.cores = parallel::detectCores())
   
   if(species =="Grevillea") {
-    pars <- c("a_site_mu","a_unburnt","a_severity","a_altitude","a_twi","a_adult_density",
-              "b_site_mu","b_unburnt","b_severity","b_altitude","b_twi","phi", "b_adult_density",
-              "a_site_sigma","a_transect_sigma","b_site_sigma","b_transect_sigma",
-              "p_absent_unburnt","p_absent_burnt","p_absent_severity","p_absent_altitude",
-              "p_absent_twi","p_absent_adult_density",
+    pars <- c("alpha_mu", "alpha_sigma","b_transect_sigma",
+              "b_unburnt","b_severity","b_altitude","b_twi","phi", "b_adult_density",
               "pred_count_unburnt","pred_count_burnt","pred_count_severity","pred_count_altitude",
               "pred_count_twi","pred_count_adult_density")
   }else {
-  pars <- c("a_site_mu","a_unburnt","a_severity","a_altitude","a_twi",
-            "b_site_mu","b_unburnt","b_severity","b_altitude","b_twi","phi",
-            "a_site_sigma","a_transect_sigma","b_site_sigma","b_transect_sigma",
-            "p_absent_unburnt","p_absent_burnt","p_absent_severity","p_absent_altitude","p_absent_twi",
-            "pred_count_unburnt","pred_count_burnt","pred_count_severity",
-            "pred_count_altitude","pred_count_twi")}
+    pars <- c("alpha_mu", "alpha_sigma","b_transect_sigma",
+              "b_unburnt","b_severity","b_altitude","b_twi","phi",
+              "pred_count_unburnt","pred_count_burnt","pred_count_severity","pred_count_altitude",
+              "pred_count_twi")}
   
   fit <- list(stan_data = stan_data,
               fit = stan(model_code = model, 
