@@ -175,11 +175,11 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
 
 density_count_plots <- function(density_model, species, ylim=c(0,20)) {
   if(species=='Grevillea') {
-    params <- c('b_site_mu','b_unburnt','b_severity','b_altitude','b_twi','b_adult_density','phi')
+    params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','b_adult_density','phi')
     y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','adult density','phi')
   }
   if(species=='Asterolasia'){
-    params <- c('b_site_mu','b_unburnt','b_severity','b_altitude','b_twi','phi')
+    params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','phi')
     y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','phi')
   }
   coeffs <- summarise_coefficients(density_model,params = params)
@@ -196,39 +196,6 @@ density_count_plots <- function(density_model, species, ylim=c(0,20)) {
   if(species=='Grevillea') {
     p6 <- partial_plot_density_height(predictions$count_model$adult_density, x ='sim_adult_den', 
                                       xlab = expression(bold('Adult density /500'~m^2)), ylab = expression(bold('Seedlings /'~m^2)), ylim)
-    grid.arrange(p1,p2,p3,p4,p5,p6, ncol=2)
-  }
-  if(species=='Asterolasia') {
-    grid.arrange(p1,p2,p3,p4,p5, ncol=2)
-  }
-}
-density_absence_plots <- function(density_model, species, ylim=c(0,1)) {
-  if(species=='Grevillea') {
-    params <- c('a_site_mu','a_unburnt','a_severity','a_altitude','a_twi','a_adult_density')
-    y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','adult density')
-  }
-  if(species=='Asterolasia'){
-    params <-c('a_site_mu','a_unburnt','a_severity','a_altitude','a_twi')
-    y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi')
-  }
-  coeffs <- summarise_coefficients(density_model,params)
-  predictions <- summarise_density_predictions(density_model,species)
-  p1 <- coefficient_plot(coeffs,y_axis_labels,xlab = 'logit coefficients')
-  p2 <- burnt_v_unburnt(predictions$absence_model$burnt_unburnt,
-                        x = 'predictor', ylab = expression(bold('Pr(zero seedlings) /'~m^2)))
-  p3 <- partial_plot_density_height(predictions$absence_model$severity, 
-                                    x = 'sim_severity', xlab = 'Minimum Twig diameter (mm)', 
-                                    ylab = expression(bold('Seedlings /'~m^2)),ylim) 
-  p4 <- partial_plot_density_height(predictions$absence_model$altitude, 
-                                    x = 'sim_altitude', xlab ='Altitude (m)', 
-                                    ylab = expression(bold('Pr(zero seedlings) /'~m^2)),ylim)  
-  p5 <- partial_plot_density_height(predictions$absence_model$twi, 
-                                    x = 'sim_twi', xlab = 'Topographic wetness index', 
-                                    ylab = expression(bold('Pr(zero seedlings) /'~m^2)),ylim) 
-  if(species=='Grevillea') {
-    p6 <- partial_plot_density_height(predictions$absence_model$adult_density, 
-                                      x = 'sim_adult_den', xlab = expression(bold('Adult density /500'~m^2)), 
-                                      ylab = expression(bold('Pr(zero seedlings) /'~m^2)), ylim) 
     grid.arrange(p1,p2,p3,p4,p5,p6, ncol=2)
   }
   if(species=='Asterolasia') {
