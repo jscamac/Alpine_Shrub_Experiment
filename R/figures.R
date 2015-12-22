@@ -3,7 +3,7 @@
 partial_plot_theme <- function(legend.position = "none", strips = FALSE,...) {
   sb <- if(strips==TRUE) element_rect(fill='lightgrey') else element_blank()
   st <- if(strips==TRUE) element_text(color = "black", face = "bold", size = 10) else element_blank()
-  theme_classic() + theme(axis.title = element_text(face = "bold", size = 10),
+  theme_classic() + theme(axis.title = element_text(face = "bold", size = 12),
                           axis.text = element_text(size = 10),
                           strip.text = st,
                           legend.title = element_text(size = 10),
@@ -17,9 +17,10 @@ partial_plot_theme <- function(legend.position = "none", strips = FALSE,...) {
 
 # Theme for coefficient plots
 coefficent_plot_theme <- function() {
-  theme_classic() + theme(axis.title.x = element_text(face = "bold", size = 10),
+  theme_classic() + theme(axis.title.x = element_text(face = "bold", size = 12),
                           axis.title.y = element_blank(),
-                          axis.text = element_text(size = 10),
+                          axis.text.x = element_text(size = 10),
+                          axis.text.y = element_text(size = 10),
                           plot.title = element_text(size = 18),
                           title = element_text(face = "bold"),
                           panel.margin = unit(4,"mm"))
@@ -134,7 +135,7 @@ burnt_v_unburnt <- function(predictions, x, ylab=NULL, ylim=c(0,1)) {
     partial_plot_theme()
 }
 
-gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Median inter-tussock gap radius (cm)',ylim=c(0,20)) {
+gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Inter-tussock gap radius (cm)',ylim=c(0,20)) {
   ggplot(summarised_predictions, aes(x = pred_yr,y = mean, group=as.factor(treatment), colour = as.factor(treatment), fill = as.factor(treatment)), axis.line = element_line()) + 
     geom_line(size =1.2) +
     scale_colour_manual("",labels = c("Control", "Open Top Chamber"),values= c('ctl' ='blue','otc' ='red')) +
@@ -162,13 +163,13 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
   mortality <- summarise_coefficients(tussock_mortality_model, c('alpha','b_otc','b_poadist','b_otc_x_poadist'))
   growth_preds <- summarise_otc_model_predictions('tussock_growth',tussock_growth_model)
   mortality_preds <- summarise_otc_model_predictions('tussock_mortality',tussock_mortality_model)
-  p1 <- coefficient_plot(growth, y_axis_labels = c('intercept (ctl)','otc','tussock gap','otc x tussock gap'), 
+  p1 <- coefficient_plot(growth, y_axis_labels = c('intercept (ctl)','otc','gap radius','otc x gap radius'), 
                          xlab = 'Growth coefficients')
-  p2 <- poadist_plot(growth_preds,xlab = 'median inter-tussock gap size',ylab = 'R parameter')
-  p3 <- coefficient_plot(mortality, y_axis_labels = c('intercept (ctl)','otc','tussock gap','otc x tussock gap'),
+  p2 <- poadist_plot(growth_preds,xlab = 'Inter-tussock gap radius (cm)',ylab = 'logistic growth rate parameter')
+  p3 <- coefficient_plot(mortality, y_axis_labels = c('intercept (ctl)','otc','gap radius','otc x gap radius'),
                          xlab = 'Mortality coefficents (cloglog scale)')
   
-  p4 <- poadist_plot(mortality_preds, xlab = 'median inter-tussock gap size',ylab = 'Annual probability of death')
+  p4 <- poadist_plot(mortality_preds, xlab = 'Inter-tussock gap radius (cm)',ylab = 'Annual probability of death')
   grid.arrange(p1,p2,p3,p4, ncol=2)
 }
 
@@ -244,19 +245,19 @@ max_ht_plots <- function(greaus_max_ht_model,asttry_max_ht_model, ylim=c(0,35)) 
   coeffs_asttry <- summarise_coefficients(asttry_max_ht_model,params = c('mu_log_site','log_b_severity','log_b_altitude','log_b_twi'))
   predictions_asttry <- summarise_max_ht_predictions(asttry_max_ht_model)
   
-  p1 <- coefficient_plot(coeffs_greaus,c('Intercept','severity','altitude','twi'),xlab = 'log coefficients', title='Grevillea')
-  p2 <- coefficient_plot(coeffs_asttry,c('Intercept','severity','altitude','twi'),xlab = 'log coefficients', title='Asterolasia')
-  p3 <- partial_plot_density_height(predictions_greaus$pred_ht_severity, x ='sim_severity', 
+  p1 <- coefficient_plot(coeffs_asttry,c('Intercept','severity','altitude','twi'),xlab = 'log coefficients', title='Asterolasia')
+  p2 <- coefficient_plot(coeffs_greaus,c('Intercept','severity','altitude','twi'),xlab = 'log coefficients', title='Grevillea')
+  p3 <- partial_plot_density_height(predictions_asttry$pred_ht_severity, x ='sim_severity', 
                                     xlab ='Minimum Twig diameter (mm)', ylab ='Maximum height (cm)',ylim)
-  p4 <- partial_plot_density_height(predictions_asttry$pred_ht_severity, x ='sim_severity', 
+  p4 <- partial_plot_density_height(predictions_greaus$pred_ht_severity, x ='sim_severity', 
                                     xlab ='Minimum Twig diameter (mm)', ylab ='Maximum height (cm)',ylim)
-  p5 <- partial_plot_density_height(predictions_greaus$pred_ht_altitude, x ='sim_altitude', 
+  p5 <- partial_plot_density_height(predictions_asttry$pred_ht_altitude, x ='sim_altitude', 
                                     xlab ='Altitude (m)', ylab ='Maximum height (cm)',ylim) 
-  p6 <- partial_plot_density_height(predictions_asttry$pred_ht_altitude, x ='sim_altitude', 
+  p6 <- partial_plot_density_height(predictions_greaus$pred_ht_altitude, x ='sim_altitude', 
                                     xlab ='Altitude (m)', ylab ='Maximum height (cm)',ylim) 
-  p7 <- partial_plot_density_height(predictions_greaus$pred_ht_twi, x ='sim_twi', 
+  p7 <- partial_plot_density_height(predictions_asttry$pred_ht_twi, x ='sim_twi', 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
-  p8 <- partial_plot_density_height(predictions_asttry$pred_ht_twi, x ='sim_twi', 
+  p8 <- partial_plot_density_height(predictions_greaus$pred_ht_twi, x ='sim_twi', 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
   
   grid.arrange(p1,p2,p3,p4,p5,p6,p7,p8, ncol=2)
