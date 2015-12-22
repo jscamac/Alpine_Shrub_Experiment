@@ -124,7 +124,7 @@ partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, yli
     partial_plot_theme(strips=FALSE)
 }
 
-burnt_v_unburnt <- function(predictions, x, ylab=NULL, ylim=c(0,1)) {
+burnt_v_unburnt <- function(predictions, x, ylab=NULL, ylim=c(0,3.5)) {
   ggplot(predictions, aes_string(x = x,y = 'mean')) + 
     geom_point(size=1) +
     geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`),size=1) +
@@ -135,7 +135,7 @@ burnt_v_unburnt <- function(predictions, x, ylab=NULL, ylim=c(0,1)) {
     partial_plot_theme()
 }
 
-gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Inter-tussock gap radius (cm)',ylim=c(0,20)) {
+gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Inter-tussock gap radius (cm)',ylim=c(0,25)) {
   ggplot(summarised_predictions, aes(x = pred_yr,y = mean, group=as.factor(treatment), colour = as.factor(treatment), fill = as.factor(treatment)), axis.line = element_line()) + 
     geom_line(size =1.2) +
     scale_colour_manual("",labels = c("Control", "Open Top Chamber"),values= c('ctl' ='blue','otc' ='red')) +
@@ -165,7 +165,7 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
   mortality_preds <- summarise_otc_model_predictions('tussock_mortality',tussock_mortality_model)
   p1 <- coefficient_plot(growth, y_axis_labels = c('intercept (ctl)','otc','gap radius','otc x gap radius'), 
                          xlab = 'Growth coefficients')
-  p2 <- poadist_plot(growth_preds,xlab = 'Inter-tussock gap radius (cm)',ylab = 'logistic growth rate parameter')
+  p2 <- poadist_plot(growth_preds,xlab = 'Inter-tussock gap radius (cm)',ylab = 'logistic growth rate parameter (R)')
   p3 <- coefficient_plot(mortality, y_axis_labels = c('intercept (ctl)','otc','gap radius','otc x gap radius'),
                          xlab = 'Mortality coefficents (cloglog scale)')
   
@@ -173,7 +173,7 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
   grid.arrange(p1,p2,p3,p4, ncol=2)
 }
 
-density_count_plots <- function(density_model, species, ylim=c(0,20)) {
+density_count_plots <- function(density_model, species, ylim=c(0,32)) {
   if(species=='Grevillea') {
     params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','b_adult_density','phi')
     y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','adult density','phi')
@@ -185,16 +185,16 @@ density_count_plots <- function(density_model, species, ylim=c(0,20)) {
   coeffs <- summarise_coefficients(density_model,params = params)
   predictions <- summarise_density_predictions(density_model,species)
   p1 <- coefficient_plot(coeffs,y_axis_labels,xlab = 'log coefficients')
-  p2 <- burnt_v_unburnt(predictions$count_model$burnt_unburnt,x ='predictor',ylab = expression(bold('Seedlings /'~m^2)))
-  p3 <- partial_plot_density_height(predictions$count_model$severity, x ='sim_severity', 
+  p2 <- burnt_v_unburnt(predictions$burnt_unburnt,x ='predictor',ylab = expression(bold('Seedlings /'~m^2)))
+  p3 <- partial_plot_density_height(predictions$severity, x ='sim_severity', 
                                     xlab ='Minimum Twig diameter (mm)', ylab =expression(bold('Seedlings /'~m^2)),ylim)
-  p4 <- partial_plot_density_height(predictions$count_model$altitude, x ='sim_altitude', 
+  p4 <- partial_plot_density_height(predictions$altitude, x ='sim_altitude', 
                                     xlab ='Altitude (m)', ylab =expression(bold('Seedlings /'~m^2)),ylim) 
-  p5 <- partial_plot_density_height(predictions$count_model$twi, x ='sim_twi', 
+  p5 <- partial_plot_density_height(predictions$twi, x ='sim_twi', 
                                     xlab ='Topographic wetness index', ylab =expression(bold('Seedlings /'~m^2)),ylim)
   
   if(species=='Grevillea') {
-    p6 <- partial_plot_density_height(predictions$count_model$adult_density, x ='sim_adult_den', 
+    p6 <- partial_plot_density_height(predictions$adult_density, x ='sim_adult_den', 
                                       xlab = expression(bold('Adult density /500'~m^2)), ylab = expression(bold('Seedlings /'~m^2)), ylim)
     grid.arrange(p1,p2,p3,p4,p5,p6, ncol=2)
   }
