@@ -23,6 +23,10 @@ plot_options:
   A4_portrait:
     width: 8.27
     height: 11.69
+  
+  med_square:
+    width: 6
+    height: 6
     
     
 targets:
@@ -58,6 +62,7 @@ targets:
       - figures/greaus_seedling_density.pdf
       - figures/seedling_obs_pred_height.pdf
       - figures/mortality.pdf
+      - figures/greaus_recruitment.pdf
       - figures/seedling_max_height.pdf
       - figures/tussock_seedling_ht_mortality.pdf
       - figures/asttry_seedling_density.pdf
@@ -99,6 +104,10 @@ targets:
     
   tussock_otc_mortality_data:
     command: get_mortality_data(complete_otc_seedling_data, TRUE)
+    cleanup_level: purge
+  
+  greaus_recruit_data:
+    command: read.csv("raw_data/grevillea_recruits.csv")
     cleanup_level: purge
     
   cleaned_unburnt_data:
@@ -158,6 +167,10 @@ targets:
     command: run_tussock_mortality_model(tussock_otc_mortality_data)
     cleanup_level: purge
     
+  recruit_model:
+    command: run_recruit_model(greaus_recruit_data)
+    cleanup_level: purge
+    
   greaus_seedling_density_model:
     command: run_density_model(complete_field_survey_data, I("Grevillea"))
     cleanup_level: purge
@@ -188,6 +201,10 @@ targets:
 
   processed_data/complete_otc_seedling_data.rds:
     command: saveRDS(complete_otc_seedling_data, target_name)
+    cleanup_level: purge
+    
+  processed_data/grevillea_recruit_data.rds:
+    command: saveRDS(greaus_recruit_data)
     cleanup_level: purge
     
   processed_data/complete_field_survey_data.rds:
@@ -227,6 +244,10 @@ targets:
   models/tussock_otc_mortality_model.rds:
     command: saveRDS(tussock_otc_mortality_model, target_name)
     cleanup_level: purge
+    
+  models/recruit_model.rds:
+    command: saveRDS(recruit_model, target_name)
+    cleanup_level: purge
 
   models/gap_dynamic_model.rds:
     command: saveRDS(gap_dynamic_model, target_name)
@@ -251,8 +272,12 @@ targets:
   #------------- make figures ---------------------------
 
   figures/greaus_seedling_density.pdf:
-    command: density_count_plots(greaus_seedling_density_model, I('Grevillea'))
+    command: density_count_plots(greaus_seedling_density_model, I('Grevillea'),I(c(0,25)))
     plot: A4_portrait
+    
+  figures/greaus_recruitment.pdf:
+    command: recruit_plot(recruit_model)
+    plot: med_square
     
   figures/seedling_obs_pred_height.pdf:
     command: obs_pred_ht_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
@@ -260,7 +285,7 @@ targets:
     
   figures/mortality.pdf:
     command: non_tussock_mortality_plot(non_tussock_otc_mortality_model)
-    plot: A4_landscape
+    plot: med_square
     
   figures/seedling_max_height.pdf:
     command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
