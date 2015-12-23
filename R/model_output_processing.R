@@ -29,6 +29,7 @@ summarise_coefficients <- function(model, params, quantiles = c(0.025,0.1,0.5,0.
 }
 
 # Summaries OTC model predictions
+# Summaries OTC model predictions
 summarise_otc_model_predictions <- function(analysis, model, quantiles = c(0.025, 0.975)) {
   genus <- c('Asterolasia','Grevillea','Phebalium','Prostanthera')
   if(analysis =='non_tussock_growth') {
@@ -50,14 +51,25 @@ summarise_otc_model_predictions <- function(analysis, model, quantiles = c(0.025
   
   if(analysis == 'non_tussock_mortality') {
     samples <- rstan::extract(model$fit, pars=c('p_death_ctl','p_death_otc'))
-    pred_var <- data.frame(treatment = as.factor(c(rep('ctl',4),rep('otc',4))))
     
     summary_df <-lapply(samples, function(x) {
-      df <- cbind.data.frame(
+      cbind.data.frame(
         spp = genus,
         mean = apply(x,2, mean),
         sd = apply(x,2,sd),
         aperm(apply(x,2, quantile, quantiles), c(2,1)))
+    })
+  }
+  
+  if(analysis == 'recruits') {
+    samples <- rstan::extract(model, pars=c('pred_count_ctl_t1','pred_count_ctl_t2',
+                                                'pred_count_otc_t1','pred_count_otc_t2'))
+    
+    summary_df <-lapply(samples, function(x) {
+      cbind.data.frame(
+        mean = mean(x),
+        sd = sd(x),
+        t(quantile(x, quantiles)))
     })
   }
   
@@ -105,11 +117,12 @@ summarise_otc_model_predictions <- function(analysis, model, quantiles = c(0.025
   
   if(!analysis %in% c('non_tussock_growth',
                       'non_tussock_mortality',
+                      'recruits',
                       'tussock_growth',
                       'tussock_mortality',
                       'gap_dynamics')) {
     stop("analysis can only be one of the following: 
-         'non_tussock_growth','non_tussock_mortality',
+         'non_tussock_growth','non_tussock_mortality','recruits',
          'tussock_growth', 'tussock_mortality', 'gap_dynamics")
   }
 
