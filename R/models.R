@@ -203,8 +203,8 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
     real preds_ctl[n_preds];
     
     for (i in 1:n_preds) {
-      preds_otc[i] <- exp(log(10) + ((alpha + b_otc)  * pred_yr[i]) + (sigma_log_obs^2)/2); # convert to arthamatic
-      preds_ctl[i] <- exp(log(10) + (alpha  * pred_yr[i]) + (sigma_log_obs^2)/2);
+      preds_otc[i] <- exp(log(10) + ((alpha + b_otc)  * pred_yr[i]));
+      preds_ctl[i] <- exp(log(10) + (alpha  * pred_yr[i]));
     }
   }'
   
@@ -757,7 +757,7 @@ parameters{ # Declare parameters the models must estimate
   real<lower=0> b_transect_sigma;
   real b_raw_transect[n_transects];
   %s
-  real<lower=0, upper=100> phi;
+  real<lower=0> phi;
 }
 transformed parameters { # Declare and define derived variables used in model
   real count[n_obs];
@@ -796,6 +796,7 @@ model { # Define priors and likelihood
   b_twi ~ normal(0,2.5);
   b_raw_transect ~ normal(0,1);
   b_transect_sigma ~ cauchy(0,25);
+  phi ~ cauchy(0,25);
   %s
 
   
@@ -968,3 +969,84 @@ fit <- list(stan_data = stan_data,
             return(fit)
 }
 
+
+# Natural recruitment model
+run_recruit_model <- function(data) {
+
+stan_data <- 
+    stan_data <- 
+    list(
+      n_obs = nrow(data),
+      n_plots = length(unique(data$plot)),
+      plot = data$plot,
+      otc = ifelse(data$trt=='OTC',1,0),
+      time = ifelse(data$census==2, 0,1),
+      y = data$recruits)
+
+model="
+  data{ # Declare what each data variable is
+    int<lower=1> n_obs;
+    int<lower=1> n_plots;
+    int<lower=1> plot[n_obs];
+    int<lower=0> y[n_obs]; 
+    int<lower=0> otc[n_obs];
+    int<lower=0> time[n_obs];
+  }
+parameters{ # Declare parameters the models must estimate
+  real alpha;
+  real b_otc;
+  real b_time;
+  real raw_plot[n_plots];
+  real<lower=0> plot_sigma;
+  real<lower=0> phi;
+}
+transformed parameters { # Declare and define derived variables used in model
+  real count[n_obs];
+  real plot_ranef[n_plots];
+
+  for (p in 1:n_plots) {
+  plot_ranef[p] <- raw_plot[p] * plot_sigma;
+  }
+  
+  for (i in 1:n_obs) {
+    count[i] <- exp(alpha + b_time * time[i] + b_otc * otc[i] + plot_ranef[plot[i]]);
+  }
+}
+model { # Define priors and likelihood
+  
+  # PRIORS
+  alpha ~ normal(0, 2.5);
+  plot_sigma ~ cauchy(0, 25);
+  raw_plot ~ normal(0,1);
+  b_otc ~ normal(0, 2.5);
+  b_time ~ normal(0, 2.5);
+  phi ~ cauchy(0, 25);
+
+  
+  # Likelihood
+  y ~ neg_binomial_2(count, phi);
+}
+
+generated quantities {
+  real pred_count_ctl_t1;
+  real pred_count_ctl_t2;
+  real pred_count_otc_t1;
+  real pred_count_otc_t2;
+
+  pred_count_ctl_t1 <- exp(alpha);
+  pred_count_ctl_t2 <- exp(alpha + b_time);
+  pred_count_otc_t1 <- exp(alpha + b_otc);
+  pred_count_otc_t2 <- exp(alpha + b_time + b_otc);
+}
+"
+  
+  fit <- stan(model_code = model, 
+              data= stan_data,
+              pars = c('alpha','plot_sigma','b_otc','b_time','phi',
+                       'pred_count_ctl_t1','pred_count_ctl_t2',
+                       'pred_count_otc_t1', 'pred_count_otc_t2'),
+              chains = 3,
+              iter = 2000, 
+              control=list(adapt_delta =0.99,stepsize=0.05, max_treedepth =15))
+  return(fit)
+}
