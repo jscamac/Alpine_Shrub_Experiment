@@ -20,7 +20,7 @@ coefficent_plot_theme <- function() {
   theme_classic() + theme(axis.title.x = element_text(face = "bold", size = 12),
                           axis.title.y = element_blank(),
                           axis.text.x = element_text(size = 10),
-                          axis.text.y = element_text(size = 10),
+                          axis.text.y = element_text(size = 12),
                           plot.title = element_text(size = 18),
                           title = element_text(face = "bold"),
                           panel.margin = unit(4,"mm"))
@@ -111,6 +111,22 @@ non_tussock_mortality_plot <- function(non_tussock_mortality_model, ylab ='Annua
     partial_plot_theme()
 }
 
+# Predicted number of natural recruits in OTC vs CTL for first two seasons
+recruit_plot <- function(recruit_model, ylab ='Number of natural recruits', xlab ='Census') {
+  recruits <- summarise_otc_model_predictions('recruits',recruit_model)
+  recruits$census <- as.factor(rep(c('2011', '2012'),2))
+  
+  
+  ggplot(recruits, aes(x = census,y = mean, group= treatment, colour=treatment)) + 
+    geom_point(position = position_dodge(.1), size=1) +
+    geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`),size=1, position=position_dodge(.1)) +
+    scale_colour_manual('',values = c("ctl" ="blue","otc" ="red")) +
+    ylab(ylab) + 
+    xlab(xlab) +
+    partial_plot_theme()
+}
+
+
 # Plots covariate partial plots for density and height models
 partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, ylim =c(0,15)) {
   ggplot(predictions, aes_string(x = x,y = 'mean'), axis.line = element_line()) + 
@@ -124,14 +140,13 @@ partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, yli
     partial_plot_theme(strips=FALSE)
 }
 
-burnt_v_unburnt <- function(predictions, x, ylab=NULL, ylim=c(0,3.5)) {
+burnt_v_unburnt <- function(predictions, x, ylab=NULL) {
   ggplot(predictions, aes_string(x = x,y = 'mean')) + 
     geom_point(size=1) +
     geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`),size=1) +
     scale_x_discrete(labels =c('Unburnt','Burnt')) +
     xlab('') +
     ylab(ylab) +
-    ylim(ylim) +
     partial_plot_theme()
 }
 
@@ -163,10 +178,10 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
   mortality <- summarise_coefficients(tussock_mortality_model, c('alpha','b_otc','b_poadist','b_otc_x_poadist'))
   growth_preds <- summarise_otc_model_predictions('tussock_growth',tussock_growth_model)
   mortality_preds <- summarise_otc_model_predictions('tussock_mortality',tussock_mortality_model)
-  p1 <- coefficient_plot(growth, y_axis_labels = c('intercept (ctl)','otc','gap radius','otc x gap radius'), 
+  p1 <- coefficient_plot(growth, y_axis_labels = c('intercept','otc','gap','otc x gap'), 
                          xlab = 'Growth coefficients')
   p2 <- poadist_plot(growth_preds,xlab = 'Inter-tussock gap radius (cm)',ylab = 'logistic growth rate parameter (R)')
-  p3 <- coefficient_plot(mortality, y_axis_labels = c('intercept (ctl)','otc','gap radius','otc x gap radius'),
+  p3 <- coefficient_plot(mortality, y_axis_labels = c('intercept','otc','gap','otc x gap'),
                          xlab = 'Mortality coefficents (cloglog scale)')
   
   p4 <- poadist_plot(mortality_preds, xlab = 'Inter-tussock gap radius (cm)',ylab = 'Annual probability of death')
