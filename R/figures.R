@@ -112,7 +112,7 @@ non_tussock_mortality_plot <- function(non_tussock_mortality_model, ylab ='Annua
 }
 
 # Predicted number of natural recruits in OTC vs CTL for first two seasons
-recruit_plot <- function(recruit_model, ylab ='Number of natural recruits', xlab ='Census') {
+recruit_plot <- function(recruit_model, ylab =expression(bold('Recruits/'~m^2)), xlab ='Census') {
   recruits <- summarise_otc_model_predictions('recruits',recruit_model)
   recruits$census <- as.factor(rep(c('2011', '2012'),2))
   
@@ -133,7 +133,7 @@ partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, yli
     geom_line(size =1.2) +
     scale_fill_manual("",values= 'grey60') +
     geom_ribbon(aes(ymin = `2.5%`,ymax = `97.5%`), alpha=0.4, colour=NA) + 
-    scale_x_continuous(expand=c(0,0)) +
+    scale_x_continuous(expand=c(0,0.001)) +
     ylim(ylim) +
     xlab(xlab) +
     ylab(ylab) +
@@ -210,7 +210,7 @@ density_count_plots <- function(density_model, species, ylim=c(0,32)) {
   
   if(species=='Grevillea') {
     p6 <- partial_plot_density_height(predictions$adult_density, x ='sim_adult_den', 
-                                      xlab = expression(bold('Adult density /500'~m^2)), ylab = expression(bold('Seedlings /'~m^2)), ylim)
+                                      xlab = expression(bold('Adult density/'~m^2)), ylab = expression(bold('Seedlings /'~m^2)), ylim)
     grid.arrange(p1,p2,p3,p4,p5,p6, ncol=2)
   }
   if(species=='Asterolasia') {
