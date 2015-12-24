@@ -2,6 +2,7 @@
 Climate change is increasing fire frequency and severity worldwide, but it is not clear how the interaction between increases in temperatures and fire will affect threatened ecosystems. In this project we examine alpine shrub growth and survival at the critical seedling establishment stage using manipulative and natural experiments.
 
 **Using a Open Top Chamber warming experiment we examine:**
+* How experimental warming effects *Grevillea australis* recruitment
 * How experimental warming effects on seedling growth and mortality data of four dominant Australian alpine shrubs
 * How the interactive effects of inter-tussock gap size and experimental warming on shrub seedling growth and mortality
 * How experimental warming influences rates of inter-tussock gap closure
