@@ -154,6 +154,7 @@ clean_unburnt_data <- function(csv_file) {
            diameter=stemdiam, canopy_length_1 = clength1, canopy_length_2 = clength2) %>%
     complete(c(site,year,transect,greaus_tran_adultden,plot,poa,bare_ground,rock),species) %>%
     filter(!is.na(species)) %>%
+    mutate(greaus_tran_adultden = greaus_tran_adultden/500) %>% # converts to density/m2
     droplevels()
   return(data)
 }
@@ -186,7 +187,8 @@ clean_burnt_density<- function(csv_file) {
     filter(species!="PROCUN") %>%
     droplevels() %>%
     mutate(site = as.character(site),
-           adult_density=0)
+           adult_density=0,
+           greaus_tran_adultden = greaus_tran_adultden/500) # converts to density/m2
   return(data)
 }
 
@@ -203,7 +205,8 @@ clean_burnt_ht <- function(csv_file) {
     summarise(max_seedling_height_cm = max(height, na.rm=TRUE)) %>%
     ungroup() %>%
     mutate(site = as.character(site),
-           adult_density = 0)
+           adult_density = 0,
+           greaus_tran_adultden = greaus_tran_adultden/500) # converts to density/m2
   return(data)
 }
 
@@ -294,7 +297,7 @@ simulate_covariate_range <- function(data) {
   cbind.data.frame(sim_severity = seq(round(dat['min','min_twig_diam']),round(dat['max','min_twig_diam']),length.out = 100),
                    sim_altitude = seq(round(dat['min','altitude_m'],-1),round(dat['max','altitude_m'],-1),length.out = 100),
                    sim_twi =  seq((dat['min','topo_wetness_index']),round(dat['max','topo_wetness_index']),length.out = 100),
-                   sim_adult_den =  seq(round(dat['min','greaus_tran_adultden'],-1),round(dat['max','greaus_tran_adultden'],-1),length.out = 100))
+                   sim_adult_den = seq(round(dat['min','greaus_tran_adultden'],1),round(dat['max','greaus_tran_adultden'],1),length.out = 100))
 }
 
 # Process climate data
