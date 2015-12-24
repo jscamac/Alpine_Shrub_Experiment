@@ -111,7 +111,7 @@ run_censored_model <- function(data) {
                         data = stan_data,
                         pars = c("full_data", "sigma_log_census","sigma_log_plot","sigma_log_ind","sigma_log_obs","log_alpha","y_censored","log_b_otc","log_census_error","log_plot_error","log_ind_error"), 
                         chains = 3,
-                        control=list(adapt_delta=0.995,stepsize=0.005, max_treedepth =15),
+                        control=list(adapt_delta=0.995, stepsize=0.01, max_treedepth =15),
                         iter = 2000))
   return(fit)
 }
@@ -217,7 +217,7 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
                          pars = c('alpha','b_otc','sigma_plot','sigma_ind','sigma_log_obs', 'preds_otc','preds_ctl'), 
                          chains = 3,
                          iter = 2000, 
-                         control=list(adapt_delta=0.99,stepsize=0.005, max_treedepth =15)))
+                         control=list(adapt_delta=0.99,stepsize=0.01, max_treedepth =15)))
   return(fit)
 }
 
@@ -335,7 +335,7 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
                                   "sigma_alpha","sigma_b_otc","sigma_obs","sigma_ind",
                                   "alpha","b_otc","sigma_plot", "r_ctl","r_otc","pred_height_ctl","pred_height_otc"), 
                          chains = 3,
-                         control=list(stepsize=0.001),
+                         control=list(stepsize=0.1),
                          iter = 2000))
               return(fit)
 }
@@ -449,7 +449,7 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
                                   "sigma_plot","sigma_ind","sigma_obs",
                                   "r_ctl","r_otc"), 
                          chains = 3,
-                         control=list(stepsize=0.001),
+                         control=list(stepsize=0.1),
                          iter = 2000))
   return(fit)
 }
@@ -560,7 +560,7 @@ run_non_tussock_mortalilty_model <- function(data) {
                          pars = c("mu_alpha","mu_b_otc",
                                   "sigma_alpha","sigma_b_otc","sigma_plot","sigma_ind",
                                   "alpha","b_otc", "p_death_otc","p_death_ctl"), 
-                         control=list(adapt_delta=0.999, stepsize=0.0001, max_treedepth =15),
+                         control=list(adapt_delta=0.999999,stepsize=0.1, max_treedepth =15),
                          chains = 3,
                          iter = 2000))
   return(fit)
@@ -679,7 +679,7 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
                                   "p_death_ctl","p_death_otc"), 
                          chains = 3,
                          iter = 2000, 
-                         control=list(adapt_delta=0.999,stepsize=0.001, max_treedepth =15)))
+                         control=list(adapt_delta=0.999,stepsize=0.1, max_treedepth =15)))
   return(fit)
 }
 
@@ -855,7 +855,7 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
                          pars = pars,
                          chains = 3,
                          iter = 2000, 
-                         control=list(adapt_delta =0.9,stepsize=0.05, max_treedepth =15)))
+                         control=list(adapt_delta =0.9,stepsize=0.01, max_treedepth =15)))
   return(fit)
 }
 
@@ -965,7 +965,7 @@ fit <- list(stan_data = stan_data,
                                'sigma_log_site','sigma_log_obs','pred_ht_severity','pred_ht_altitude','pred_ht_twi'),
                       chains = 3,
                       iter = 2000, 
-                      control=list(adapt_delta =0.9,stepsize=0.05, max_treedepth =15)))
+                      control=list(adapt_delta =0.9,stepsize=0.01, max_treedepth =15)))
             return(fit)
 }
 
@@ -1047,6 +1047,6 @@ generated quantities {
                        'pred_count_otc_t1', 'pred_count_otc_t2'),
               chains = 3,
               iter = 2000, 
-              control=list(adapt_delta =0.99,stepsize=0.05, max_treedepth =15))
+              control=list(adapt_delta =0.99,stepsize=0.01, max_treedepth =15))
   return(fit)
 }
