@@ -27,6 +27,14 @@ plot_options:
   med_square:
     width: 6
     height: 6
+  
+  med_rectangle:
+    width: 6
+    height: 4
+    
+  large_rectangle:
+    width: 8
+    height: 6
     
     
 targets:
@@ -293,7 +301,7 @@ targets:
     
   figures/tussock_seedling_ht_mortality.pdf:
     command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model)
-    plot: A4_landscape
+    plot: large_rectangle
     
   figures/asttry_seedling_density.pdf:
     command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'))
@@ -301,7 +309,7 @@ targets:
     
   figures/intertussock_gap_dynamics.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
-    plot: A4_landscape
+    plot: med_rectangle
   
   figures/mean_microclimate.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean'), stat_label = I('Mean'))
