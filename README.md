@@ -11,9 +11,9 @@ Climate change is increasing fire frequency and severity worldwide, but it is no
 * How fire, fire severity, altitude, adult density and topographic wetness influence shrub seedling occurrence and density and across the landscape
 * How fire severity, altitude and topographic wetness influence maximum seedling heights 10 years post-fire.
 
+## Rebuilding repository
 We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate this reproducibility the entire workflow has been written in [remake](https://github.com/richfitz/remake). Below outlines the instructions on how to clone this repository and build the entire analysis and figures.
 
-## Rebuilding repository
 First copy the repository to your local computer. Then open R in this directory.
 Once this is done we must install `remake` dependencies that are not on CRAN.
 To do this install [devtools](https://github.com/hadley/devtools) if you haven't already by running the following in R:
