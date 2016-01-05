@@ -3,7 +3,10 @@
 .Rhistory
 .remake
 *.pdf
+processed_data
+models
 figures
+
 
 
 
