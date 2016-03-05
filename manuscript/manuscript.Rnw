@@ -1,0 +1,163 @@
+\documentclass{nature}
+\bibliographystyle{naturemag.bst}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage[hidelinks]{hyperref}
+
+\title{Climatic warming strengthens a positive feedback between alpine shrubs and fire}
+\author{James S. Camac\textasteriskcentered$^{1,2,3}$, Richard J. Williams$^4$, Carl-Henrik Wahren$^3$, Ary A. Hoffmann$^5$ \\
+\& Peter A. Vesk$^2$}
+
+\begin{document}
+\linenumbers
+\maketitle
+
+\begin{affiliations}
+\item Department of Biological Sciences, Macquarie University, Sydney, NSW 2109, Australia.
+\item The Centre of Excellence for Environmental Decisions, School of BioSciences, The University of Melbourne, Parkville 3010, Victoria, Australia.
+\item Research Centre for Applied Alpine Ecology, La Trobe University, Melbourne 3086, Victoria, Australia.
+\item CSIRO Land and Water, tropical ecosystems research centre, PMB 44 Winnellie 0821, NT, Australia.
+\item Bio21 Institute, School of BioSciences, The University of Melbourne, Vic. 3010, Australia.
+\textasteriskcentered Email for correspondence: \texttt{james.camac@gmail.com}
+\end{affiliations}
+
+\pagebreak
+
+\begin{abstract}
+Climate change is expected to increase fire activity and exacerbate woody plant encroachment into arctic and alpine grasslands. What is unknown is whether increases in woody plants and fire will interact to exacerbate changes in structure, function and composition of these ecosystems. Here we use field surveys and experimental manipulations to examine warming and fire effects on recruitment, growth and survival of seedlings of evergreen obligate seeding alpine shrubs. We find that fire substantially increased shrub seedling establishment (up to 36 fold) and that warming doubled tall shrub seedling growth rates and may increase survival. Warming had weak or no effect on shrub recruitment, rates of grass post-fire gap infilling or grass competitive effects on shrub seedling growth and survival. These findings indicate that rising temperatures coupled with more frequent or severe fires will exacerbate increases in tall evergreen shrubs by increasing recruitment, doubling growth rates, and potentially increase survival.
+\end{abstract}
+
+Accurately forecasting the effects of climatic warming on vegetation dynamics requires an understanding of the mechanisms by which climate and vegetation interact. Most forecasting models include the direct effects of climatic conditions on species distributions, but largely ignore biotic interactions and the type, frequency and severity of disturbances that are also likely to change\cite{Guisan:2005gz,Tucker:2012dr,Giannini:2013gi}. Because disturbance strongly influences recruitment opportunities, and thus, composition and structure of plant communities and biomes worldwide\cite{Bond:2005eg, Turner:2010wo}, it has the capacity to exacerbate or diminish how climate affects vegetation. Consequently, it is imperative to understand how seedlings, the life stage most vulnerable to climate and disturbance and the life stage which determines the long-term persistence of a species and its capacity to establish in new areas, responds to both changing climatic and disturbance regimes\cite{Walck:2011dm, Briceno:2015iv}.
+
+Field manipulative experiments have been widely used to investigate the effects of climate change on plant communities. These experiments have provided invaluable information on how climate change directly influences plant phenology\cite{Hoffmann:2010kf, Dorji:2013tt}, reproduction\cite{Klady:2011dw}, morphology\cite{Hudson:2009cn}, growth\cite{Hollister:2005vf}, floristic composition\cite{Elmendorf:2012kz} and biotic interactions\cite{Klanderud:2005uw}. However, because disturbances vary both spatially and temporally, most have focused on mature plant responses in relatively undisturbed vegetation\cite{Briceno:2015iv}. As such, few field climate experiments have been conducted on seedlings or vegetation in post-disturbance conditions (but see\cite{Munier:2010cg,Graae:2010ir,Camac:2015hja}). Consequently, little is known about how climate change influences seedling demographic rates\cite{Briceno:2015iv} and thus, vegetation recovery in post-disturbance conditions. We consider these issues in an Australian alpine heathland.
+
+In alpine and arctic ecosystems, warming experiments and long-term monitoring have documented significant increases in the growth and cover of woody species\cite{Sturm:2001vd,Walker:2006ht,MyersSmith:2011fp}. The frequency and extent of wildfires have also increased in these environments over recent decades, a trend expected to continue\cite{Westerling:2006ve, Flannigan:2009kl, Qiu:2009th, Bradstock:2014jp}. In alpine and tundra ecosystems, current evidence from long-term and experimental studies indicate that shrub recruitment and encroachment is highest in disturbed areas\cite{Williams:1987ua, Batllori:2009fe, Frost:2013tm}, that climatic warming is likely to improve woody species growth rates\cite{Arft:1999iz, Elmendorf:2012ba, MyersSmith:2011fp}, and that shrubs are the most flammable vegetation component of these ecosystems\cite{Williams:2006tl, Higuera:2008dw, Higuera:2009ga}. The combination of this evidence indicates that more frequent or severe fire will increase recruitment opportunities for woody species, which when coupled with higher growth and survival rates caused by rising temperatures, will exacerbate shrub expansion\cite{Racine:2004tn,Lantz:2013fh} and ultimately increase the likelihood of more fires\cite{Higuera:2008dw, Higuera:2009ga,MyersSmith:2011fp}. In effect, warming will strengthen an existing feedback loop that not only has the potential to cause rapid changes in the composition and structure of alpine and arctic vegetation, but also have serious social, biodiversity and carbon sequestration consequences\cite{Mack:2011ew}. 
+
+While paleoecological studies have indicated that such a feedback may exist\cite{Higuera:2008dw, Higuera:2009ga}, there is a paucity of information on multiple mechanisms that may strengthen, mitigate or break this feedback loop (Fig. \ref{fig1}a). For example, we have little information on whether fire will stimulate shrub seedling recruitment in alpine and tundra ecosystems, nor do we know whether rates of seedling growth and survival will be improved under warmer post-fire conditions. Furthermore, we do not know how tussock grasslands (the other dominant community in these ecosystems) will respond to warmer post-fire conditions, and whether grasses have competitive, facilitative or no effect on shrub seedling demographic rates, or whether such effects are altered by warmer post-fire conditions.
+
+We examine these unknowns and their impacts on the feedback between climatic warming, shrubs and fire in Australian alpine vegetation. As with tundra ecosystems, the Australian Alps have experienced rapid changes in climate. Since 1979, mean growing season temperatures have risen by approximately 0.4\textdegree C and annual precipitation has fallen by 6\%\cite{Wahren:2013ji}, with a consequent decline in snow pack\cite{SanchezBayo:2013ci}. These climatic changes have been correlated with a 10 to 20\% increase in shrub cover and a 25\% decline in graminoids\cite{Wahren:2013ji}. Much of the Australian Alps has also been burnt by recent wildfires, the frequency and severity of which is expected to increase\cite{Bradstock:2014jp,Williams:2014ud}.
+ 
+We took advantage of recent fires in alpine open heathland, a plant community that occupies ca. 25\% of the Australian alpine landscape. Under global warming, this plant community is likely to encroach grasslands and is itself susceptible to shrub thickening\cite{McDougall:2003gb}. To determine how warmer and drier post-fire conditions affects shrub cover, we combined field observations with a warming experiment that used seedlings of four dominant Australian evergreen obligate seeding alpine shrubs \textemdash \textit{Grevillea australis} (Proteaceae; a tall shrub), \textit{Asterolasia trymalioides} (Rutaceae; a prostrate shrub), \textit{Prostanthera cuneata} (Lamiaceae; a tall shrub) and \textit{Phebalium squamulosum} (Rutaceae; a tall shrub). This approach allowed us to examine: 1) how warmer post-fire conditions influence rates of both grass recovery and shrub seedling recruitment, growth and mortality; 2) how proximity to grass affect shrub seedling demographic rates, and 3) whether such affects change under warmer conditions post-fire conditions. 
+
+\subsection{Drivers of shrub seedling establishment.}
+
+We first investigated how altitude, topographic wetness (TWI), adult density, fire and, if burnt, fire severity, influenced the density of \textit{Grevillea} and \textit{Asterolasia} seedlings (two dominant shrubs of open heathland). In 2012-13, we estimated seedling density for both species across 40 alpine sites and found that the abundance of \textit{Grevillea} (Fig. \ref{fig2}) and \textit{Asterolasia} (Supplementary Fig. S1) seedlings were strongly influenced by the occurrence of fire. Sites burnt by fire in 2003 had seedling densities between 13 and 36 times higher than unburnt sites. In \textit{Grevillea}, mean seedling densities were 1.44/m$^2$ at burnt sites and 0.04/m$^2$ at unburnt sites. \textit{Asterolasia} had similar mean densities: 1.71 and 0.13 seedlings/m$^2$ at burnt and unburnt sites, respectively. For both species, seedling density was also higher in severely burnt sites. As expected, pre-fire adult density positively influenced \textit{Grevillea} seedling density, with sites containing higher abundances of pre-fire \textit{Grevillea} adults containing more seedlings. For both shrub species, we detected no significant change in seedling density along a 200 m altitudinal range (equivalent to a 1.5\textdegree C change in mean temperature). The field warming experiment (see below) indicates that this lack of elevation response in \textit{Grevillea} is due to both rates of recruitment (Supplementary Fig. S2) and mortality (see below) largely being insensitive to a 1\textdegree C change in temperature. We detected no significant effect of topographic wetness for either species.
+
+\subsection{Experimental warming effects on shrub seedling growth.}
+
+Knowing shrub seedlings were more abundant in burnt vegetation, we investigated whether warmer post-fire conditions affected seedling growth and mortality rates. Seedlings of \textit{Grevillea}, \textit{Asterolasia}, \textit{Prostanthera} and \textit{Phebalium} emerging after a wildfire were transplanted into experimentally burnt plots that were either passively warmed by 1\textdegree C using open top chambers (OTCs) or subject to current ambient conditions (controls). After 1812 days (1087 growing season days where OTC treatment was applied) or 5 years growth, mean seedling heights of the tall shrubs (\textit{Grevillea}, \textit{Prostanthera} and \textit{Phebalium}) growing in post-fire bare ground were taller in warmed plots by 9.7, 13.5 and 3.8 cm respectively (Fig. \ref{fig3}). Warming increased heights of both \textit{Grevillea} and \textit{Prostanthera} seedlings in all years, while \textit{Phebalium} did not respond to warming treatment until the second growing season. By contrast, seedlings of the prostrate shrub, \textit{Asterolasia}, showed no significant difference in growth rate between warmed and control plots in any year. For each species, we also observed similar treatment trends with stem diameter growth (Supplementary Fig. S3). Accounting for initial height and assuming logistic growth, mean annual predicted height growth rates of \textit{Grevillea}, \textit{Prostanthera} and \textit{Phebalium} were 2.4, 1.9 and 1.5 times that observed in control plots, respectively. Projecting these differences equates to an average 6 cm tall seedling (the mean initial size used in this experiment) growing in warmed conditions reaching maximum mature height in 39 fewer years for \textit{Grevillea} and 17 fewer years for both \textit{Prostanthera} and \textit{Phebalium} (Fig. \ref{fig3}). \textit{Asterolasia} was predicted to reach a mature height in approximately 22 years regardless of warming treatment.
+
+
+We validated the \textit{Grevillea} and \textit{Asterolasia} growth responses observed in experimentally warmed plots by using an elevation gradient in open heathland and maximum height data for 2003 post-fire recruits (i.e. suspected 9 year old seedlings). Here, a 200 m altitudinal range is equivalent to an ambient temperature difference of approximately 1.5\textdegree C\cite{Brown:1989vx}, which is comparable to that observed between experimental warmed and control plots (1\textdegree C). In response to shifts in temperature, maximum heights of Grevillea post-fire recruits were expected to decrease with elevation, whereas \textit{Asterolasia} seedlings were not expected to show this pattern. Our experimental predictions were verified (Supplementary Fig. S4). Mean maximum heights of \textit{Grevillea} seedlings in burnt open heathland were 7.9 cm taller at 1660 m a.s.l compared to seedlings at 1860 m a.s.l. (19.4 cm vs 11.5 cm; a difference comparable to our experimental findings). In contrast, mean maximum heights of \textit{Asterolasia} seedlings did not vary significantly with elevation. Topographic Wetness Index (TWI) and fire severity had no detectable influence on maximum seedling heights in either species.
+
+\subsection{Experimental warming effects on shrub seedling mortality.}
+
+After five years and across all plots, 34\% (172 out of 512) of all seedlings growing in burnt bare ground patches had died. Most deaths occurred in \textit{Asterolasia} (65) followed by \textit{Phebalium} (63), \textit{Grevillea} (31) and \textit{Prostanthera} (13). \textit{Prostanthera} showed the largest treatment effect (Fig. \ref{fig4}), with annual mortality rates estimated to be near 0 in warmed plots and 5\% in control plots. This significant increase in survival may be a consequence of OTCs reducing the severity of spring frosts by rising minimum ambient and soil temperatures by 0.86\textdegree C and 1.6\textdegree C, respectively (see Supplementary Fig S5-7). Warming also reduced mean seedling mortality in \textit{Grevillea} and \textit{Phebalium} (Fig. \ref{fig4}); however, for both species, the effect was not statistically significant. By contrast, annual mortality rates in the prostrate shrub, \textit{Asterolasia}, were marginally higher in warmed plots, but again this effect was not significant (Fig. \ref{fig4}).
+
+\subsection{Grass proximity effects on shrub seedling growth and mortality rates.}
+
+Climate change is expected to alter biotic interactions because their strength and direction depend strongly on climatic conditions, particularly in alpine and arctic ecosystems\cite{Callaway:2002vb, Klanderud:2005uw}. Here, we assess the interactive effects of warming and inter-tussock gap size (i.e. the proximity of shrub seedlings to grass tussocks) on the growth and survival of \textit{Grevillea} seedlings (Fig. \ref{fig5}).  As with the seedlings growing in bare ground, we detected a strong positive effect of warming on growth rates and a marginal, yet not significant, decrease in mortality. We also found no significant effect of inter-tussock gap radius on growth or mortality rates. However, for growth, we did detect a marginally significant interaction between warming and gap size, such that in warmed plots growth rates slightly increased with gap size. This suggests that warmer conditions may increase competition between shrubs and grasses, a finding consistent with the abiotic stress hypothesis\cite{Callaway:2002vb}, which suggests that temperature stress in alpine and tundra ecosystems could increase the strength of competitive interactions. However, this effect was small, and likely to have little biological consequence.
+
+\subsection{Experimental warming and rates of tussock grass gap infilling.}
+
+Despite having little impact on shrub seedling growth and mortality rates, tussock grass may still reduce shrub recruitment opportunities by infilling post-fire bare ground gaps at a faster rate. Using five years of post-fire inter-tussock gap size changes in warmed and unwarmed plots we found that gaps were being infilled by grasses. However, the rate at which this occurred was not significantly influenced by a 1\textdegree C increase in temperature (Fig. \ref{fig6}).  
+
+\subsection{Strengthening of the warming-shrub-fire feedback.}
+
+Here we quantified several unknown interactions between fire, shrub-grass relationships and climate to extend a conceptual model of alpine shrub dynamics under climate change (Fig \ref{fig1}b). We showed how these interactions strengthen a hypothesized feedback loop that can rapidly increase shrub cover in alpine and tundra ecosystems\cite{Higuera:2008dw}. The combination of rising temperatures and more frequent or severe fire creates conditions that allow shrub seedlings to establish in greater densities, and for tall shrubs, double their growth rates, and potentially increase their survival. These demographic effects will ultimately result in shrub thickening and expansion into grasslands. These effects, coupled with field\cite{Williams:2006tl}, experimental\cite{Fraser:NHT5Kx_W} and paleoecological\cite{Higuera:2008dw} evidence indicate that shrubs are the most flammable vegetation component of alpine and tundra ecosystems, and suggest that flammable fuel loads will accumulate faster and cover a larger proportion of the alpine landscape under a warmer environment. This further strengthens the feedback\cite{Higuera:2008dw, Higuera:2009ga} by potentially increasing the frequency or severity of fires, which then create further recruitment opportunities for shrubs with little demographic impact of neighbouring tussock grass. 
+
+While we have addressed several unknowns associated with this feedback between climatic warming, shrubs and fire, there are others we have not addressed that may also strengthen, weaken or break this feedback. The most obvious mechanism that will break this cycle involves shorter fire intervals that prevent obligate seeding shrubs reaching reproductive age and thereby exhausting the seedbank. However, this scenario is unlikely for the majority of alpine (or tundra) landscapes including in Australia, where it would require current fire intervals of 50 to 100 years to decrease to less than 20 years \textemdash the time observed for the species in this study to reach reproductive maturity\cite{Williams:2008ba}. Furthermore, if reproductive output is related to plant size\cite{Wenk:2015ko}, then climatic warming may allow obligate seeding species to reach reproductive maturity sooner, and consequently, increase species resilience to short fire intervals. Nevertheless, these factors and others such as changes in snow pack\cite{Wipf:2009jh}, soil moisture\cite{Engler:2011vq} or herbivory\cite{Post:2008wz} require further research because they are likely to be altered by the interactive effects of climate and disturbance in unpredictable ways\cite{MyersSmith:2011fp}.
+
+Our findings provide mechanistic understanding as to why shrub cover has increased, often at the expense of grasslands, in many alpine and arctic ecosystems\cite{Racine:2004tn,MyersSmith:2011fp,Frost:2013tm,Lantz:2013fh}. But more importantly, our results provide evidence for underlying processes that could result in a warming-fire-shrub feedback that has been hypothesized in paleoecological studies\cite{Higuera:2008dw, Higuera:2009ga}. Based on current IPCC observations and predictions, average global temperature has already increased by 0.85\textdegree C since 1880 and is expected to rise by as much as 4.8\textdegree C by 2100\cite{IPCC:2013vv}. In alpine and tundra environments, temperatures\cite{ChapinIII:2005js}, shrub cover\cite{MyersSmith:2011fp} and the frequency and severity of fire\cite{Westerling:2006ve, Flannigan:2009kl, Qiu:2009th, Bradstock:2014jp} have all increased in the last few decades. These changes mean that the warming-shrub-fire feedback loop identified here has already strengthened, which could cause grasslands and other non-woody communities to transition to an alternative state of more shrubs and more fire, both of which are likely to have consequences for carbon sequestration, water supply and biodiversity.
+
+\begin{methods}
+
+We investigated shrub dynamics in open heathland because it is a common and highly flammable plant community in the Australian Alps above 1600 m a.s.l\cite{Williams:2006tl}. It is also an ecotone between closed heathland (>70\% shrub cover) and tussock grassland consisting of \textit{Grevillea australis} shrubs interspersed among a \textit{Poa hiemata} sward. Aerial photography has revealed that plant community has acted as an \textit{invasion front} of shrub expansion into grassland. It is also experiencing shrub thickening by closed heathland dominants such as \textit{Prostanthera cuneata}. 
+
+\subsection{Open Top Chamber Experiment.}
+
+In March 2010, at 1750 m a.s.l, we burnt 32 randomly selected mature (60 cm tall and 1.5m$^2$) \textit{Grevillea australis} shrubs in open heathland to create patches of bare ground approximately 0.7 m$^2$ surrounded by burnt tussock grass, simulating disturbance in open heathland burnt by wildfire. After creating the bare ground patches we collected seedlings of dominant alpine shrub species from a nearby (< 2 km) site of similar altitude burnt by a late 2006 wildfire. We collected shrub seedlings of two dominant open heathland species (\textit{Grevillea australis} (Proteaceae; a tall shrub) and \textit{Asterolasia trymalioides} (Rutaceae; a prostrate shrub), a dominant closed heathland species (\textit{Prostanthera cuneata} (Lamiaceae; a tall shrub) that typically grows on warmer aspects and a species common to both open and closed heathland (\textit{Phebalium squamulosum} (Rutaceae; a tall shrub). All four species are obligate seeders post-fire (i.e. fire killed)\cite{Camac:2013eb}. 
+
+A total of 640 seedlings, 256 \textit{Grevillea} (half used in \textit{Poa} inter-tussock experiment \textemdash see below) and 128 for each of \textit{Asterolasia}, \textit{Prostanthera} and \textit{Phebalium} were used. Four seedlings per species were randomly selected and transplanted into a 4\texttimes 4 square grid in the center of each burnt patch, with 14 cm between individuals and the edge of the patch dominated by resprouting tussock grass \textit{Poa hiemata}. To examine interactions between tussock grass and shrub seedlings we also randomly transplanted four additional \textit{Grevillea australis} into various sized inter-tussock gaps between burnt \textit{Poa hiemata} immediately surrounding the bare ground (Supplementary Fig. S6). The experimental site was fenced to prevent grazing by deer and horses. Rabbits or invertebrates also did not graze on these seedlings.
+
+To simulate near-term warmer conditions predicted under IPCC\cite{IPCC:2013vv}, we randomly assigned Open Top Chambers (OTCs) to half (16) the plots, with the remainder treated as unwarmed controls. OTCs were placed over plots, ensuring all seedlings (including inter-tussock shrub seedlings) occurred within the 1.1 m$^2$ open top to minimise edge effects. OTCs were placed out at the start of the growing season (October) where they remained until snowfall (early June). This procedure was repeated for five growing seasons from 2010 to 2015.
+
+Microclimatic changes were measured hourly using Onset Micro Stations (Onset Computer Corporation, Bourne, MA, USA) at four control and four OTC plots. Across five growing seasons (1087 days), OTCs simulated warmer conditions at the lower end of IPCC predictions\cite{IPCC:2013vv}. OTCs passively increased mean daily ambient and soil temperatures by 1\textdegree C and maximums and minimums by up to 2.4\textdegree C (Supplementary Methods and Supplementary Fig. S5-7). Chambers only marginally decreased soil moisture by 0.21\%. 
+
+Seedling survival, maximum height and stem diameter (nearest mm measured with Vernier calipers) were initially recorded in May 2010 and then subsequently re-measured at the end of each growing season (May-June). At the same time, we recorded the distance to nearest tussock or grass seedling in each of four cardinal directions for seedlings growing in inter-tussock gaps. Thus changes in inter-tussock gap size could be due to either vegetative growth or seedling establishment. We did not measure individual characteristics (e.g. height and basal diameter) of surrounding tussock grass because we could not distinguish individuals, and because height varied throughout the season. Numbers of natural \textit{Grevillea australis} recruits establishing within the plots were also recorded for the first two seasons. 
+
+\subsection{Seedling gradient study.}
+
+We used 40 long-term open heathland sites\cite{Camac:2013eb} established after the 2003 fires consisting of 30 burnt sites and 10 sites thought to be unburnt for over 70 years. In the summer of 2012-13, at each site, seedling density/m$^2$ was estimated using 40 1 m$^2$ quadrats, evenly distributed in groups of 10 along four 50 m transects, with 10 m between transect lines, subsampling an area of 2000 m$^2$. Within plots we recorded the number and maximum height of \textit{Grevillea} and \textit{Asterolasia} seedlings. For unburnt sites we counted the number of mature \textit{Grevillea} plants (> 0.5 m$^2$) within 5 m either side of each transect. In burnt sites, this required counting the number of skeletons (there were no living adults at any burnt site) that still persist post-fire. We were unable estimate numbers of adult \textit{Asterolasia} because this species does not have a persistent woody skeleton post-fire. Site level data, elevation and Topographic Wetness Index (TWI), were obtained from a 30 m resolution digital elevation model. Lastly, for burnt sites, fire severity was estimated using minimum twig diameters, collected immediately after the 2003 fires.
+
+\subsection{Data analysis.}
+
+In total we built 11 hierarchical models to examine factors influencing tussock grass post-fire recovery and shrub seedling establishment, growth and mortality. For each model (Supplementary Methods) we used Bayesian inference and fitted models with Markov chain Monte Carlo (MCMC) sampling in R 3.2.2 using package Rstan 2.8.1. Data and source code for reproducing analysis and figures is available at: \url{https://github.com/jscamac/Alpine_Shrub_Experiment}.
+\end{methods}
+
+
+\section*{Acknowledgements} 
+This research was funded through Australian Research Council Linkage Grants, partnered through the Department of Sustainability and Environment, Parks Victoria, Commonwealth Scientific and Industrial Research Organisation (CSIRO). Funding was also received from the Centre of Excellence for Environmental Decisions (CEED) and Holsworth Research Committee. J.S.C was a recipient of an Australian Postgraduate Award. Monica Camac, Brad Farmilo, Monica Hursburgh, Paulius Kviecinskas, Karen Stott, Imogen Fraser, Sarah Bartlett, Paul Smart, Steven Rumbold, Lachlan Yourn and Chris Jones provided assistance with field measurements. William Morris and John Baumgartner provided insightful chats about modelling approaches and Warwick Papst provided field logistic advice. Daniel Falster and Richard Fitzjohn for enabled these analyses to be readily reproducible. Special thanks to David Bowman, Anaïs Gibert, Brad Farmilo, John Morgan, Kimberley Millers, Dale Nimmo, Michaela Plein, Libby Rumpff and Inka Veltheim for their comments on this manuscript.
+
+\section*{Author contributions}
+J.C. conceived, designed, performed the experiments, field surveys and analysis; C-H.W, R.W, A.H and P.V. supervised the development of this work, aided in data collection and provided statistical advice. All authors contributed to the writing of this manuscript.
+
+\section*{Competing financial interests} 
+The authors declare that they have no competing financial interests.
+
+\bibliography{refs.bib}
+
+\section*{Figures}
+
+\begin{figure}
+\label{fig1}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/fig1.pdf}
+\caption{\textbf{Conceptual diagram illustrating positive warming-shrub-fire feedback loop.} Top panel highlights the known positive feedback loop between fire, climatic warming and landscape flammability (solid blue lines). It also highlights several interactions (dashed \& black) which currently have a paucity of information but which may exacerbate or diminish this feedback loop. Bottom panel either assigns the direction or removes these interactions based on new evidence obtained from experimental and field surveys conducted in this study. It also includes an example of a potential, but unlikely, effect (red dotted line) that could break this feedback.}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\label{fig2}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/fig2.pdf}
+\caption{\textbf{Mean \textit{Grevillea australis} seedling density with burning, fire severity, adult density, altitude and Topographic Wetness Index (TWI) gradients.} Top left panel = centered and standardized model coefficients (on the log scale). Top right panel is the effect of burning. All other panels are partial dependence plots for each covariate along their observed gradients in areas burnt by the 2003 fires. All errors bars are 95\% Bayesian Credible Intervals.}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\label{fig3}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/fig3.pdf}
+\caption{\textbf{Observed and projected growth trajectories of four dominant Australian alpine shrubs.} Top panels: Thick lines represent mean ($\pm$ 95\% confidence intervals) observed heights at each May census. Thin lines represent individual growth trajectories. Bottom panels are the mean ($\pm$ 95\% Bayesian Credible Interval) projected height growth for each species over 70 years. In all cases, red or orange lines = seedlings growing in warmed (OTC) conditions and blue or light blue lines = seedlings growing in control conditions. Projections were based on an logistic growth model using initial seedling size of 6 cm (the mean initial height observed in the OTC experiment) and mean maximum heights observed in long-unburnt sites (i.e. 34, 65, 65 \& 70 cm for \textit{Asterolasia}, \textit{Grevillea}, \textit{Prostanthera} \& \textit{Phebalium}, respectively).}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\label{fig4}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/fig4.pdf}
+\caption{\textbf{Mean ($\pm$ 95\% Bayesian Credible Interval) seedling probability of mortality for each species growing in control (blue) and warmed (red) conditions.}}
+\end{minipage}
+\end{figure}
+\pagebreak
+
+\begin{figure}
+\label{fig5}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/fig5.pdf}
+\caption{\textbf{Experimental warming and inter-tussock gap size effects on \textit{Grevillea australis} seedlings.}First row = Growth rate effects, Second row = Mortality effects. Left panels are the centered and standardized model coefficients; right panels are the predicted growth and mortality rates along an inter-tussock gap size gradient warmed (red) and control (blue) conditions. All errors bars are 95\% Bayesian Credible Intervals.} 
+\end{minipage}
+\end{figure}
+\pagebreak
+
+\begin{figure}
+\label{fig6}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/fig6.pdf}
+\caption{\textbf{Effects of warming on rates of tussock grass gap infilling.} Left panel = Model coefficients, Right panel = Predicted temporal change in size for an average 10 cm inter-tussock gap in warmed (red) and unwarmed (blue) conditions.} 
+\end{minipage}
+\end{figure}
+
+\end{document}
