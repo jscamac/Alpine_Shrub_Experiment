@@ -1,0 +1,381 @@
+\documentclass{nature}
+\bibliographystyle{naturemag.bst}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+
+\title{Climatic warming strengthens a positive feedback between alpine shrubs and fire (Supplementary Material)}
+\author{James S. Camac\textasteriskcentered$^{1,2,3}$, Richard J. Williams$^4$, Carl-Henrik Wahren$^3$, Ary A. Hoffmann$^5$ \\
+\& Peter A. Vesk$^2$}
+
+\begin{document}
+\linenumbers
+\maketitle
+
+\begin{affiliations}
+\item Department of Biological Sciences, Macquarie University, Sydney, NSW 2109, Australia.
+\item The Centre of Excellence for Environmental Decisions, School of BioSciences, The University of Melbourne, Parkville 3010, Victoria, Australia.
+\item Research Centre for Applied Alpine Ecology, La Trobe University, Melbourne 3086, Victoria, Australia.
+\item CSIRO Land and Water, tropical ecosystems research centre, PMB 44 Winnellie 0821, NT, Australia.
+\item Bio21 Institute, School of BioSciences, The University of Melbourne, Vic. 3010, Australia.
+\textasteriskcentered Email for correspondence: \texttt{james.camac@gmail.com}
+\end{affiliations}
+
+\pagebreak
+
+\section*{Study site.}
+Research sites were on the Bogong High Plains, a series of alpine and high subalpine plateaux in the Alpine National Park, approximately 250 km northeast of Melbourne, Australia. The undulating terrain ranges in altitude from 1400 to 2000 m a.s.l and contains a well-developed mantle of soil. Mean annual temperature is approximately 6\textdegree C, with persistent snow cover from June to September. Annual precipitation is 1200 mm, yet droughts occur at roughly decadal intervals\cite{Wahren:2013ji}. The vegetation is a mosaic of Eucalypt-woodland and treeless vegetation, with the latter largely consisting of heathlands and tussock grasslands, but also herbfields and wetlands. The treeline is irregular (due to cold air drainage), occurring at altitudes ranging from 1600 to 1700 m a.s.l. Approximately 50\% of the alpine ‘treeless’ landscape consists of heathlands, most of which were extensively burned by a 400,000 ha wildfire in 2003\cite{Williams:2006tl,Camac:2013eb}. Large wildfires in Australian alpine landscapes have occurred once or twice per century and typically occur during periods of extended regional drought coupled with severe fire weather and multiple ignitions in the surrounding montane forests\cite{Williams:2008ba}. 
+
+\section*{Open Top Chamber Experiment.}
+Open Top Chamber Experiment
+We used a warming experiment to examine: 1) how warmer post-fire conditions influence rates of grass recovery and shrub seedling recruitment, growth and mortality; 2) how proximity to grass affect shrub seedling demographic rates, and 3) whether such affects change under warmer conditions post-fire conditions. 
+
+In alpine and tundra regions, shrub seedlings typically establish and grow in bare ground created by disturbance\cite{Williams:1987ua, Batllori:2009fe, Frost:2013tm}. Here, we used fire to create bare ground because 1) Australian alpine shrub seedlings occur in greatest abundance after fire (see seedling survey results) and 2) in many parts of the world, including Australia, wildfires are predicted to increase in frequency and severity\cite{Flannigan:2009kl, Westerling:2011jp}. Thus, to forecast likely changes in shrub abundance we need to know how warming affects growth and mortality rates of shrub seedlings growing in burnt sites. 
+
+We collected seedlings from a site burnt by a late 2006 fire because it allowed us to collect sufficient seedling numbers from species occurring in both open and closed heathland. We focused on \textit{Grevillea australis} (Proteaceae; a tall shrub), \textit{Asterolasia trymalioides} (Rutaceae; a prostrate shrub), \textit{Prostanthera cuneata} (Lamiaceae; a tall shrub) and \textit{Phebalium squamulosum} (Rutaceae; a tall shrub because they are all: obligate seeders post-fire (i.e. fire killed), common in the Australian Alps, and under global warming, likely candidates to invade non-shrubby plant communities such as alpine grasslands and herbfields. For each species, we collected a range of seedling heights (2 – 12 cm) using a forestry planter (12.5 cm deep by 5.5 cm wide). The size of the planter was selected to minimize root damage across the range of seedling sizes and to allow for the extraction of a constant volume (378 cm$^3$) of intact soil and roots. The planter also minimized soil disturbance during seedling extraction and replanting. 
+
+Four seedlings of each species were then transplanted into 70 cm$^2$ of burnt bare ground in the center of each experimental plot. An additional four \textit{Grevillea seedlings} were transplanted into various sized inter-tussock gaps surrounding this bare ground. Only \textit{Grevillea} seedlings were transplanted into inter-tussock gaps because of space constraints but also because it is the dominant open heathland shrub species (i.e. occurs closest to the shrub/grassland boundary) and is therefore the most likely to invade grasslands. The combination of bare ground and inter-tussock seedlings meant that each experimental plot had a total of 20 seedlings per 1 m$^2$ (Fig. S8). However, the two sets of seedlings (i.e. bare ground vs inter-tussock) were treated separately because they were spatially confounded (e.g. center vs edge of the 1 m$^2$ opening) and addressed different questions. Seedlings in bare ground patches (i.e. the center of the plot) were used to assess whether warmer post-fire conditions altered growth and mortality rates in four dominant alpine shrub species. By comparison, \textit{Grevillea} seedlings growing in inter-tussock gaps were used to determine whether inter-tussock gap size altered growth and mortality rates, and whether such effects were modified by warmer conditions. 
+
+To simulate near-term warmer conditions predicted under IPCC\cite{IPCC:2013tu}, we used Open Top Chambers (OTCs)\cite{Molau:1996vc}. OTCs were hexagonal, 58 cm tall with an open-top diameter of 110 cm and base diameter of 168 cm. The chambers were constructed following the International Tundra Experiment (ITEX) protocols\cite{Molau:1996vc} using sun-lite: a lightweight shatter-resistant fiberglass with high light transmittance (86\%) and low infrared transmittance (< 5\%; Solar Components Corporation, USA). 
+
+We measured changes in microclimate using Onset Micro Stations (Onset Computer Corporation, Bourne, MA, USA) randomly installed into four control plots and four OTC plots. Each Micro Station measured ambient temperature, relative humidity (both at 10 cm above ground), soil temperature (3 cm below ground) and volumetric soil moisture (between 3 and 10 cm) at hourly intervals for the entire duration of the experiment. Across five growing seasons, OTCs simulated warmer conditions at the lower end of IPCC predictions\cite{IPCC:2013tu} (Supplementary Fig. S5-7). OTCs passively raised mean daily ambient and soil temperatures by approximately 1 \textdegree C and 0.9 \textdegree C ($\pm$ 0.05 95\% CI) and marginally lowered both soil moisture (- 0.21\% $\pm$ 0.11) and relative humidity (- 1.2\% $\pm$ 0.17). OTCs also increased minimum daily ambient and soil temperatures by 0.86 \textdegree C ($\pm$ 0.06 95\% CI) and 1.6 ($\pm$ 0.12 95\% CI) respectively. Maximum temperatures were also strongly influenced by OTCs with ambient and soil maximum temperatures increasing by 2.4 \textdegree C ($\pm$  0.16 95\% CI) and 0.95 \textdegree C ($\pm$  0.42 95\% CI), respectively. Because OTCs strongly increase temperatures relative to other measures, throughout we refer to it as a ‘warming treatment’.
+
+Natural \textit{Grevillea} recruits, likely from the soil seedbank, began establishing within the experimental plots by the end of the growing season in 2011. This provided us with the opportunity to examine how warming directly affected recruitment. We marked (with paint on stems) and recorded the number of recruits that germinated in both 2011 and 2012 seasons.
+
+\section*{Seedling survey.}
+We measured seedling density and maximum heights in open heathland across the Bogong High Plains. The primary aim of this study was to evaluate how variables such as altitude, Topographic Wetness Index (a measure of plant available water), adult density, fire, and, if burnt, fire severity, influence the density of \textit{Asterolasia} and \textit{Grevillea} seedlings in open heathland. A secondary aim was to validate growth rates observed in the OTC experiment by assessing maximum seedling heights of \textit{Asterolasia} and \textit{Grevillea} along altitude, soil moisture and fire severity gradients in areas burnt by the 2003 wildfires.
+
+The study used 40 open heathland sites\cite{Camac:2013eb} established immediately post-2003 fires \cite{Williams:2006tl}. All sites have not been grazed by cattle since the 2003 fires. Thirty sites were burnt, while the remaining ten were unburnt, likely for more than 70 years\cite{Camac:2013eb}. This disparity in sampling effort between burnt and unburnt was due to very few open heathland remaining unburnt after both the 2003 and 2007 fires. These sites encompassed most of the Bogong High Plains (120 km$^2$) and ranged in altitudinal from 1660 m to 1860 m a.s.l. Sites were at least 0.25 ha and more than 500 m apart. In the summer of 2012-13, 9-years post-fire, seedling density in each site was estimated using 40 1 m$^2$ quadrats, evenly distributed in groups of 10 along four 50 m transects. Transects were positioned in the center of each site and were parallel to each other with exactly 10 m between transect lines. This effectively created a grid of 40 plots (10 plots \texttimes 4 transects) per site, subsampling an area of 2000 m$^2$.
+
+Different variables were recorded at the three sampling levels (site, transect and plot). For each site, altitude and TWI were derived from a 30 m resolution digital elevation model of the Bogong High Plains. TWI, which approximates the relative plant-available water based on a site’s position in the landscape\cite{Moore:1993fk}, was derived for each site using $TWI= ln(\frac{a\alpha}{tan\theta})$, where, $\alpha$ is the upslope catchment area per unit width orthogonal to the flow direction and $\theta$ is the slope (in degrees). Across the 40 sites, TWI varied twofold (5 – 10 units). Altitude ranged by 200 m (from 1660 to 1860 m a.s.l), or by approximately 1.5\textdegree C from the lowest to the highest site (based on a lapse-rate of 0.77\textdegree C/100 m elevation\cite{Brown:1989vx}. This altitudinal temperature range is comparable to that observed in the OTC experiment (1.5\textdegree C vs 1.2\textdegree C, respectively).
+
+The occurrence and severity of fire was initially determined immediately after the 2003 fire\cite{Williams:2006tl}. The severity of the fires in each burnt site was estimated using twig diameters, a proxy measure of fire severity\cite{Whight:1999vw}. These twig diameters were recorded between 1 and 10 months post-fire from 10 replicate \textit{Grevillea australis} individuals. Across the 30 burnt sites, the average twig diameter ranged from 2 to 13 mm, with smaller diameters assumed to have experienced lower fire intensity. This encompassed the full range of fire severity from lightly scorched sites containing shrubs with only the tips of the outer branches burnt, to severely burnt sites where the majority of large shrub branches were consumed.
+
+\section*{Data analysis.}
+In total we built 11 hierarchical models to examine factors influencing tussock grass post-fire recovery and shrub seedling establishment, growth and mortality. These models are well suited to datasets that have a hierarchical structure (e.g. plots within sites) because they can account for observation error and partition both explained and unexplained variation at multiple levels of a dataset\cite{Gelman:2007te, Kery:2012wl}. For each model we used Bayesian inference and fitted models with Markov chain Monte Carlo (MCMC) sampling in R 3.2.2 using package Rstan 2.8.1.  For each model, three independent chains were executed. In all cases modelled parameters converged within 1000 iterations. Convergence was assessed through both visual inspection of chains and reference to the Brooks-Gelman-Rubin convergence diagnostic\cite{Gelman:1992ts, Brooks:1998ju}. After discarding the first 1000 iterations as ‘warm up’, a further 1000 iterations were taken from the joint posterior. Below we describe the model structure, parameters and priors used in these models. The residuals of all models were checked graphically against predictions with none showing any systematic pattern or severe heteroscedasticity. To ensure all covariate effects were identifiable we selectively removed each covariate and visually inspected whether the direction and magnitude of effects were severely altered; none were. Data and source code for reproducing analysis and figures is available at: \url{https://github.com/jscamac/Alpine-Shrub-Experiment}.
+
+\subsection{\textit{Modelling shrub seedling growth rates.}}
+For the purpose of modelling seedling annual growth rates we used heights measured in May of each year from seedlings that survived throughout the passive warming experiment. This meant that our observations were of maximum height for each individual $i$ at each May census $t$. We modelled these heights, $height_{it}$, as a random realization from a normal distribution truncated at zero:
+
+\begin{equation}\label{eq:growth_obs} 
+height_{it} \sim \mathcal{N^+}(\widehat{height}_{it}, \sigma_{obs}),
+\end{equation}
+
+where $\widehat{height}_{i,t}$ is the estimated maximum height for each individual $i$ at each May census $t$ and $\sigma_obs$ is the standard deviation of the observation error. The parameter $\widehat{height}_{i,t}$ was estimated using a logistic parameterisation of the unified Richards equation\cite{Tjorve:2010bk}: 
+
+\begin{equation}\label{eq:logistic} 
+\widehat{height}_{i,t} = \frac{Hmax_{j[i]}}{\left( 1 + \left(\frac{Hmax_{j[i]}}{Hinit_i} - 1\right)e^{R_i \frac{Days_t}{365.25}}\right)},
+\end{equation}
+
+We used a logistic equation because it can simulate sigmoidal growth. That is, a curve whereby initial seedling growth is slow before increasing in speed and finally levelling off when adult height is reached. We used this particular parameterisation because it accounts for seedling size at the beginning of an experiment and contained biologically interpretable parameters. Here, $Hmax_{j[i]}$ is the asymptotic height: the average mature height an individual $i$ belonging to species $j$ can achieves. We treated Hmax as a constant, not to be estimated by the model, owing to our experimental observations being restricted to the first five years of growth. Based on maximum height data from 5 to 22 long-unburnt sites (depending on the species) we estimated the average mature height (and thus Hmax) to be approximately 34, 67, 66 and 70 cm for \textit{Asterolasia}, \textit{Grevillea}, \textit{Phebalium} and \textit{Prostanthera}, respectively. $Hinit_i$ is the height of individual $i$ at the start of the experiment (i.e. the first May measurement). $Days_t$ is the number of days from the beginning of the experiment to each May census $t$.  The experiment ran for a total of 1812 days (or approximately 5 years). We divide the number of days at each census by 365.25 in order to estimate annual growth rates. The parameter of interest, $R_i$, is the mean growth rate constant for each individual $i$. This parameter controls the slope at inflection (i.e. the maximum annual relative growth rate). When multiplied by the asymptotic height, $Hmax$, it yields the maximum annual growth rate at the inflection point . We modelled $R_i$ separately for seedlings growing in bare ground (eqn. 1.3.1) compared to those growing in inter-tussock gaps (eqn. 1.3.2).
+
+For individual seedlings of the four shrub species growing in the bare ground patch located in the centre of each plot we modelled $R_i$ using a varying intercept linear model:
+
+\begin{equation}\label{eq:r_bg} 
+\begin{aligned}
+R_i &=  \alpha_{j[i]} + \beta_{j[i]} \times OTC_{k[i]} + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\alpha_j &\sim \mathcal{N}(\mu_{spp}^{CTL}, \sigma_{spp}^{CTL}) \\
+\beta_j &\sim \mathcal{N}(\mu_{spp}^{OTC}, \sigma_{spp}^{OTC}) \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
+\epsilon_i &\sim \mathcal{N}(0, \sigma_{obs_{ind}}).
+\end{aligned}
+\end{equation}
+
+Here, the intercept term, $alpha_{j[i]}$, represents the expected control plot growth constant of species $j$ to which individual $i$ belongs. It is estimated from a normal distribution centred on $\mu_{spp}^{CTL}$ (the expected control plot growth rate for an average hypothetical species) with a standard deviation,$\sigma_{spp}^{CTL}$ which defines the variation between species’ growth rates at control plots. The parameter $\beta_{j[i]}$ is the OTC effect for each species $j$ to which individual $i$ belongs. $\beta_j$ is also estimated from a normal distribution, but unlike $\alpha_j$, it is centred on $\mu_{spp}^{OTC}$, (the expected OTC growth constant for an average hypothetical species) with a standard deviation, $\sigma_{spp}^{OTC}$ which defines the variation between species’ growth constants within OTCs. The terms $\epsilon_{plot_{k[i]}}$ and $\epsilon_i$ represent residual variation at the plot level (for each plot, $k$, within which individual $i$ is located), and the individual level (for each individual $i$), respectively. Both error terms were drawn from normal distributions centred on zero with standard deviations that defined the variation amongst plots, $\sigma_{plot}$, or amongst individuals, $\sigma_{obs_{ind}}$, respectively. 
+
+In contrast, for \textit{Grevillea australis} seedlings growing in inter-tussock gaps, the growth constant was modelled using a fixed intercept linear model:
+
+\begin{equation}\label{eq:r_tussock} 
+\begin{aligned}
+R_{i,t} &=  \alpha + \beta_1 \times OTC_{k[i]} + \beta_2 \times Gap_{i,t} + \beta_3 \times (OTC_{k[i]} \times Gap_{i,t}) + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
+\epsilon_i &\sim \mathcal{N}(0, \sigma_{obs_{ind}}).
+\end{aligned}
+\end{equation}
+
+The structure and parameter definitions differ slightly to that in eqn 1.3.1. Here, the model has two additional parameters, $\beta_2$ and $\beta_3$. The parameter $\beta_2$ is the effect of inter-tussock gap radius, which varied over time $t$, while $\beta_3$ is the interactive effect of OTC and time-varying inter-tussock gap radius. The inclusion of these parameters, coupled $Gap_{i,t}$ being centered and standardized (see Data inputs into growth and mortality models), alters the definition of the intercept, $\alpha$, which now represents the mean control plot growth rate at the average inter-tussock gap size (12 cm). The parameter  $\beta_1$ is the OTC effect and $\epsilon_{plot_k}$ and $\epsilon_i$ are residual errors at the plot and individual level, respectively. Note that growth constant, $R$, now varies through time as a function of inter-tussock gap radius.
+
+We used Bayesian inference and hence needed to specify prior distributions for all model parameters. In both growth models standard deviation parameters (i.e. $\sigma_{spp}^{CTL}$ , $\sigma_{spp}^{OTC}$, $\sigma_{plot}$ and $\sigma_{ind}$) were all estimated from weakly informative positive half Cauchy priors with scale parameters of 25. We used these Cauchy priors in order to prevent over-inflated estimates of variances due to the small number of plots and species\cite{Gelman:2006uw}. In both sets of models the intercept terms ($\mu_{spp}^{CTL}$, $\alpha$), coefficients (i.e. inter-tusscok model: $\beta_1$, $\beta_2$ and $\beta_3$) and hyperparameter (i.e. multispecies model) for the mean OTC effect $\mu_{spp}^{OTC}$ were estimated from normal priors centered on zero with a scale parameter of 0.5. We chose this prior as it spanned the range of likely growth trajectories from very slow to very fast growing. 
+
+\subsection{\textit{Modelling shrub seedling mortality rates.}}
+We were also interested in whether seedling instantaneous mortality rates varied amongst shrub species, OTC treatment and inter-tussock gap size. Our observations, $y_{i,t}$, were binary (0 = alive or 1 = dead) for each individual $i$, in each census, $t$. We modelled these binary observations through time as random realizations from a Bernoulli distribution based on the model-estimated cumulative hazard rate for each individual at each census:
+
+\begin{equation}\label{eq:mort_obs} 
+y_{i,t} \sim Bern(Cumulative\;hazard_{i,t}).
+\end{equation}
+
+As with growth rates, we modelled each individual's cumulative hazard per census, $Cumulative\;hazard_{i,t}$, separately for seedlings growing in bare ground patches to those in inter-tussock gaps. In both cases, $Cumulative\;hazard_{i,t}$, was modelled on the complementary log-log scale as a function of an instantaneous hazard rate for each individual, $\lambda_i$, multiplied by the length (in years) between each census, $t$. By doing this our regression model becomes equivalent to a parametric survival analysis\cite{Kleinbaum:2012tn}.
+
+\begin{equation}\label{eq:cum_hazard} 
+\log_e(-\log_e(1 - Cumulative\;hazard_{i,t}) = \lambda_i \times census\;length_t.
+\end{equation}
+
+We modelled individual instantaneous hazard rate, $\lambda_i$, in the same way we modelled $R_i$ in equations 1.3.1 \& 1.3.2. 
+For individual seedlings of the four shrub species located in the bare ground patch of each plot, we modelled $\lambda_i$ using a varying intercept model:
+
+\begin{equation}\label{eq:mort_bg} 
+\begin{aligned}
+\lambda_i &=  \alpha_{j[i]} + \beta_{j[i]} \times OTC_{k[i]} + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\alpha_j &\sim \mathcal{N}(\mu_{spp}^{CTL}, \sigma_{spp}^{CTL}) \\
+\beta_j &\sim \mathcal{N}(\mu_{spp}^{OTC}, \sigma_{spp}^{OTC}) \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
+\epsilon_i &\sim \mathcal{N}(0, \sigma_{obs_{ind}}).
+\end{aligned}
+\end{equation}
+
+Here, the intercept term, $\alpha_{j[i]}$, represents the expected instantaneous hazard rate in a control plot for species $j$ within which individual $i$ belongs. It is estimated from a normal distribution centred on $\mu_{spp}^{CTL}$  (the control plot expected instantaneous hazard rate for the average hypothetical species) with a standard deviation, $\sigma_{spp}^{CTL}$, which defines the variation between species’ instantaneous hazard rates in control plots. The parameter $\beta_{j[i]}$ is the OTC effect for each species $j$ to which individual $i$ belongs. $\beta_{j[i]}$ is also estimated from a normal distribution, but unlike $\alpha_j$, it is centered on $\mu_{spp}^{OTC}$, (the OTC expected probability of death for the average hypothetical species) with a standard deviation, $\sigma_{spp}^{OTC}$, which defines the variation between species’ instantaneous hazard rates in OTCs. The parameters $\epsilon_{plot_k}$ and $\epsilon_i$ are residual (unexplained) variation at the plot and individual level, respectively.
+
+In contrast, $\lambda_{i,t}$ for \textit{Grevillea} seedlings growing in various sized inter-tussock gaps was modelled using a fixed intercept linear model:	
+
+\begin{equation}\label{eq:mort_tussock} 
+\begin{aligned}
+\lambda_{i,t} &=  \alpha + \beta_1 \times OTC_{k[i]} + \beta_2 \times Gap_{i,t} + \beta_3 \times (OTC_{k[i]} \times Gap_{i,t}) + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
+\epsilon_i &\sim \mathcal{N}(0, \sigma_{obs_{ind}}).
+\end{aligned}
+\end{equation}
+
+Here, the structure and parameter definitions are similar to eqn 2.3.1. The intercept, $\alpha$, represents the expected instantaneous hazard rate in control plots in an average inter-tussock gap radius, $\beta_1$ is the effect of OTC, $\beta_2$ is the effect of inter-tussock gap radius, $\beta_3$ is the interactive effect of OTC and inter-tussock gap radius and $\epsilon_{plot_k}$ and $\epsilon_i$ are the residual variation at the plot and individual scales. 
+
+Like the growth models, the standard deviation parameters in both mortality models (i.e. $\sigma_{spp}^{CTL}$ , $\sigma_{spp}^{OTC}$, $\sigma_{plot}$ and $\sigma_{ind}$) were each estimated from weakly informative positive half Cauchy priors with scale parameters of 25. The intercept term $\alpha$ for inter-tussock seedling model and the mean hyper-parameter $\mu_{spp}^{CTL}$ in the multispecies models were estimated from cauchy priors with a scale parameter of 2.5. We also used these Cauchy priors for inter-tussock model coefficients (i.e. $\beta_1$, $\beta_2$ and $\beta_3$) and the multi-species hyperparameter for the mean OTC effect $\mu_{spp}^{OTC}$. These Cauchy priors are the recommended default choice for logistic regression models\cite{Gelman:2008ua}. 
+
+\subsection{\textit{Modelling Grevillea recruitment rates.}}
+We examined whether warming influenced natural recruitment rates of \textit{Grevillea} by modelling the number of recruits per 1 m$^2$ plot $k$ in each census, $t$ as a random realization from a negative binomial distribution:
+
+\begin{equation}\label{eq:recruit_obs} 
+recruits_{k,t} \sim NegBinomial(\mu_{k,t}, \phi),
+\end{equation}
+
+where $\mu_{k,t}$ is the log expected recruit count for each plot, and $\phi$ is the overdispersion parameter. We used a negative binomial distribution because count data was significantly overdispersed with $\phi$ being estimated as 3.95.
+
+We modeled $\mu_{k,t}$ on the log scale using a hierarchical model:
+
+\begin{equation}\label{eq:recuit_mod} 
+\begin{aligned}
+\log_e(\mu_{k,t}) &=  \alpha + \beta_1 \times OTC_k + \beta_2 \times Census_t + \epsilon_{plot_k} \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}),
+\end{aligned}
+\end{equation}
+
+where, the intercept, $\alpha$, represents the average log recruitment in control plots in 2011, assuming all other parameters are at their mean. The parameter $\beta_1$ is the effects of OTC and $\beta_2$ describes the change in recruit numbers from 2011 to 2012. $\epsilon_{plot_k}$ is the residual variation at the plot scale.
+
+Half Cauchy priors with a scale of 25 were used for both the overdispersion parameter, $\phi$ and the plot level standard deviation $\sigma_{plot}$. Coefficients $\beta_1$ and $\beta_2$ were estimated using normal priors centered on zero with a standard deviation of 2.5, encapsulating our prior knowledge that plots were unlikely to have more than 150 recruits/m$^2$. 
+
+\subsection{\textit{Data inputs for growth, mortality and recruitment models.}}
+In each model, OTC treatment, $OTC_k$, was a binary (0 = Control, 1 = OTC) plot level covariate. By contrast, inter-tussock gap radius, $Gap_{i,t}$, was a continuous covariate on the log-scale measured for each individual seedling in each census t. However, because some cardinal distances were recorded as censored data (i.e.  > 25 cm), these data were incomplete. We estimated these censored data using a censored model (see below). Once censored data were estimated, we then estimated the median inter-tussock gap radius by log-transforming the data and then calculating the median cardinal distance to nearest tussock, in each censuses, for each inter-tussock seedling. Median inter-tussock gap radius ranged from 0.5 cm to 43 cm in both control and OTC plots. In order to compare the magnitude of effects between OTC treatment and inter-tussock gap radius we centered it on zero (minus grand mean) and divided by two standard deviations\cite{Gelman:2007te}. The advantage of centering and standardizing is that it allows for easier interpretation, with intercepts interpreted as average responses and slope terms as partial dependencies conditional on other continuous variables at their mean. Furthermore, standardizing by two standard deviations allows the magnitude of effects to be directly compared between binary and continuous covariates\cite{Gelman:2007te}.
+
+\subsection{\textit{Modelling censored Poa distances.}}
+Approximately 15\% of the Poa cardinal distance data used to calculate the average inter-tussock gap radius, $Gap_{i,t}$, were recorded as censored observations, ≥ 26 cm.  We estimated these censored values by first estimating the distribution of distances in observed data, coupled with estimating covariate effects and then using these distributions to estimate censored observations.
+
+Specifically, we first modelled the observed (non-censored) cardinal distances as random realizations from a lognormal distribution:
+
+\begin{equation}\label{eq:distance_obs} 
+distance_i \sim LN(\mu_i, \sigma_{obs}),
+\end{equation}
+
+where $\mu_i$ is the expected log estimated distance for cardinal distance $i$, and  $\sigma_obs$ is the standard deviation of the observation error.
+
+We modelled the log estimated distance, $\mu_i$, using hierarchical linear regression:
+
+\begin{equation}\label{eq:censored_mod} 
+\begin{aligned}
+\log_e(\mu_{k,t}) &=  \alpha + \beta \times OTC_{k[i]} + \epsilon_{census_{t[i]}} + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\epsilon_{census_t} &\sim \mathcal{N}(0, \sigma_{census}) \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
+\epsilon_i &\sim \mathcal{N}(0, \sigma_{ind}).
+\end{aligned}
+\end{equation}
+
+This regression model contained the effect of OTC ($\beta$) and estimated unexplained variation at the census level ($\epsilon_{census_t}$), plot level ($\epsilon_{plot_k}$) and inter-tussock gap level ($\epsilon_i$). 
+
+Again, like other models, half Cauchy priors with a scale of 25 were used for all standard deviation parameters. Both the intercept, $\alpha$, and the effect of OTC, $\beta$ (which are on the log scale), were estimated from weakly informed normal distributions centered on zero with a standard deviation of 2.5. Specifically, this prior encapsulated our knowledge that distances were very unlikely to be > 150 cm. 
+
+Using this model, coupled with our prior knowledge that the distances could not be less than 26 cm or larger than 100 cm (all plots were surrounded by grass) we could estimate the censored distances using a lognormal distribution truncated at both 26 cm and 100 cm:
+
+\begin{equation}\label{eq:censored_obs} 
+censored\;distance_i \sim LN(\mu_i, \sigma_{obs})[26,100],
+\end{equation}
+
+The mean posteriors from the censored data were then extracted from the model and used as our estimates for each censored observation. This complete dataset was then used subsequent analyses (e.g. inter-tussock seedling growth and mortality, changes in gap size \textemdash see below). 
+
+\subsection{\textit{Modelling rates of inter-tussock gap infilling by Poa.}}
+As well as modelling how OTC affected shrub seedling growth and mortality rates, we were also interested in examining how warming influenced rates of grass infilling of inter-tussock gaps. To examine this we first modelled the median gap radius,$y_{i,t}$, for each inter-tussock gap $i$ in each census $t$, as a random realisation from a lognormal distribution:
+
+\begin{equation}\label{eq:gap_obs} 
+y_{i,t} \sim LN(\mu_{i,t}, \sigma_{obs}),
+\end{equation}
+
+where $\mu_{i,t}$ is the log estimated median radius for each inter-tussock gap, at each census, and  $\sigma_{obs}$ is the standard deviation of the observation error.
+
+We then modelled $\mu_{i,t}$, as:
+
+\begin{equation}\label{eq:log_gap_mod} 
+\mu_{i,t} = \log_e(\alpha_i) + \beta_i \times \frac{Days_t}{365.25},
+\end{equation}
+
+which on the raw (non-logged scale) is equivalent to a standard exponential curve:
+
+\begin{equation}\label{eq:gap_mod} 
+\mu_{i,t} = \alpha_i\,e^{\beta_i\frac{Days_t}{365.25}}.
+\end{equation}
+
+This functional form allows gap radius to either increase or decrease exponentially. We did not force this curve to be a negative exponential (i.e. gaps decreased over time) because it is theoretically possible for inter-tussock gaps to increase over time. Here $\alpha_i$ is a known constant that represents the initial inter-tussock gap radius for each gap $i$ at the beginning (i.e. the intercept). $\beta_i$ represents the exponential rate for each gap and $Days_t$ is the number of days from the beginning of the experiment.
+
+We estimated $\beta_i$ using a hierarchical linear regression:
+
+\begin{equation}\label{eq:gap_rate} 
+\begin{aligned}
+\beta_i &= \alpha_0 + \beta \times OTC_{k[i]} + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
+\epsilon_i &\sim \mathcal{N}(0, \sigma_{ind}).
+\end{aligned}
+\end{equation}
+
+Here, $\alpha_0$ is the average rate of gap radius change in control plots, $\beta$ is the effect of OTC and $\epsilon_{plot_k}$ and $\epsilon_i$ represent the plot and gap level residual errors. 
+Like all other models used in this study, we used half Cauchy priors with a scale of 25 for all standard deviation parameters. The intercept, $\alpha_0$, and the effect of OTC, $\beta$ were estimated from normal priors centered on zero with a standard deviation of 5. These priors encapsulated the full range of potential gap trajectories from increases or decreases or no change. 
+
+\subsection{\textit{Modelling drivers of seedling density.}}
+We examined drivers of seedling density by modelling the number of seedlings per 1 m$^2$ as a random realization from a negative binomial distribution:
+
+\begin{equation}\label{eq:density_obs} 
+count_i \sim NegBinomial(\mu_i, \phi),
+\end{equation}
+
+where $\mu_i$ is the log expected seedling count for each plot, and $\phi$ is the overdispersion parameter. We used a negative binomial distribution because count data was significantly overdispersed for both species with $\phi$ being estimated as 0.54 ($\pm$ 0.1 95\% BCI) and 0.82 ($\pm$ 0.1 95\% BCI), for \textit{Grevillea} and \textit{Asterolasia}, respectively. 
+
+$\mu_i$ was modelled separately for \textit{Grevillea australis} and \textit{Asterolasia trymalioides} because the latter contained no measurements of adult density. The two models are structurally similar and only differ in that parameter $\beta_5$ is not included for \textit{Asterolasia}. Below we outline the full model structure used to estimate $\mu_i$.
+
+We modeled $\mu_i$ on the log scale as a function of both site and transect covariates:
+
+\begin{equation}\label{eq:density_mu_mod} 
+\mu_i = \delta_{j[i]} + \gamma_{k[i]}
+\end{equation}
+
+where, $\delta_{j[i]}$ and $\gamma_{k[i]}$ represents the average log count for each site $j$ and transect $k$ within which plot $i$ is located, respectively.
+
+We modelled $\delta_j$ using a varying intercept linear model:
+
+\begin{equation}\label{eq:density_site} 
+\begin{aligned}
+\delta_j &= \alpha_j + \beta_1 \times Alt_j + \beta_2 \times TWI_j + \beta_3 \times (1 - Burnt_j) + \beta_4 \times (Severity_j \times Burnt_j) \\
+\alpha_j &\sim \mathcal{N}(\mu_{site}, \sigma_{site}),
+\end{aligned}
+\end{equation}
+
+where the intercept, $\alpha_j$, varies by site and represents the average log count per plot at each site, assuming all other parameters are at their mean. We estimated $\alpha_j$ from a normal distribution centred on $\mu_{site}$, the average seedling count per 1 m$^2$ plot for the average site. The parameters $\beta_1$ and $\beta_2$ are the effects of altitude and wetness, respectively, while $\beta_3$ is the effect of being an unburnt site and $\beta_4$ is the effect of fire severity in burnt sites.
+
+We modelled $\gamma_k$ as:
+
+\begin{equation}\label{eq:density_transect} 
+\begin{aligned}
+\gamma_k &= \beta_5 \times ADen_k + \epsilon_{tran_k}  \\
+\epsilon_{tran_k} &\sim \mathcal{N}(0, \sigma_{tran}) \\.
+\end{aligned}
+\end{equation}
+
+where $\beta_5$ is the effect of mature \textit{Grevillea} counts and $\epsilon_{tran_k}$ is the random error associated with transect $k$. Parameter $\beta_5$ was not included when modelling \textit{Asterolasia} seedling counts because of a lack of mature individual counts. For this species $\gamma_k = \epsilon_{tran_k}$. Interactions between covariates were also examined, however, we detected no significant interactions for either species. 
+
+Half Cauchy priors with a scale of 25 were used for all standard deviation parameters and the overdispersion parameter $\phi$. Hyperparameter $\mu_site$ and coefficients $\beta_1$ to $\beta_5$ were estimated using normal priors centered on zero with a standard deviation of 2.5, encapsulating our prior knowledge that plots were unlikely to have more than 150 seedlings/m$^2$. 
+
+\subsection{\textit{Modelling drivers of seedling maximum heights.}}
+In order to validate growth rate findings in the OTC experiment, we assessed how an elevation range of 200 m in elevation (equivalent to a temperature change of 1.5\textdegree C \cite{Brown:1989vx}) influenced \textit{Grevillea} and \textit{Asterolasia} seedlings heights in areas burnt by the 2003 fires. We also assessed whether TWI and fire severity influenced these heights. Here, our observations were of maximum seedling heights for both species when at least one individual was present in a plot. We used maximum heights because these were likely to represent individuals that established immediately post-fire, and would have had 9 years of post-fire growth. We modelled these heights, $maxht_i$, as a random realization from a log-normal distribution:
+
+\begin{equation}\label{eq:maxht_obs} 
+maxht_i \sim LN(\widehat{\mu}_i, \sigma_{obs}),
+\end{equation}
+
+where $\widehat{maxht}_i$ is the model estimated log maximum height for each individual $i$ and $\sigma_{obs}$ is the standard deviation of the observation error. We modelled $\widehat{maxht}_i$ separately for \textit{Grevillea} and \textit{Asterolasia} using a varying intercept linear model: 
+
+\begin{equation}\label{eq:maxht_mod} 
+\begin{aligned}
+\widehat{maxht}_i &= \alpha_j + \beta_1 \times Alt_j + \beta_2 \times TWI_j + \beta_3 \times Severity_j \\
+\alpha_j &\sim \mathcal{N}(\mu_{site}, \sigma_{site}),
+\end{aligned}
+\end{equation}
+
+where the intercept, $\alpha_j$, varies by site and represents the average log maximum seedling height of each site, assuming all other parameters are at their mean. We estimated $\alpha_j$ from a normal distribution centred on $\mu_{site}$, the average log maximum height for the average site and a standard deviation of $sigma_{site}$ which defines site variability. The parameters $\beta_1$ and $\beta_2$ are the effects of altitude and topographic wetness, respectively and $\beta_3$ is the effect of fire severity.
+
+Here, we estimated $\mu_{site}$ and coefficient parameter ($\beta_1$ to $\beta_3$) using weakly informative normal priors with a mean of 0 and a standard deviation of 2.5. These priors encapsulated our prior knowledge that seedling maximum heights would be less than 150 cm. All standard deviation parameters were modelled using positive half Cauchy priors with a scale of 25.
+
+\subsection{\textit{Data inputs into density and maximum height models.}}
+In all seedling survey models, $Burnt_j$ is a binary (0 = unburnt, 1 = burnt) site level covariate, which only affects seedling counts at unburnt sites. By contrast, fire severity $Severity_j$, was a continuous site level covariate that only affected seedling counts and maximum heights at burnt sites. Altitude ($Alt_j$), Topographic Wetness Index ($TWI_j$) and mature \textit{Grevillea} count ($ADen_k$) were also continuous covariates that affected all sites in both count and maximum height models. Collinearity among covariates was checked and all correlations were r < 0.16. The data from each continuous covariate was then centered on zero and standardized by two standard deviations\cite{Gelman:2007te}. 
+\pagebreak
+\section*{Figures}
+\begin{suppfigure}
+\label{figs1}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS1.pdf}
+\caption{\textbf{Mean \textit{Asterolasia trymalioides} seedling density with burning, fire severity, adult density, altitude and Topographic Wetness Index (TWI) gradients.} Top left panel = centered and standardized model coefficients (on the log scale). Top right panel is the effect of burning. All other panels are partial dependence plots for each covariate along their observed gradients in areas burnt by the 2003 fires. All errors bars are 95\% Bayesian Credible Intervals. Phi = overdispersion parameter for negative binomial distribution.}
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs2}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS2.pdf}
+\caption{\textbf{Number of \textit{Grevillea australis} recruits in warmed (red) and control (blue) conditions in both 2011 and 2012. Errors bars are 95\% Bayesian Credible Intervals.}}
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs3}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS3.pdf}
+\caption{\textbf{Observed and projected diameter growth trajectories of four dominant Australian alpine shrubs.} Thick lines represent mean ($\pm$ 95\% CI) observed heights at each May census. Thin lines represent individual growth trajectories. Red or orange lines = seedlings growing in warmed (OTC) conditions and blue or light blue lines = seedlings growing in control conditions.} 
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs4}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS4.pdf}
+\caption{\textbf{Mean maximum seedling height along fire severity (TD; twig diameter), altitude and Topographic Wetness Index (TWI) gradients in areas burnt by the 2003 wildfires.} Left panels = \textit{Asterolasia trymalioides} responses, Right panels = \textit{Grevillea australis} responses. The first row shows the centered and standardized model coefficients (on the log scale) for both species. Rows 2 to 4 are partial dependence plots for each covariate along their observed gradients. All errors bars are 95\% Bayesian Credible Intervals.} 
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs5}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS5.pdf}
+\caption{\textbf{Mean daily difference (OTC-Control) for ambient temperature, soil temperature, volumetric water content and relative humidity over experimental period.} Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude changes in later years are due to shading effects caused by increased shrub growth.}
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs6}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS6.pdf}
+\caption{\textbf{Mean minimum daily difference (OTC-Control) for ambient temperature, soil temperature, volumetric water content and relative humidity over experimental period.} Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude changes in later years are due to shading effects caused by increased shrub growth.}
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs7}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS7.pdf}
+\caption{\textbf{Mean maximum daily difference (OTC-Control) for ambient temperature, soil temperature, volumetric water content and relative humidity over experimental period.} Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude changes in later years are due to shading effects caused by increased shrub growth.}
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+
+\begin{suppfigure}
+\label{figs8}
+\begin{minipage}{\textwidth}
+\includegraphics{figures/figS8.pdf}
+\caption{\textbf{Diagram outlining positions of transplanted seedling in an OTC plot.} The inner white square = the burnt bare ground patch used to assess heights of four dominant alpine shrub species. The grey area contains \textit{Grevillea australis} seedlings randomly transplanted into burnt inter-tussock gaps. The area beyond the grey section was subject to OTC panel sheltering (i.e. it was not within the 110 cm opening of the chamber) and therefore was not used in the experiment.} 
+\end{minipage}
+\end{suppfigure}
+\pagebreak
+\section*{References}
+\bibliography{refs.bib}
+\end{document}
+\pagebreak
+
