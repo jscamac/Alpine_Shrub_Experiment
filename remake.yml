@@ -15,6 +15,7 @@ sources:
   - 'R/model_output_processing.R'
   - 'R/figures.R'
   - 'R/build.R'
+  - 'R/ms_functions.R'
 
 plot_options:
 
@@ -140,7 +141,11 @@ targets:
                                     summarised_burnt_height_data,
                                     site_vars)
     cleanup_level: purge
-    
+
+  chamber_dates:
+    command: readRDS('raw_data/chamber_dates.rds')
+    cleanup_level: purge
+
   hourly_microclimate_data:
     command: process_hourly_microclimate('raw_data/otc_microstation_data.rds','raw_data/microstation_metadata.csv',I('ITEX2.0'),FALSE)
     cleanup_level: purge
@@ -324,22 +329,32 @@ targets:
     plot: double_col_square
 
   #------------- make manuscript ---------------------------
+
   manuscript/manuscript.tex:
+    depends:
+      - greaus_seedling_density_model
+      - asttry_seedling_density_model
+      - non_tussock_otc_growth_data
+      - non_tussock_otc_growth_model
+      - greaus_seedling_max_ht_model
+      - non_tussock_otc_mortality_data
+      - non_tussock_otc_mortality_model
+      - chamber_dates
+      - overall_microclimate_summary
     knitr: TRUE
 
   manuscript/manuscript.pdf:
     command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
-      - export_processed_data
       - figures
       - manuscript/nature.cls
 
   manuscript/supplementary.tex:
+    depends:
+      - figures
     knitr: TRUE
     
   manuscript/supplementary.pdf:
     command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
-      - export_processed_data
-      - figures
       - manuscript/nature.cls
