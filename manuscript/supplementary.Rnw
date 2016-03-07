@@ -304,76 +304,78 @@ In all seedling survey models, $Burnt_j$ is a binary (0 = unburnt, 1 = burnt) si
 \pagebreak
 \section*{Figures}
 \begin{suppfigure}
-\label{figs1}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS1.pdf}
 \caption{\textbf{Mean \textit{Asterolasia trymalioides} seedling density with burning, fire severity, adult density, altitude and Topographic Wetness Index (TWI) gradients.} Top left panel = centered and standardized model coefficients (on the log scale). Top right panel is the effect of burning. All other panels are partial dependence plots for each covariate along their observed gradients in areas burnt by the 2003 fires. All errors bars are 95\% Bayesian Credible Intervals. Phi = overdispersion parameter for negative binomial distribution.}
+\label{figs1}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs2}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS2.pdf}
 \caption{\textbf{Number of \textit{Grevillea australis} recruits in warmed (red) and control (blue) conditions in both 2011 and 2012. Errors bars are 95\% Bayesian Credible Intervals.}}
+\label{figs2}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs3}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS3.pdf}
 \caption{\textbf{Observed and projected diameter growth trajectories of four dominant Australian alpine shrubs.} Thick lines represent mean ($\pm$ 95\% CI) observed heights at each May census. Thin lines represent individual growth trajectories. Red or orange lines = seedlings growing in warmed (OTC) conditions and blue or light blue lines = seedlings growing in control conditions.} 
+\label{figs3}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs4}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS4.pdf}
 \caption{\textbf{Mean maximum seedling height along fire severity (TD; twig diameter), altitude and Topographic Wetness Index (TWI) gradients in areas burnt by the 2003 wildfires.} Left panels = \textit{Asterolasia trymalioides} responses, Right panels = \textit{Grevillea australis} responses. The first row shows the centered and standardized model coefficients (on the log scale) for both species. Rows 2 to 4 are partial dependence plots for each covariate along their observed gradients. All errors bars are 95\% Bayesian Credible Intervals.} 
+\label{figs4}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs5}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS5.pdf}
 \caption{\textbf{Mean daily difference (OTC-Control) for ambient temperature, soil temperature, volumetric water content and relative humidity over experimental period.} Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude changes in later years are due to shading effects caused by increased shrub growth.}
+\label{figs5}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs6}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS6.pdf}
 \caption{\textbf{Mean minimum daily difference (OTC-Control) for ambient temperature, soil temperature, volumetric water content and relative humidity over experimental period.} Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude changes in later years are due to shading effects caused by increased shrub growth.}
+\label{figs6}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs7}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS7.pdf}
 \caption{\textbf{Mean maximum daily difference (OTC-Control) for ambient temperature, soil temperature, volumetric water content and relative humidity over experimental period.} Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude changes in later years are due to shading effects caused by increased shrub growth.}
+\label{figs7}
 \end{minipage}
 \end{suppfigure}
 \pagebreak
 
 \begin{suppfigure}
-\label{figs8}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/figS8.pdf}
 \caption{\textbf{Diagram outlining positions of transplanted seedling in an OTC plot.} The inner white square = the burnt bare ground patch used to assess heights of four dominant alpine shrub species. The grey area contains \textit{Grevillea australis} seedlings randomly transplanted into burnt inter-tussock gaps. The area beyond the grey section was subject to OTC panel sheltering (i.e. it was not within the 110 cm opening of the chamber) and therefore was not used in the experiment.} 
+\label{figs8}
 \end{minipage}
 \end{suppfigure}
+
 \pagebreak
+
 \section*{References}
 \bibliography{refs.bib}
 \end{document}
