@@ -15,7 +15,7 @@ sources:
   - 'R/model_output_processing.R'
   - 'R/figures.R'
   - 'R/build.R'
-  - 'R/ms_functions.R'
+  - 'R/manuscript_functions.R'
 
 plot_options:
 
@@ -140,6 +140,14 @@ targets:
                                     cleaned_burnt_density_data,
                                     summarised_burnt_height_data,
                                     site_vars)
+    cleanup_level: purge
+
+  hmax_prior_data:
+    command: read.csv('raw_data/hmax.csv')
+    cleanup_level: purge
+
+  hmax:
+    command: hmax_priors(hmax_prior_data)
     cleanup_level: purge
 
   chamber_dates:
@@ -339,7 +347,9 @@ targets:
       - greaus_seedling_max_ht_model
       - non_tussock_otc_mortality_data
       - non_tussock_otc_mortality_model
+      - gap_dynamic_model
       - chamber_dates
+      - hmax
       - overall_microclimate_summary
     knitr: TRUE
 
