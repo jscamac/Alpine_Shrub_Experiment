@@ -127,21 +127,20 @@ get_mortality_data <- function(complete_otc_seedling_data, inter_tussock=TRUE) {
 }
 
 # Calculates average maximum height from multiple field studies
-hmax_priors <- function(csv_file) {
- data <- read.csv(csv_file)
- 
+hmax_priors <- function(data) {
  data <- data %>%
    filter(!is.na(species)) %>%
    droplevels() %>%
    group_by(site,species) %>%
-   summarise(max_ht = max(height_cm*10, na.rm=TRUE)) %>%
+   summarise(max_ht = max(height_cm, na.rm=TRUE)) %>%
    ungroup() %>%
    group_by(species) %>%
    summarise(n = n(),
-             mn_max_ht = mean(max_ht),
+             mn_max_ht = round(mean(max_ht)),
              sd_max_ht = sd(max_ht),
-             se_max_ht = sd_max_ht/sqrt(n))
-
+             se_max_ht = sd_max_ht/sqrt(n)) %>%
+   mutate(species = factor(species, labels= c('Asterolasia','Grevillea','Phebalium','Prostanthera')))
+ return(data)
 }
 
 # Cleans unburnt field data       
