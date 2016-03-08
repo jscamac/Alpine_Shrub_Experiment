@@ -361,10 +361,23 @@ targets:
 
   manuscript/supplementary.tex:
     depends:
-      - figures
+      - non_tussock_otc_growth_data
+      - non_tussock_otc_mortality_data
+      - complete_field_survey_data
+      - cleaned_poa_distances
+      - chamber_dates
+      - hmax
+      - tussock_otc_growth_data
+      - complete_otc_seedling_data
+      - recruit_model 
+      - greaus_seedling_density_model
+      - asttry_seedling_density_model
+
+      - overall_microclimate_summary
     knitr: TRUE
     
   manuscript/supplementary.pdf:
     command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
+      - figures
       - manuscript/nature.cls
