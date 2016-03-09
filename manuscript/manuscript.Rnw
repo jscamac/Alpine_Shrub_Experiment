@@ -112,7 +112,7 @@ The authors declare that they have no competing financial interests.
 \begin{figure}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/fig1.pdf}
-\caption{\textbf{Conceptual diagram illustrating positive warming-shrub-fire feedback loop.} Hypothesised positive feedback loop between fire, climatic warming and landscape flammability (\textbf{a}). Solid blue lines = known mechansims. dahsed black lines = mechansims that may exacerbate or diminish this feedback loop but which we have a paucity of information on. Feedback loop based on new evidence obtained from experimental and field surveys conducted in this study (\textbf{b}). Also includes an example of a potential, but unlikely, effect (red dotted line) that could break this feedback.}
+\caption{\textbf{Conceptual diagram illustrating positive warming-shrub-fire feedback loop.} Hypothesised positive feedback loop between fire, climatic warming and landscape flammability (\textbf{a}). Solid blue lines = known mechansims. dashed black lines = mechansims that may exacerbate or diminish this feedback loop but which we have a paucity of information on. Feedback loop based on new evidence obtained from experimental and field surveys conducted in this study (\textbf{b}). Also includes an example of a potential, but unlikely, effect (red dotted line) that could break this feedback.}
 \label{fig1}
 \end{minipage}
 \end{figure}
@@ -120,7 +120,7 @@ The authors declare that they have no competing financial interests.
 \begin{figure}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/fig2.pdf}
-\caption{\textbf{Mean \textit{Grevillea australis} seedling density along burning, fire severity (minimum twig diameter), adult density, altitude and Topographic Wetness Index (TWI) gradients.} Centered and standardized model coefficients (on the log scale) (\textbf{a}) and effects of burning (\textbf{b}), fire severity  (\textbf{c}), altitude (\textbf{d}), topographic wetness (\textbf{e}) \& adult density (\textbf{f}), in areas burnt by the 2003 fires. All errors bars are 95\% Bayesian Credible Intervals. Phi = overdispersion parameter for negative binomial distribution.}
+\caption{\textbf{Mean \textit{Grevillea australis} seedling density along gradients of burning, fire severity (minimum twig diameter), adult density, altitude and Topographic Wetness Index (TWI).} Centered and standardized model coefficients (on the log scale) (\textbf{a}) and effects of burning (\textbf{b}), fire severity  (\textbf{c}), altitude (\textbf{d}), topographic wetness (\textbf{e}) \& adult density (\textbf{f}), in areas burnt by the 2003 fires. All errors are 95\% Bayesian Credible Intervals. Phi = overdispersion parameter for negative binomial distribution.}
 \label{fig2}
 \end{minipage}
 \end{figure}
@@ -128,7 +128,7 @@ The authors declare that they have no competing financial interests.
 \begin{figure}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/fig3.pdf}
-\caption{\textbf{Observed and projected growth trajectories of four dominant Australian alpine shrubs.} Observed height growth (\textbf{a}): Thick lines represent mean ($\pm$ 95\% confidence intervals) observed heights at each May census. Thin lines represent individual growth trajectories. Mean ($\pm$ 95\% Bayesian Credible Interval) projected height growth for each species over 70 years (\textbf{b}). In all cases, red \& orange lines = seedlings growing in warmed (OTC) conditions and blue \& light blue lines = seedlings growing in control conditions. Projections were based on an logistic growth model using initial seedling size of 6 cm (the mean initial height observed in the OTC experiment) and mean maximum heights observed in long-unburnt sites (i.e. \Sexpr{hmax_values(hmax,'Asterolasia')}, \Sexpr{hmax_values(hmax,'Grevillea')}, \Sexpr{hmax_values(hmax,'Phebalium')} \& \Sexpr{hmax_values(hmax,'Prostanthera')} cm for \textit{Asterolasia}, \textit{Grevillea},\textit{Phebalium}, \& \textit{Prostanthera}, respectively).}
+\caption{\textbf{Observed and projected growth trajectories of four dominant Australian alpine shrubs.} Observed height growth (\textbf{a}): Thick lines represent mean ($\pm$ 95\% confidence intervals) observed heights at each May census. Thin lines represent individual growth trajectories. Mean ($\pm$ 95\% Bayesian Credible Interval) projected growth trajectories (\textbf{b}). In all cases, red \& orange lines = seedlings growing in warmed (OTC) conditions and blue \& light blue lines = seedlings growing in control conditions. Projections were based on an logistic growth model using initial seedling size of 6 cm (the mean initial height observed in the OTC experiment) and mean maximum heights observed in long-unburnt sites (i.e. \Sexpr{hmax_values(hmax,'Asterolasia')}, \Sexpr{hmax_values(hmax,'Grevillea')}, \Sexpr{hmax_values(hmax,'Phebalium')} \& \Sexpr{hmax_values(hmax,'Prostanthera')} cm for \textit{Asterolasia}, \textit{Grevillea}, \textit{Phebalium}, \& \textit{Prostanthera}, respectively).}
 \label{fig3}
 \end{minipage}
 \end{figure}
@@ -136,7 +136,7 @@ The authors declare that they have no competing financial interests.
 \begin{figure}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/fig4.pdf}
-\caption{\textbf{Mean ($\pm$ 95\% Bayesian Credible Interval) seedling probability of mortality for each species growing in control (blue) and warmed (red) conditions.}}
+\caption{\textbf{Mean ($\pm$ 95\% Bayesian Credible Interval) annual probability of mortality for each species growing in control (blue) and warmed (red) conditions.}}
 \label{fig4}
 \end{minipage}
 \end{figure}
@@ -145,7 +145,7 @@ The authors declare that they have no competing financial interests.
 \begin{figure}
 \begin{minipage}{\textwidth}
 \includegraphics{figures/fig5.pdf}
-\caption{\textbf{Experimental warming and inter-tussock gap size effects on \textit{Grevillea australis} seedlings.} Top rows = Growth rate effects, Second row = Mortality effects. \textbf{a} \& \textbf{c} are the centered and standardized model coefficients; \textbf{b} \& \textbf{d} are growth and mortality rate response curves along an inter-tussock gap size gradient under warmed (red) and control (blue) conditions. All errors bars are 95\% Bayesian Credible Intervals.} 
+\caption{\textbf{Experimental warming and inter-tussock gap size effects on \textit{Grevillea australis} seedlings.} Top rows = Growth rate effects, Second row = Mortality effects. Centered and standardized model coefficients (\textbf{a} \& \textbf{c}); growth and mortality rate response curves along an inter-tussock gap size gradient in warmed (red) and control (blue) conditions  (\textbf{b} \& \textbf{d}). All errors are 95\% Bayesian Credible Intervals.} 
 \label{fig5}
 \end{minipage}
 \end{figure}
