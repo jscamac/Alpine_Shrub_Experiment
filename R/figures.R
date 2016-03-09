@@ -7,6 +7,8 @@ partial_plot_theme <- function(legend.position = "none", strips = FALSE,...) {
                           legend.title = element_blank(),
                           strip.background = sb,
                           legend.position = legend.position,
+                          axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'),
+                          axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'),
                           plot.margin = unit(c(5,5,5,5), "mm"))
 }
 
@@ -14,6 +16,8 @@ partial_plot_theme <- function(legend.position = "none", strips = FALSE,...) {
 coefficent_plot_theme <- function() {
   theme_classic(base_size = 10) + theme(
                           axis.title.y = element_blank(),
+                          axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'),
+                          axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'),
                           plot.margin = unit(c(5,5,5,5), "mm"))
 }
 
