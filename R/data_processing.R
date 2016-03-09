@@ -151,7 +151,7 @@ clean_unburnt_data <- function(csv_file) {
     select(site, year, transect=tran, greaus_tran_adultden=greaus_adultden,
            plot, poa, bare_ground=bg, rock, species, adult, height, 
            diameter=stemdiam, canopy_length_1 = clength1, canopy_length_2 = clength2) %>%
-    complete(c(site,year,transect,greaus_tran_adultden,plot,poa,bare_ground,rock),species) %>%
+    tidyr::complete(nesting(site,year,transect,greaus_tran_adultden,plot,poa,bare_ground,rock),species) %>%
     filter(!is.na(species)) %>%
     mutate(greaus_tran_adultden = greaus_tran_adultden/500) %>% # converts to density/m2
     droplevels()
