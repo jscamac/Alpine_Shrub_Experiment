@@ -351,6 +351,7 @@ targets:
       - chamber_dates
       - hmax
       - overall_microclimate_summary
+      - complete_field_survey_data
     knitr: TRUE
 
   manuscript/manuscript.pdf:
@@ -372,7 +373,6 @@ targets:
       - recruit_model 
       - greaus_seedling_density_model
       - asttry_seedling_density_model
-
       - overall_microclimate_summary
     knitr: TRUE
     
