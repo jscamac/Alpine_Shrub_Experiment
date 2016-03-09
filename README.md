@@ -52,6 +52,11 @@ For Mac users install [MacTeX](https://tug.org/mactex/mactex-download.html)
 
 For Linux users install [TeX Live](https://www.tug.org/texlive/quickinstall.html)
 
+NOTE: TeX Live users require installing additional add ons. This can be achieved by running the following in the terminal:
+```
+apt-get install texlive texlive-latex-extra texlive-humanities
+```
+
 Now we have everything we need to process the raw data, run the models, produce the figures and manuscript. We can do all of this using a single command in R.
 
 ```
