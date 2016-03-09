@@ -24,7 +24,7 @@ Now install [storr](https://github.com/richfitz/storr) a `remake` dependency not
 ```
 devtools::install_github("richfitz/storr", dependencies=TRUE)
 ```
-Then install [callr](https://github.com/traitecoevo/callr)
+Then install [callr](https://github.com/traitecoevo/callr) a `remake` dependency also not on CRAN.
 ```
 devtools::install_github("traitecoevo/callr", dependencies=TRUE)
 ```
