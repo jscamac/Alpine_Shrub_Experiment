@@ -536,10 +536,10 @@ run_non_tussock_mortalilty_model <- function(data) {
     raw_ind ~ normal(0,1);
     mu_alpha ~ cauchy(0,2.5);
     mu_b_otc ~ cauchy(0,2.5);
-    sigma_alpha ~ cauchy(0,25);
-    sigma_b_otc ~ cauchy(0,25);
-    sigma_plot ~ cauchy(0,25);
-    sigma_ind ~ cauchy(0,25);
+    sigma_alpha ~ cauchy(0,2.5);
+    sigma_b_otc ~ cauchy(0,2.5);
+    sigma_plot ~ cauchy(0,2.5);
+    sigma_ind ~ cauchy(0,2.5);
   }
   generated quantities {
     real p_death_ctl[n_spp];
@@ -560,7 +560,7 @@ run_non_tussock_mortalilty_model <- function(data) {
                          pars = c("mu_alpha","mu_b_otc",
                                   "sigma_alpha","sigma_b_otc","sigma_plot","sigma_ind",
                                   "alpha","b_otc", "p_death_otc","p_death_ctl"), 
-                         control=list(adapt_delta=0.99999999,stepsize=0.1, max_treedepth =15),
+                         control=list(adapt_delta=0.9999,stepsize=0.001, max_treedepth =15),
                          chains = 3,
                          iter = 2000))
   return(fit)
@@ -654,8 +654,8 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
     b_otc ~ cauchy(0,2.5);
     b_poadist ~ cauchy(0,2.5);
     b_otc_x_poadist ~ cauchy(0,2.5);
-    sigma_plot ~ cauchy(0,25);
-    sigma_ind ~ cauchy(0,25);
+    sigma_plot ~ cauchy(0,2.5);
+    sigma_ind ~ cauchy(0,2.5);
   }
   generated quantities{
   real p_death_ctl[n_preds];
