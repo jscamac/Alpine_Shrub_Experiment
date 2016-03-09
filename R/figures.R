@@ -179,7 +179,7 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
   plot_grid(p1,p2,p3,p4, labels=letters[1:4], ncol = 2, label_size = 11)
 }
 
-density_count_plots <- function(density_model, species, ylim=c(0,32)) {
+density_count_plots <- function(density_model, species, ylim=c(0,35)) {
   if(species=='Grevillea') {
     params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','b_adult_density','phi')
     y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','adult density','phi')
