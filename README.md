@@ -39,11 +39,15 @@ This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-S
 ```
 install.packages("rstan", dependencies = TRUE)
 ```
+Lastly, in order to compile a pdf of the manuscript we require the installation of latex.
+For Windows users install [MiKTeX](http://miktex.org/download)
+For Mac users install [MacTeX](https://tug.org/mactex/mactex-download.html)
+For Linux users install[TeX Live](https://www.tug.org/texlive/quickinstall.html)
 
-Now we have everything we need to reprocess the raw data, run the models and produce the figures. We can do all of this using a single command in R.
+Now we have everything we need to process the raw data, run the models, produce the figures and manuscript. We can do all of this using a single command in R.
 
 ```
-remake::make() #NOTE: This involves running 10 stan models and can take up to 1.5 hours or longer depending on computer hardware specifications.
+remake::make() #NOTE: This involves running 11 stan models and can take up to 1 hour or longer depending on computer hardware specifications.
 ```
 
 If you only wish to extract the processed (i.e. errors removed) datasets just run:
@@ -51,4 +55,6 @@ If you only wish to extract the processed (i.e. errors removed) datasets just ru
 ```
 remake::make("export_processed_data") # Note this still requires some models to run in order to estimate missing poa distances.
 ```
+
+A list of all available targets can be found within the `remake.yml` file.
 
