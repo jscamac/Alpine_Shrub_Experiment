@@ -8,6 +8,7 @@ packages:
   - grid
   - lubridate
   - reshape2
+  - callr
 
 sources:
   - 'R/data_processing.R'
