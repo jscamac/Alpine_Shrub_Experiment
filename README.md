@@ -20,16 +20,7 @@ To do this install [devtools](https://github.com/hadley/devtools) if you haven't
 ```
 install.packages("devtools")
 ```
-Now install [storr](https://github.com/richfitz/storr) a `remake` dependency not on CRAN.
-```
-devtools::install_github("richfitz/storr", dependencies=TRUE)
-```
-Then install [callr](https://github.com/traitecoevo/callr) a `remake` dependency also not on CRAN.
-```
-devtools::install_github("traitecoevo/callr", dependencies=TRUE)
-```
-
-Now we can install `remake` (also not on CRAN)
+Now we can install `remake` (Not on CRAN)
 ```
 devtools::install_github("richfitz/remake", dependencies=TRUE)
 ```
@@ -39,7 +30,6 @@ This project also depends on several packages. Now that `remake` is installed we
 ```
 remake::install_missing_packages()
 ```
-
 This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. As such, we require that you have `rstan` 2.8.0 or greater. If you have an older version of `rstan` you can update it by running:
 ```
 install.packages("rstan", dependencies = TRUE)
@@ -56,7 +46,6 @@ NOTE: TeX Live users require installing additional add ons. This can be achieved
 ```
 apt-get install texlive texlive-latex-extra texlive-humanities
 ```
-
 Now we have everything we need to process the raw data, run the models, produce the figures and manuscript. We can do all of this using a single command in R.
 
 ```
@@ -69,5 +58,10 @@ If you only wish to extract the processed (i.e. errors removed) datasets just ru
 remake::make("export_processed_data") # Note this still requires some models to run in order to estimate missing poa distances.
 ```
 
-A list of all available targets can be found within the `remake.yml` file.
+A list of all available targets can be found within the `remake.yml` file. You can examine any one of them by simply using:
+
+```
+object <- remake::make("target_name")
+```
+
 
