@@ -1,4 +1,5 @@
 packages:
+  - knitr
   - plyr
   - dplyr
   - tidyr
