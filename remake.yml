@@ -319,7 +319,7 @@ targets:
     plot: square
     
   manuscript/figures/figS3.pdf:
-    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (mm)'), ylim=I(c(0,3.5)))
+    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (cm)'), ylim=I(c(0,3.5)))
     plot: double_col_rect
     
   manuscript/figures/figS4.pdf:
