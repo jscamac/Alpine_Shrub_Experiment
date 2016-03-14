@@ -33,7 +33,7 @@ plot_obs_growth <- function(observed_data, response ='ht', scales ='free', ncol=
   observed_data$otc <- factor(ifelse(observed_data$otc==1, 'otc','ctl'))
   observed_data$year <- as.numeric(year(observed_data$date))
   ggplot() + 
-  geom_path(data = observed_data, aes_string(x = 'year',y = response, colour='otc', group = 'ind'), alpha = 0.4) +
+  geom_path(data = observed_data, aes_string(x = 'year',y = response, colour='otc', group = 'ind'), alpha = 0.4, size=0.3) +
   geom_path(data = summary_obs, aes(x=year, y=mean, col=factor(paste0(otc, '_mean'))), alpha=0.6) +
   geom_pointrange(data= summary_obs,aes(x=year, y=mean,ymin = lower_95ci, ymax=upper_95ci, col=factor(paste0(otc, '_mean'))), size = 0.05) +
   scale_colour_manual('', values = c("ctl" ="sky blue","otc" ="orange", "otc_mean"="red", "ctl_mean"="blue")) +
@@ -50,8 +50,7 @@ coefficient_plot <- function(summarised_coefficients, y_axis_labels='',xlab ='Ef
   
   
   ggplot(summarised_coefficients, aes(x = mean,y = parameter)) + 
-    geom_segment(aes(x=`2.5%`,y=parameter, xend=`97.5%`, yend=parameter), size=0.3)+
-    geom_segment(aes(x=`10%`,y=parameter, xend=`90%`, yend=parameter), size = 0.6)+
+    geom_segment(aes(x=`2.5%`,y=parameter, xend=`97.5%`, yend=parameter))+
     geom_point(aes(x=mean, y=parameter)) +
     geom_vline(aes(xintercept=0), linetype=2) +
     scale_y_discrete(labels =rev(y_axis_labels)) +
@@ -138,7 +137,7 @@ partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, yli
 
 burnt_v_unburnt <- function(predictions, x, ylab=NULL) {
   ggplot(predictions, aes_string(x = x,y = 'mean')) + 
-    geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`), size=0.3) +
+    geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`)) +
     scale_x_discrete(labels =c('Unburnt','Burnt')) +
     xlab('') +
     ylab(ylab) +
