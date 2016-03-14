@@ -185,12 +185,12 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
 
 density_count_plots <- function(density_model, species, ylim=c(0,35)) {
   if(species=='Grevillea') {
-    params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','b_adult_density','phi')
-    y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','adult density','phi')
+    params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','b_adult_density')
+    y_axis_labels <- c('Intercept','Unburnt','Severity','Altitude','TWI','Adult density')
   }
   if(species=='Asterolasia'){
-    params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi','phi')
-    y_axis_labels <- c('Intercept','unburnt','severity','altitude','twi','phi')
+    params <- c('alpha_mu','b_unburnt','b_severity','b_altitude','b_twi')
+    y_axis_labels <- c('Intercept','Unburnt','Severity','Altitude','TWI')
   }
   coeffs <- summarise_coefficients(density_model,params = params)
   predictions <- summarise_density_predictions(density_model,species)
@@ -205,7 +205,7 @@ density_count_plots <- function(density_model, species, ylim=c(0,35)) {
   
   if(species=='Grevillea') {
     p6 <- partial_plot_density_height(predictions$adult_density, x ='sim_adult_den', 
-                                      xlab = expression('Adult density/'~m^2), ylab = expression('Seedlings /'~m^2), ylim)
+                                      xlab = expression('Adults/'~m^2), ylab = expression('Seedlings /'~m^2), ylim)
     plot_grid(p1,p2,p3,p4,p5,p6, labels=letters[1:6], ncol = 2, label_size = 11)
   }
   
