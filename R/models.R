@@ -757,7 +757,6 @@ parameters{ # Declare parameters the models must estimate
   real<lower=0> b_transect_sigma;
   real b_raw_transect[n_transects];
   %s
-  real<lower=0> phi;
 }
 transformed parameters { # Declare and define derived variables used in model
   real count[n_obs];
@@ -796,12 +795,11 @@ model { # Define priors and likelihood
   b_twi ~ normal(0,2.5);
   b_raw_transect ~ normal(0,1);
   b_transect_sigma ~ cauchy(0,25);
-  phi ~ cauchy(0,25);
   %s
 
   
   # Likelihood
-    y ~ neg_binomial_2(count, phi);
+    y ~ poisson(count);
 }
 generated quantities { # Calculate log likelihood, residuals or make predictions
   
@@ -840,12 +838,12 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
   
   if(species =="Grevillea") {
     pars <- c("alpha_mu", "alpha_sigma","b_transect_sigma",
-              "b_unburnt","b_severity","b_altitude","b_twi","phi", "b_adult_density",
+              "b_unburnt","b_severity","b_altitude","b_twi", "b_adult_density",
               "pred_count_unburnt","pred_count_burnt","pred_count_severity","pred_count_altitude",
               "pred_count_twi","pred_count_adult_density")
   }else {
     pars <- c("alpha_mu", "alpha_sigma","b_transect_sigma",
-              "b_unburnt","b_severity","b_altitude","b_twi","phi",
+              "b_unburnt","b_severity","b_altitude","b_twi",
               "pred_count_unburnt","pred_count_burnt","pred_count_severity","pred_count_altitude",
               "pred_count_twi")}
   
