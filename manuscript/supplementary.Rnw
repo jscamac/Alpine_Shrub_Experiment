@@ -26,6 +26,7 @@
 
 \pagebreak
 
+\section*{Supplementary Methods}
 \section*{Study site}
 Our research sites were on the Bogong High Plains, a series of alpine and high subalpine plateaux in the Alpine National Park, approximately 250 km northeast of Melbourne, Australia. The undulating terrain ranges in altitude from 1400 to 2000 m a.s.l and contains a well-developed mantle of soil. Mean annual temperature is approximately 6\textdegree C, with persistent snow cover from June to September. Annual precipitation is 1200 mm, yet droughts occur at roughly decadal intervals\cite{Wahren:2013ji}. The vegetation is a mosaic of Eucalypt-woodland and treeless vegetation, with the latter largely consisting of heathlands and tussock grasslands, but also herbfields and wetlands. The treeline is irregular (due to cold air drainage), occurring at altitudes ranging from 1600 to 1700 m a.s.l. Approximately 50\% of the alpine ‘treeless’ landscape consists of heathlands, most of which were extensively burned by a 400,000 ha wildfire in 2003\cite{Williams:2006tl,Camac:2013eb}. Large wildfires in Australian alpine landscapes have occurred once or twice per century and typically occur during periods of extended regional drought coupled with severe fire weather and multiple ignitions in the surrounding montane forests\cite{Williams:2008ba}. 
 
