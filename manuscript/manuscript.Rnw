@@ -92,7 +92,7 @@ We used 40 long-term open heathland sites established after the 2003 fires\cite{
 
 \subsection{Data analysis.}
 
-In total we built 11 hierarchical models to examine factors influencing post-fire recovery of tussock grass and shrub seedling establishment, growth and mortality. For each model we used Bayesian inference and fitted models in R \Sexpr{paste(version$major, version$minor, sep='.')} using package rstan \Sexpr{packageVersion("rstan")}. Data and source code for reproducing analysis and figures are available at: \url{https://github.com/jscamac/Alpine_Shrub_Experiment}. Additional information about experimental design and analysis can be found in Supplementary Methods.
+In total we built 11 hierarchical models to examine factors influencing post-fire recovery of tussock grass and shrub seedling establishment, growth and mortality. For each model we used Bayesian inference and fitted models in R \Sexpr{paste(version$major, version$minor, sep='.')} using package \texttt{rstan} \Sexpr{packageVersion("rstan")}. Data and source code for reproducing analysis and figures are available at: \url{https://github.com/jscamac/Alpine_Shrub_Experiment}. Additional information about experimental design and analysis can be found in Supplementary Methods.
 \end{methods}
 
 
