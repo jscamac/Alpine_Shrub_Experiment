@@ -123,7 +123,7 @@ recruit_plot <- function(recruit_model, ylab =expression('Recruits/'~m^2), xlab 
 
 
 # Plots covariate partial plots for density and height models
-partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, ylim =c(0,15)) {
+partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, ylim =c(0,40)) {
   ggplot(predictions, aes_string(x = x,y = 'mean'), axis.line = element_line()) + 
     geom_line() +
     scale_fill_manual("",values= 'grey60') +
