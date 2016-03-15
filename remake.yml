@@ -59,6 +59,7 @@ targets:
       - models/tussock_otc_growth_model.rds
       - models/non_tussock_otc_mortality_model.rds
       - models/tussock_otc_mortality_model.rds
+      - models/recruit_model.rds
       - models/greaus_seedling_density_model.rds
       - models/asttry_seedling_density_model.rds
       - models/greaus_seedling_max_ht_model.rds
@@ -311,7 +312,7 @@ targets:
     plot: double_col_rect
     
   manuscript/figures/figS1.pdf:
-    command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'))
+    command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'),I(c(0,50)))
     plot: double_col_square
     
   manuscript/figures/figS2.pdf:
