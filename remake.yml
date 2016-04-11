@@ -29,6 +29,14 @@ plot_options:
     width: 3.46
     height: 2.5
 
+  1col_widenarrow_rectangle:
+    width: 3.46
+    height: 2
+
+  1_col_square:
+    width: 3.46
+    height: 3.46
+
   1col_tall_rectangle:
     width: 3.46
     height: 4.2
@@ -321,11 +329,11 @@ targets:
     
   manuscript/figures/fig5.pdf:
     command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model)
-    plot: 1col_wide_rectangle
+    plot: 1_col_square
     
   manuscript/figures/fig6.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
-    plot: 1col_wide_rectangle
+    plot: 1col_widenarrow_rectangle
     
   manuscript/figures/figS1.pdf:
     command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'),I(c(0,50)))
