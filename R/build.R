@@ -1,4 +1,4 @@
-#!/usr/bin/env Rscript
+#!/usr/local/bin/env Rscript
 
 latex_build <- function(filename, bibliography=NULL,
                         chdir=TRUE, interaction="nonstopmode",
