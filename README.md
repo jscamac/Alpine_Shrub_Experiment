@@ -15,6 +15,7 @@ Climate change is increasing fire frequency and severity worldwide, but it is no
 We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate this reproducibility the entire workflow has been written in [remake](https://github.com/richfitz/remake). Below outlines the instructions on how to clone this repository and build the entire analysis and figures.
 
 First copy the repository to your local computer. Then open R in this directory.
+**NOTE** This project is currently under peer review and subject to change. If you wish to replicate the manuscript as found at [bioRxiv](http://biorxiv.org/content/early/2016/03/16/043919) please download the release version.
 Once this is done we must install `remake` dependencies that are not on CRAN.
 To do this install [devtools](https://github.com/hadley/devtools) if you haven't already by running the following in R:
 ```
