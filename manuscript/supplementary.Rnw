@@ -1,36 +1,46 @@
-\documentclass{nature}
-\bibliographystyle{naturemag.bst}
-\usepackage{lineno}
-\usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{amsmath}
-\usepackage[hidelinks]{hyperref}
+\documentclass[9pt,twocolumn,twoside, lineno]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+% Note that the use of elements such as single-column equations
+% may affect the guide line number alignment. 
 
-\title{Climatic warming strengthens a positive feedback \\ between alpine shrubs and fire \\ 
-(Supplementary Material)}
-\author{James S. Camac$^{*,1,2,3}$, Richard J. Williams$^4$, Carl-Henrik Wahren$^3$, Ary A. Hoffmann$^5$ \\
-\& Peter A. Vesk$^2$}
+\templatetype{pnasresearcharticle} % Choose template 
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} = Template for a one-column mathematics article
+% {pnasinvited} = Template for a PNAS invited submission
+
+\title{Climatic warming strengthens a positive feedback\\ between alpine shrubs and fire}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[a,b,c,1]{James S Camac}
+\author[d,2]{Richard J Williams} 
+\author[c,3]{Carl-Henrik Wahren}
+\author[e,4]{Ary A Hoffmann}
+\author[b,5]{Peter A Vesk}
+
+\affil[a]{Department of Biological Sciences, Macquarie University, Sydney, NSW 2109, Australia}
+\affil[b]{The Centre of Excellence for Environmental Decisions, School of BioSciences, The University of Melbourne, Melbourne, Victoria 3010, Australia}
+\affil[c]{Research Centre for Applied Alpine Ecology, La Trobe University, Melbourne, Victoria 3086, Australia}
+\affil[d]{CSIRO Land and Water, Tropical Ecosystems Research Centre, PMB 44 Winnellie, Northern Territory 0821, Australia}
+\affil[e]{Bio21 Institute, School of BioSciences, The University of Melbourne, Victoria 3010, Australia}
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Camac} 
+\correspondingauthor{\textsuperscript{1}To whom correspondence should be addressed. E-mail: james.camac@gmail.com}
+
+% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+\keywords{Bayesian models $|$ Biotic interactions $|$ Growth $|$ Recruitment $|$ Mortality} 
+
+\dates{This manuscript was compiled on \today}
+\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
 
 \begin{document}
-\linenumbers
 \maketitle
 
-\begin{affiliations}
-\item Department of Biological Sciences, Macquarie University, Sydney, NSW 2109, Australia.
-\item The Centre of Excellence for Environmental Decisions, School of BioSciences, The University of Melbourne, Melbourne, Victoria 3010, Australia.
-\item Research Centre for Applied Alpine Ecology, La Trobe University, Melbourne, Victoria 3086, Australia.
-\item CSIRO Land and Water, Tropical Ecosystems Research Centre, PMB 44 Winnellie, Northern Territory 0821, Australia.
-\item Bio21 Institute, School of BioSciences, The University of Melbourne, Victoria 3010, Australia.
-\textasteriskcentered Email for correspondence: \texttt{james.camac@gmail.com}
-\end{affiliations}
-
-\pagebreak
-
-\section*{Supplementary Methods}
-\section*{Study site}
+\section*{SI Materials and Methods}
+\subsection*{Study site}
 Our research sites were on the Bogong High Plains, a series of alpine and high subalpine plateaux in the Alpine National Park, approximately 250 km northeast of Melbourne, Australia. The undulating terrain ranges in altitude from 1400 to 2000 m a.s.l and contains a well-developed mantle of soil. Mean annual temperature is approximately 6\textdegree C, with persistent snow cover from June to September. Annual precipitation is 1200 mm, yet droughts occur at roughly decadal intervals\cite{Wahren:2013ji}. The vegetation is a mosaic of Eucalypt-woodland and treeless vegetation, with the latter largely consisting of heathlands and tussock grasslands, but also herbfields and wetlands. The treeline is irregular (due to cold air drainage), occurring at altitudes ranging from 1600 to 1700 m a.s.l. Approximately 50\% of the alpine ‘treeless’ landscape consists of heathlands, most of which were extensively burned by a 400,000 ha wildfire in 2003\cite{Williams:2006tl,Camac:2013eb}. Large wildfires in Australian alpine landscapes have occurred once or twice per century and typically occur during periods of extended regional drought coupled with severe fire weather and multiple ignitions in the surrounding montane forests\cite{Williams:2008ba}. 
 
-\section*{Open Top Chamber Experiment}
+\subsection*{Open Top Chamber Experiment}
 We used a warming experiment to examine: 1) how warmer post-fire conditions influence rates of post-fire gap-infilling by tussock grass and shrub seedling recruitment, growth and mortality; 2) how proximity to grass affects shrub seedling demographic rates; and 3) whether such effects change under warmer conditions post-fire conditions. 
 
 In alpine and tundra regions, shrub seedlings typically establish and grow in bare ground created by disturbance\cite{Williams:1987ua, Batllori:2009fe, Frost:2013tm}. Here, we used fire to create bare ground because Australian alpine shrub seedlings occur in greatest abundance after fire (see seedling survey results) and in many parts of the world, including Australia, wildfires are predicted to increase in frequency and severity\cite{Westerling:2006ve,Flannigan:2009kl}. Thus, to forecast likely changes in shrub abundance we need to know how warming affects growth and mortality rates of shrub seedlings growing in burnt sites. 
@@ -45,10 +55,10 @@ We measured changes in microclimate using Onset Micro Stations (Onset Computer C
 
 Natural \textit{Grevillea} recruits, likely from the soil seedbank, began establishing within the experimental plots by the end of the growing season in 2011. This provided us with the opportunity to examine how warming directly affected recruitment. We marked (with paint on stems) recruits and recorded the number that germinated in each of the 2011 and 2012 seasons.
 
-\subsection{\textit{Data inputs for growth, mortality and recruitment models.}}
+\subsection*{Data inputs for growth, mortality and recruitment models.}
 In each model, OTC treatment, $OTC$, was a binary (0 = Control, 1 = OTC) plot level covariate. By contrast, inter-tussock gap radius, $Gap_{i,t}$, was a continuous covariate on the log-scale measured for each individual seedling in each census $t$. However, because some distances were censored (i.e. $\geq$ 26 cm), these data were incomplete. We estimated these censored data using a censored model (see Modelling censored Poa Distances). Once true distances were estimated for censored data, we estimated the median inter-tussock gap radius by log-transforming the data and then calculating the median cardinal distance to nearest tussock, in each census, for each inter-tussock seedling. Median inter-tussock gap radius ranged from \Sexpr{range_init_gap(tussock_otc_growth_data)[1]} cm to \Sexpr{round(range_init_gap(tussock_otc_growth_data)[2])} cm in both control and OTC plots. In order to compare the magnitude of effects between OTC treatment and inter-tussock gap radius we centered it on zero and divided by two standard deviations\cite{Gelman:2007te}. The advantage of centering and standardizing is that it allows for easier interpretation, with intercepts interpreted as responses to average conditions and slope terms as partial dependencies conditional on other continuous variables being at their mean.
 
-\section*{Seedling survey}
+\subsection*{Seedling survey}
 We measured seedling density and maximum heights in open heathland across the Bogong High Plains. The primary aim of this study was to evaluate how variables such as altitude, Topographic Wetness Index (TWI; a measure of plant available water), adult density, fire, and fire severity influence the density of \textit{Asterolasia} and \textit{Grevillea} seedlings in open heathland. A secondary aim was to verify growth rates observed in the OTC experiment by assessing maximum seedling heights of \textit{Asterolasia} and \textit{Grevillea} along altitude, soil moisture and fire severity gradients in areas burnt by the 2003 wildfires.
 
 The study used 40 open heathland sites\cite{Camac:2013eb} established immediately after the 2003 fires\cite{Williams:2006tl}. All sites have been free of grazing by cattle since 2003. Thirty sites were burnt, while the remaining ten were unburnt, likely for more than 70 years\cite{Camac:2013eb}. This disparity in sampling effort between burnt and unburnt was due to very few open heathland remaining unburnt after both the 2003 and 2007 fires. These sites encompassed most of the Bogong High Plains (120 km$^2$) and ranged in altitude from \Sexpr{round(min(complete_field_survey_data$altitude_m))} to \Sexpr{round(max(complete_field_survey_data$altitude_m))} m a.s.l. Sites were at least 0.25 ha and more than 500 m apart. In the summer of 2011-12, 9-years post-fire, seedling density in each site was estimated using forty 1 m$^2$ quadrats, evenly distributed in groups of 10 along four 50 m transects. Transects were positioned in the center of each site and were parallel to each other with exactly 10 m between transect lines. This effectively created a grid of 40 plots (10 plots~\texttimes~4 transects) per site, subsampling an area of 2000 m$^2$.
@@ -284,7 +294,7 @@ where $\beta_5$ is the effect of mature \textit{Grevillea} density ($ADen$) and 
 
 Half Cauchy priors with a scale of 25 were used for all standard deviation parameters. Hyperparameter $\mu_{site}$ and coefficients $\beta_1$ to $\beta_5$ were estimated using normal priors centered on zero with a standard deviation of 2.5, encapsulating our prior belief that plots were unlikely to have more than 100 seedlings/m$^2$. 
 
-\subsection{\textit{Modelling drivers of seedling maximum heights.}}
+\subsection*{\textit{Modelling drivers of seedling maximum heights.}}
 In order to verify growth rate findings in the OTC experiment, we assessed how a range of 190 m in elevation (equivalent to a temperature change of \Sexpr{round(0.77 * (190/100),1)}\textdegree C\cite{Brown:1989vx}) influenced \textit{Grevillea} and \textit{Asterolasia} seedling heights in areas burnt by the 2003 fires. We also assessed whether TWI and fire severity influenced these heights. Here, our observations were of maximum seedling heights for both species when at least one individual was present in a plot. We used maximum heights because these were likely to represent individuals that established immediately post-fire, and would have had 9 years of post-fire growth. We modelled these heights, $maxht_i$, as a random realisations from a log-normal distribution:
 
 \begin{equation}\label{eq:maxht_obs} 
@@ -303,82 +313,74 @@ where $\widehat{maxht}_i$ is the model-estimated log maximum height for individu
 where the intercept, $\alpha_j$, varies by site and is the average log maximum seedling height of site $j$, assuming all other covariates are at their mean. We estimated $\alpha_j$ from a normal distribution centered on $\mu_{site}$, the average log maximum height, and a standard deviation of $\sigma_{site}$ which defines site variability. The parameters $\beta_1$ and $\beta_2$ are the effects of altitude and Topographic Wetness Index, respectively and $\beta_3$ is the effect of fire severity.
 
 Here, we estimated $\mu_{site}$ and coefficients ($\beta_1$ to $\beta_3$) using weakly informative normal priors with a mean of 0 and a standard deviation of 2.5. These priors encapsulated our prior knowledge that seedling maximum heights would be less than 100 cm. All standard deviation parameters were modelled using positive half Cauchy priors with a scale of 25.
-\pagebreak
-\section*{Supplementary figures}
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS1.pdf}
-\caption{\textbf{Mean \textit{Asterolasia trymalioides} seedling density along gradients of burning, fire severity (twig diameter), altitude and Topographic Wetness Index (TWI).} (\textbf{a}) Centered and standardized model coefficients (on the log scale); and effects of (\textbf{b}) burning, (\textbf{c}) fire severity, (\textbf{d}) altitude and (\textbf{e}) Topographic Wetness Index (TWI), in areas burnt by the 2003 fires. All error bars and shaded areas indicate 95\% Bayesian Credible Intervals.}
-\label{figs1}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS2.pdf}
-\caption{\textbf{Average number of \textit{Grevillea australis} recruits in warmed (red) and control (blue) conditions in 2011 and 2012. Errors bars are 95\% Bayesian Credible Intervals.}}
-\label{figs2}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS3.pdf}
-\caption{\textbf{Observed seedling diameter growth trajectories of four dominant Australian alpine shrubs.} Red and Blue lines represent mean ($\pm$ 95\% CI) observed heights at each May census in warmed and control plots, respectively. Orange and light blue lines represent individual growth trajectories in warmed and unwarmed plots, respectively.} 
-\label{figs3}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS4.pdf}
-\caption{\textbf{Mean maximum seedling height along fire severity (twig diameter), altitude and Topographic Wetness Index (TWI) gradients in areas burnt by the 2003 wildfires.} Left panels = \textit{Asterolasia trymalioides} responses, Right panels = \textit{Grevillea australis} responses. (\textbf{a} \& \textbf{b}) Centered and standardized model coefficients (on the log scale); and effects of (\textbf{c} \& \textbf{d}) fire severity, (\textbf{e} \& \textbf{f}) altitude and (\textbf{g} \& \textbf{h}) Topographic Wetness Index (TWI), in areas burnt by the 2003 fires. All error bars and shaded areas indicate 95\% Bayesian Credible Intervals.}
-\label{figs4}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS5.pdf}
-\caption{\textbf{Mean daily microclimate difference (OTC $-$ Control)}. (\textbf{a}) Ambient temperature, (\textbf{b}) soil temperature, (\textbf{c}) volumetric water content and (\textbf{d}) relative humidity over experimental period. Red lines = mean difference across all growing seasons (when chambers were applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: declines in amplitude in later years are due to shading effects caused by increased shrub size.}
-\label{figs5}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS6.pdf}
-\caption{\textbf{Mean minimum daily microclimate difference (OTC $-$ Control)}. (\textbf{a}) Ambient temperature, (\textbf{b}) soil temperature, (\textbf{c}) volumetric water content and (\textbf{d}) relative humidity over experimental period. Red lines = mean difference across all growing seasons (when chambers were applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: declines in amplitude in later years are due to shading effects caused by increased shrub size.}
-\label{figs6}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS7.pdf}
-\caption{\textbf{Mean maximum daily microclimate difference (OTC $-$ Control)}. Ambient temperature (\textbf{a}), soil temperature (\textbf{b}), volumetric water content (\textbf{c}) and relative humidity over experimental period (\textbf{d}). Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude declines in later years are due to shading effects caused by increased shrub growth.}
-\label{figs7}
-\end{minipage}
-\end{suppfigure}
-\pagebreak
-
-\begin{suppfigure}
-\begin{minipage}{\textwidth}
-\includegraphics{figures/figS8.pdf}
-\caption{\textbf{Diagram outlining positions of transplanted seedling in an OTC plot.} The inner white square represents the burnt bare ground patch used to assess heights of four dominant alpine shrub species. The grey area contains \textit{Grevillea australis} seedlings randomly transplanted into burnt inter-tussock gaps. The area beyond the grey section was subject to OTC panel sheltering (i.e. it was not within the 110 cm opening of the chamber) and therefore was not used in the experiment.} 
-\label{figs8}
-\end{minipage}
-\end{suppfigure}
-
-\pagebreak
 
 \bibliography{refs.bib}
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS1.pdf}
+\caption{Mean \textit{Asterolasia trymalioides} seedling density along gradients of burning, fire severity (twig diameter), altitude and Topographic Wetness Index (TWI). (A) Centered and standardized model coefficients (on the log scale); and effects of (B) burning, (C) fire severity, (D) altitude and (E) Topographic Wetness Index (TWI), in areas burnt by the 2003 fires. All error bars and shaded areas indicate 95\% Bayesian Credible Intervals.}
+\label{figs1}
+\end{figure*}
+\clearpage
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS2.pdf}
+\caption{Average number of \textit{Grevillea australis} recruits in warmed (red) and control (blue) conditions in 2011 and 2012. Errors bars are 95\% Bayesian Credible Intervals.}
+\label{figs2}
+\end{figure*}
+
+\clearpage
+\begin{figure*}
+\centering
+\includegraphics{figures/figS3.pdf}
+\caption{Observed seedling diameter growth trajectories of four dominant Australian alpine shrubs. Red and Blue lines represent mean ($\pm$ 95\% CI) observed heights at each May census in warmed and control plots, respectively. Orange and light blue lines represent individual growth trajectories in warmed and unwarmed plots, respectively.} 
+\label{figs3}
+\end{figure*}
+\clearpage
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS4.pdf}
+\caption{Mean maximum seedling height along fire severity (twig diameter), altitude and Topographic Wetness Index (TWI) gradients in areas burnt by the 2003 wildfires. Left panels = \textit{Asterolasia trymalioides} responses, Right panels = \textit{Grevillea australis} responses. (A \& B) Centered and standardized model coefficients (on the log scale); and effects of (C \& D) fire severity, (E \& F) altitude and (G \& H) Topographic Wetness Index (TWI), in areas burnt by the 2003 fires. All error bars and shaded areas indicate 95\% Bayesian Credible Intervals.}
+\label{figs4}
+\end{figure*}
+\clearpage
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS5.pdf}
+\caption{Mean daily microclimate difference (OTC $-$ Control). (A) Ambient temperature, (B) soil temperature, (C) volumetric water content and (D) relative humidity over experimental period. Red lines = mean difference across all growing seasons (when chambers were applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: declines in amplitude in later years are due to shading effects caused by increased shrub size.}
+\label{figs5}
+\end{figure*}
+\clearpage
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS6.pdf}
+\caption{Mean minimum daily microclimate difference (OTC $-$ Control). (A) Ambient temperature, (B) soil temperature, (C) volumetric water content and (D) relative humidity over experimental period. Red lines = mean difference across all growing seasons (when chambers were applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: declines in amplitude in later years are due to shading effects caused by increased shrub size.}
+\label{figs6}
+\end{figure*}
+\clearpage
+
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS7.pdf}
+\caption{Mean maximum daily microclimate difference (OTC $-$ Control). Ambient temperature (A), soil temperature (B), volumetric water content (C) and relative humidity over experimental period (D). Red lines = mean difference across all growing seasons (when chambers where applied); blue = no difference between OTCs and controls. Shaded areas are the winter snow periods when OTCs were not over plots. Note: amplitude declines in later years are due to shading effects caused by increased shrub growth.}
+\label{figs7}
+\end{figure*}
+\clearpage
+
+\begin{figure*}
+\centering
+\includegraphics{figures/figS8.pdf}
+\caption{Diagram outlining positions of transplanted seedling in an OTC plot. The inner white square represents the burnt bare ground patch used to assess heights of four dominant alpine shrub species. The grey area contains \textit{Grevillea australis} seedlings randomly transplanted into burnt inter-tussock gaps. The area beyond the grey section was subject to OTC panel sheltering (i.e. it was not within the 110 cm opening of the chamber) and therefore was not used in the experiment.} 
+\label{figs8}
+\end{figure*}
+\clearpage
+
 \end{document}
-\pagebreak
+
 
