@@ -21,17 +21,33 @@ sources:
 
 plot_options:
 
-  double_col_square:
-    width: 6.69
-    height: 6.69
-    
-  double_col_rect:
-    width: 6.69
-    height: 3.1
-  
-  square:
+  2col_wide_rectangle:
+    width: 6
+    height: 3.5
+
+  1col_wide_rectangle:
     width: 3.46
-    height: 3.46
+    height: 2.5
+
+  1col_tall_rectangle:
+    width: 3.46
+    height: 4.2
+
+  supp_2col_square:
+    width: 6.6
+    height: 6.6
+
+  supp_2col_wide_rectangle:
+    width: 6.6
+    height: 3
+
+  supp_2col_widenarrow_rectangle:
+    width: 6
+    height: 2.5
+
+  supp_2col_tall_rectangle:
+    width: 6
+    height: 8
     
     
 targets:
@@ -293,51 +309,51 @@ targets:
 
   manuscript/figures/fig2.pdf:
     command: density_count_plots(greaus_seedling_density_model, I('Grevillea'),I(c(0,25)))
-    plot: double_col_square
+    plot: 1col_tall_rectangle
     
   manuscript/figures/fig3.pdf:
     command: obs_pred_ht_growth(non_tussock_otc_growth_data, non_tussock_otc_growth_model)
-    plot: double_col_square
+    plot: 2col_wide_rectangle
     
   manuscript/figures/fig4.pdf:
     command: non_tussock_mortality_plot(non_tussock_otc_mortality_model)
-    plot: square
+    plot: 1col_wide_rectangle
     
   manuscript/figures/fig5.pdf:
     command: tussock_plots(tussock_otc_growth_model,tussock_otc_mortality_model)
-    plot: double_col_square
+    plot: 1col_wide_rectangle
     
   manuscript/figures/fig6.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
-    plot: double_col_rect
+    plot: 1col_wide_rectangle
     
   manuscript/figures/figS1.pdf:
     command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'),I(c(0,50)))
-    plot: double_col_square
+    plot: supp_2col_tall_rectangle
     
   manuscript/figures/figS2.pdf:
     command: recruit_plot(recruit_model)
-    plot: square
+    plot: 1col_wide_rectangle
     
   manuscript/figures/figS3.pdf:
     command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (cm)'), ylim=I(c(0,3.5)))
-    plot: double_col_rect
+    plot: supp_2col_widenarrow_rectangle
     
   manuscript/figures/figS4.pdf:
     command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
-    plot: double_col_square
+    plot: supp_2col_tall_rectangle
   
   manuscript/figures/figS5.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean'), stat_label = I('Mean'))
-    plot: double_col_square
+    plot: supp_2col_square
     
   manuscript/figures/figS6.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_min'), stat_label = I('Mean minimum'))
-    plot: double_col_square
+    plot: supp_2col_square
     
   manuscript/figures/figS7.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_max'), stat_label = I('Mean maximum'))
-    plot: double_col_square
+    plot: supp_2col_square
 
   #------------- make manuscript ---------------------------
 
@@ -361,7 +377,9 @@ targets:
     command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
       - figures
-      - manuscript/nature.cls
+      - manuscript/pnas-new.cls
+      - manuscript/pnasresearcharticle.sty
+      - manuscript/widetext.sty
 
   manuscript/supplementary.tex:
     depends:
@@ -383,4 +401,6 @@ targets:
     command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
       - figures
-      - manuscript/nature.cls
+      - manuscript/pnas-new.cls
+      - manuscript/pnasresearcharticle.sty
+      - manuscript/widetext.sty
