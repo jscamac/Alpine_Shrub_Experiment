@@ -236,7 +236,7 @@ max_ht_plots <- function(greaus_max_ht_model,asttry_max_ht_model, ylim=c(0,35)) 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
   p8 <- partial_plot_density_height(predictions_greaus$pred_ht_twi, x ='sim_twi', 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
-  plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, labels=letters[1:8], ncol = 2, label_size = 7)
+  plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, labels=LETTERS[1:8], ncol = 2, label_size = 7)
 }
 
 gap_dynamics_plot <- function(gap_dynamic_model) {
