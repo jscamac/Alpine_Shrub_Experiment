@@ -55,7 +55,7 @@ We measured changes in microclimate using Onset Micro Stations (Onset Computer C
 
 Natural \textit{Grevillea} recruits, likely from the soil seedbank, began establishing within the experimental plots by the end of the growing season in 2011. This provided us with the opportunity to examine how warming directly affected recruitment. We marked (with paint on stems) recruits and recorded the number that germinated in each of the 2011 and 2012 seasons.
 
-\subsection*{Data inputs for growth, mortality and recruitment models.}
+\subsubsection*{Data inputs for growth, mortality and recruitment models}
 In each model, OTC treatment, $OTC$, was a binary (0 = Control, 1 = OTC) plot level covariate. By contrast, inter-tussock gap radius, $Gap_{i,t}$, was a continuous covariate on the log-scale measured for each individual seedling in each census $t$. However, because some distances were censored (i.e. $\geq$ 26 cm), these data were incomplete. We estimated these censored data using a censored model (see Modelling censored Poa Distances). Once true distances were estimated for censored data, we estimated the median inter-tussock gap radius by log-transforming the data and then calculating the median cardinal distance to nearest tussock, in each census, for each inter-tussock seedling. Median inter-tussock gap radius ranged from \Sexpr{range_init_gap(tussock_otc_growth_data)[1]} cm to \Sexpr{round(range_init_gap(tussock_otc_growth_data)[2])} cm in both control and OTC plots. In order to compare the magnitude of effects between OTC treatment and inter-tussock gap radius we centered it on zero and divided by two standard deviations\cite{Gelman:2007te}. The advantage of centering and standardizing is that it allows for easier interpretation, with intercepts interpreted as responses to average conditions and slope terms as partial dependencies conditional on other continuous variables being at their mean.
 
 \subsection*{Seedling survey}
@@ -67,13 +67,13 @@ Different variables were recorded at the three sampling levels (site, transect a
 
 The occurrence and severity of fire was determined immediately after the 2003 fires\cite{Williams:2006tl}. The severity of the fires in each burnt site was estimated using mean post-fire twig diameter, a proxy measure of fire severity\cite{Whight:1999vw}. These twig diameters were recorded between 1 and 10 months post-fire from 10 replicate \textit{Grevillea australis} individuals per site. Across the 30 burnt sites, the average site twig diameter ranged from 2 to 13 mm, with smaller diameters assumed to correspond to lower fire intensity. This encompassed the full range of fire severity from lightly scorched sites containing shrubs with only the tips of the outer branches burnt, to severely burnt sites where the majority of large shrub branches were consumed.
 
-\subsection{\textit{Data inputs into density and maximum height models.}}
+\subsubsection*{Data inputs into density and maximum height models}
 In all seedling survey models, $Burnt_j$ is a binary (0 = unburnt, 1 = burnt) site level covariate, which only affects seedling counts at unburnt sites. By contrast, fire severity ($Severity_j$), was a continuous site level covariate that only affected seedling counts and maximum heights at burnt sites. Altitude ($Alt_j$), Topographic Wetness Index ($TWI_j$) and mature \textit{Grevillea} count ($ADen_k$) were also continuous covariates that affected all sites in both count and maximum height models. Collinearity among covariates was checked and all correlations were \textit{r} \textless 0.16. The data from each continuous covariate was then centered on their mean and standardized by two standard deviations\cite{Gelman:2007te}. 
 
-\section*{Data analysis}
+\subsection*{Data analysis}
 In total we built 11 hierarchical models to examine factors influencing post-fire recovery of tussock grass and shrub seedling establishment, growth and mortality. These models are well suited to datasets that have a hierarchical structure (e.g. plots within sites) because they can account for observation error and partition both explained and unexplained variation at multiple levels of a dataset\cite{Gelman:2007te, Kery:2012wl}. For each model we used Bayesian inference and fitted models in R \Sexpr{paste(version$major, version$minor, sep='.')} using package \texttt{rstan} \Sexpr{packageVersion("rstan")}\cite{stan:2015xx}. For each model, three independent chains were run. Convergence was assessed through both visual inspection of chains and reference to the Brooks-Gelman-Rubin convergence diagnostic\cite{Gelman:1992ts, Brooks:1998ju}. In all cases modelled parameters converged within 1000 iterations. After discarding the first 1000 iterations as ‘warm up’, a further 1000 samples were taken from the joint posterior. Below we describe the model structure, parameters and priors used in these models. To ensure all covariate effects were identifiable we removed each covariate and visually inspected whether the direction and magnitude of effects were severely altered; none were. Data and source code for reproducing analysis and figures is available at: \url{https://github.com/jscamac/Alpine_Shrub_Experiment}.
 
-\subsection{\textit{Modelling shrub seedling growth rates.}}
+\subsubsection*{Modelling shrub seedling growth rates}
 We modelled the observed height of individual $i$ at May census $t$ as a random realisation from a normal distribution truncated at zero:
 
 \begin{equation}\label{eq:growth_obs} 
@@ -106,7 +106,8 @@ In contrast, for \textit{Grevillea australis} seedlings growing in inter-tussock
 
 \begin{equation}\label{eq:r_tussock} 
 \begin{aligned}
-R_{i,t} &=  \alpha + \beta_1 \times OTC_{k[i]} + \beta_2 \times Gap_{i,t} + \beta_3 \times (OTC_{k[i]} \times Gap_{i,t}) + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+R_{i,t} &=  \alpha + \beta_1 \times OTC_{k[i]} + \beta_2 \times Gap_{i,t} \\
+& + \beta_3 \times (OTC_{k[i]} \times Gap_{i,t}) + \epsilon_{plot_{k[i]}} + \epsilon_i \\
 \epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
 \epsilon_i &\sim \mathcal{N}(0, \sigma_{ind}).
 \end{aligned}
@@ -116,7 +117,7 @@ The structure and parameter definitions differ slightly to that in Equation \ref
 
 We used Bayesian inference and hence needed to specify prior distributions for all model parameters. In both growth models standard deviation parameters (i.e. $\sigma_{spp}^{CTL}$ , $\sigma_{spp}^{OTC}$, $\sigma_{plot}$, $\sigma_{ind}$ and $\sigma_{obs}$) were all estimated from weakly informative positive half Cauchy priors with scale parameters of 25. We used these Cauchy priors in order to prevent over-inflated estimates of variances due to the small number of plots and species\cite{Gelman:2006uw}. In both sets of models the intercept terms ($\mu_{spp}^{CTL}$, $\alpha$), coefficients (i.e. inter-tusscok model: $\beta_1$, $\beta_2$ and $\beta_3$) and hyperparameter (i.e. in the multispecies model) for the mean OTC effect, $\mu_{spp}^{OTC}$, were estimated from normal priors centered on zero with a standard deviation of 0.5. We chose this prior as it spanned the range of likely growth trajectories from very slow to very fast growing. 
 
-\subsection{\textit{Modelling shrub seedling mortality rates.}}
+\subsubsection*{Modelling shrub seedling mortality rates}
 We were also interested in whether the instantaneous mortality rates of seedlings varied amongst shrub species, OTC treatment and inter-tussock gap size. Our observations, $y_{i,t}$, were binary (0 = alive or 1 = dead) for each individual $i$, in each census, $t$. We modelled these binary observations through time as random realisations from a Bernoulli distribution based on the model-estimated cumulative hazard rate for each individual at each census:
 
 \begin{equation}\label{eq:mort_obs} 
@@ -149,7 +150,8 @@ In contrast, $\lambda_{i,t}$ for \textit{Grevillea} seedlings growing in various
 
 \begin{equation}\label{eq:mort_tussock} 
 \begin{aligned}
-\lambda_{i,t} &=  \alpha + \beta_1 \times OTC_{k[i]} + \beta_2 \times Gap_{i,t} + \beta_3 \times (OTC_{k[i]} \times Gap_{i,t}) + \epsilon_{plot_{k[i]}} + \epsilon_i \\
+\lambda_{i,t} &=  \alpha + \beta_1 \times OTC_{k[i]} + \beta_2 \times Gap_{i,t} \\
+& + \beta_3 \times (OTC_{k[i]} \times Gap_{i,t}) + \epsilon_{plot_{k[i]}} + \epsilon_i \\
 \epsilon_{plot_k} &\sim \mathcal{N}(0, \sigma_{plot}) \\
 \epsilon_i &\sim \mathcal{N}(0, \sigma_{ind}).
 \end{aligned}
@@ -159,7 +161,7 @@ Here, the structure and parameter definitions are similar to Equation \ref{eq:r_
 
 Here the standard deviation parameters in both mortality models (i.e. $\sigma_{spp}^{CTL}$ , $\sigma_{spp}^{OTC}$, $\sigma_{plot}$ and $\sigma_{ind}$) were each estimated from positive half Cauchy priors with standard deviation of 2.5. The intercept term $\alpha$ for inter-tussock seedling model and the mean hyper-parameter $\mu_{spp}^{CTL}$ in the multispecies models were estimated from cauchy priors with standard deviations of 2.5. We also used these Cauchy priors for inter-tussock model coefficients (i.e. $\beta_1$, $\beta_2$ and $\beta_3$) and the multi-species hyperparameter for the mean OTC effect $\mu_{spp}^{OTC}$. These cauchy priors are the recommended default choice for binomial regression models\cite{Gelman:2008ua}. 
 
-\subsection{\textit{Modelling Grevillea recruitment rates.}}
+\subsubsection*{Modelling Grevillea recruitment rates}
 We examined whether warming influenced natural recruitment rates of \textit{Grevillea} by modelling the number of recruits per 1 m$^2$ plot $k$ in each census, $t$ as a random realisation from a negative binomial distribution:
 
 \begin{equation}\label{eq:recruit_obs} 
@@ -181,7 +183,7 @@ where the intercept, $\alpha$, represents the average log recruitment in control
 
 Half Cauchy priors with a scale of 25 were used for both the overdispersion parameter, $\phi$ and the plot level standard deviation $\sigma_{plot}$. Coefficients $\beta_1$ and $\beta_2$ were estimated using normal priors centered on zero with a standard deviation of 2.5, encapsulating our prior knowledge that plots were unlikely to have more than 100 recruits/m$^2$. 
 
-\subsection{\textit{Modelling censored Poa distances.}}
+\subsubsection*{Modelling censored Poa distances}
 Approximately \Sexpr{prop_censored(cleaned_poa_distances)}\% of the $Poa$ distance data used to calculate the median inter-tussock gap radius, $Gap_{i,t}$, were recorded as censored observations, (i.e. $\geq$  26 cm).  We estimated these censored values by first estimating the distribution of distances in observed data, coupled with estimating covariate effects, and then using these distributions to estimate censored observations.
 
 Specifically, we first modelled the observed (non-censored) cardinal distances as random realisations from a lognormal distribution:
@@ -210,12 +212,12 @@ Again, like other models, half Cauchy priors with a scale of 25 were used for al
 Using this model, coupled with our prior knowledge that the distances could not be less than 26 cm or larger than 100 cm (all plots were surrounded by grass) we could estimate the censored distances using a lognormal distribution truncated at both 26 cm and 100 cm:
 
 \begin{equation}\label{eq:censored_obs} 
-censored\;distance_i \sim LN(\mu_i, \sigma_{obs}), 26 \leq censored\;distance_i \leq 100.
+censored_i \sim LN(\mu_i, \sigma_{obs}), 26 \leq censored_i \leq 100.
 \end{equation}
 
 The posterior means of censored data were then extracted from the model and used as our estimates for each censored observation. This complete dataset was then used in subsequent analyses (e.g. inter-tussock seedling growth and mortality, changes in gap size\textemdash see below). 
 
-\subsection{\textit{Modelling rates of inter-tussock gap infilling by Poa.}}
+\subsubsection*{Modelling rates of inter-tussock gap infilling by Poa}
 As well as modelling how OTCs affected shrub seedling growth and mortality rates, we were also interested in examining how warming influenced rates of grass infilling of inter-tussock gaps. To examine this we first modelled the median observed gap radius, $y_{i,t}$, for inter-tussock gap $i$ in census $t$, as a random realisation from a lognormal distribution:
 
 \begin{equation}\label{eq:gap_obs} 
@@ -251,7 +253,7 @@ We estimated $\beta_i$ using a hierarchical linear regression:
 Here, $\alpha$ is the average rate of gap radius change in control plots, $\beta$ is the effect of OTC and $\epsilon_{plot_k}$ and $\epsilon_i$ represent the plot and gap level residual errors. 
 Like most other models used in this study (the exception being mortality models), we used half Cauchy priors with a scale of 25 for all standard deviation parameters. The intercept, $\alpha$, and the effect of OTC, $\beta$ were estimated from normal priors centered on zero with a standard deviation of 5. 
 
-\subsection{\textit{Modelling drivers of seedling density.}}
+\subsubsection*{Modelling drivers of seedling density}
 We examined drivers of seedling density by modelling the number of seedlings per square metre plot $i$ as a random realisation from a Poisson distribution:
 
 \begin{equation}\label{eq:density_obs} 
@@ -274,7 +276,8 @@ We modelled $\delta_j$ using a varying intercept linear model:
 
 \begin{equation}\label{eq:density_site} 
 \begin{aligned}
-\delta_j &= \alpha_j + \beta_1 \times Alt_j + \beta_2 \times TWI_j + \beta_3 \times (1 - Burnt_j) + \beta_4 \times (Severity_j \times Burnt_j) \\
+\delta_j &= \alpha_j + \beta_1 \times Alt_j + \beta_2 \times TWI_j + \beta_3 \times (1 - Burnt_j) \\
+& + \beta_4 \times (Severity_j \times Burnt_j) \\
 \alpha_j &\sim \mathcal{N}(\mu_{site}, \sigma_{site}),
 \end{aligned}
 \end{equation}
@@ -294,7 +297,7 @@ where $\beta_5$ is the effect of mature \textit{Grevillea} density ($ADen$) and 
 
 Half Cauchy priors with a scale of 25 were used for all standard deviation parameters. Hyperparameter $\mu_{site}$ and coefficients $\beta_1$ to $\beta_5$ were estimated using normal priors centered on zero with a standard deviation of 2.5, encapsulating our prior belief that plots were unlikely to have more than 100 seedlings/m$^2$. 
 
-\subsection*{\textit{Modelling drivers of seedling maximum heights.}}
+\subsubsection*{Modelling drivers of seedling maximum heights}
 In order to verify growth rate findings in the OTC experiment, we assessed how a range of 190 m in elevation (equivalent to a temperature change of \Sexpr{round(0.77 * (190/100),1)}\textdegree C\cite{Brown:1989vx}) influenced \textit{Grevillea} and \textit{Asterolasia} seedling heights in areas burnt by the 2003 fires. We also assessed whether TWI and fire severity influenced these heights. Here, our observations were of maximum seedling heights for both species when at least one individual was present in a plot. We used maximum heights because these were likely to represent individuals that established immediately post-fire, and would have had 9 years of post-fire growth. We modelled these heights, $maxht_i$, as a random realisations from a log-normal distribution:
 
 \begin{equation}\label{eq:maxht_obs} 
