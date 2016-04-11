@@ -27,7 +27,7 @@
 \leadauthor{Camac} 
 
 % Please add here a significance statement to explain the relevance of your work
-\significancestatement{Temperatures are rapidly increasing in alpine and tundra ecosystems worldwide. A consequence of this is an increase in shrub cover and in the frequency/ severity of fires. Here we use experimental and observational data to explore whether there are antagonistic or synergistic feedbacks between temperature, fire and shrub demographic rates. We find that feedback loops are likely to be synergistic; increases in temperature and fire will likely accelerate the rate of shrub cover increase, and this in turn will increase flammability, changing the composition of the vegetation in this landscape.}
+\significancestatement{Temperatures are rapidly increasing in alpine and tundra ecosystems worldwide. A consequence of this is increased shrub cover and predicted increases in the frequency and severity of fires. Here we use experimental and observational data to explore whether there are antagonistic or synergistic feedbacks between temperature, fire and shrub demographic rates. We find that feedback loops are likely to be synergistic; increases in temperature and fire will likely accelerate the rate of shrub cover increase, and this in turn will increase flammability, changing the composition of the vegetation in this landscape.}
 
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{J.C. conceived, designed and performed the experiments, field surveys and analysis; C-H.W, R.W, A.H and P.V. supervised the development of this work, aided in data collection and provided statistical advice. All authors contributed to the writing of this manuscript.}
