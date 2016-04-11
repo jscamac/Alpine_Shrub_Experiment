@@ -3,22 +3,22 @@
 partial_plot_theme <- function(legend.position = "none", strips = FALSE,...) {
   sb <- if(strips==TRUE) element_rect(fill='lightgrey') else element_blank()
   st <- if(strips==TRUE) element_text(face='italic') else element_blank()
-  theme_classic(base_size = 10) + theme(strip.text = st,
+  theme_classic(base_size = 7) + theme(strip.text = st,
                           legend.title = element_blank(),
                           strip.background = sb,
                           legend.position = legend.position,
                           axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'),
                           axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'),
-                          plot.margin = unit(c(5,5,5,5), "mm"))
+                          plot.margin = unit(c(3,3,3,3), "mm"))
 }
 
 # Theme for coefficient plots
 coefficent_plot_theme <- function() {
-  theme_classic(base_size = 10) + theme(
+  theme_classic(base_size = 7) + theme(
                           axis.title.y = element_blank(),
                           axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'),
                           axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'),
-                          plot.margin = unit(c(5,5,5,5), "mm"))
+                          plot.margin = unit(c(3,3,3,3), "mm"))
 }
 
 
@@ -55,7 +55,7 @@ coefficient_plot <- function(summarised_coefficients, y_axis_labels='',xlab ='Ef
     geom_vline(aes(xintercept=0), linetype=2) +
     scale_y_discrete(labels =rev(y_axis_labels)) +
     xlab(xlab) +
-    scale_x_continuous(breaks= scales::pretty_breaks(6)) +
+    scale_x_continuous(breaks= scales::pretty_breaks(4)) +
     labs(title=title) +
     coefficent_plot_theme()
 }
@@ -137,7 +137,7 @@ partial_plot_density_height <- function(predictions, x, xlab=NULL,ylab=NULL, yli
 
 burnt_v_unburnt <- function(predictions, x, ylab=NULL) {
   ggplot(predictions, aes_string(x = x,y = 'mean')) + 
-    geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`)) +
+    geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`), size=0.3) +
     scale_x_discrete(labels =c('Unburnt','Burnt')) +
     xlab('') +
     ylab(ylab) +
@@ -163,7 +163,7 @@ gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Inter-t
 obs_pred_ht_growth <- function(observed_data, non_tussock_otc_growth_model) {
   p1 <- plot_obs_growth(observed_data,'ht')
   p2 <- plot_growth_curves(non_tussock_otc_growth_model)
-  print(plot_grid(p1,p2, labels=letters[1:2], ncol = 1, label_size = 11),vp=viewport(layout.pos.row = 1, layout.pos.col = 1))
+  print(plot_grid(p1,p2, labels=LETTERS[1:2], ncol = 1, label_size = 7),vp=viewport(layout.pos.row = 1, layout.pos.col = 1))
 }
   
 # Partial plots for growth and mortality against poa distance size
@@ -176,10 +176,10 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
                          xlab = 'Growth coefficients')
   p2 <- poadist_plot(growth_preds,xlab = 'Inter-tussock gap radius (cm)',ylab = 'logistic growth rate parameter (R)')
   p3 <- coefficient_plot(mortality, y_axis_labels = c('intercept','warmed','gap','warmed x gap'),
-                         xlab = 'Mortality coefficents (cloglog scale)')
+                         xlab = 'Mortality coefficents')
   
   p4 <- poadist_plot(mortality_preds, xlab = 'Inter-tussock gap radius (cm)',ylab = 'Annual probability of death')
-  plot_grid(p1,p2,p3,p4, labels=letters[1:4], ncol = 2, label_size = 11)
+  plot_grid(p1,p2,p3,p4, labels=LETTERS[1:4], ncol = 2, label_size = 7)
 }
 
 density_count_plots <- function(density_model, species, ylim=c(0,35)) {
@@ -205,11 +205,11 @@ density_count_plots <- function(density_model, species, ylim=c(0,35)) {
   if(species=='Grevillea') {
     p6 <- partial_plot_density_height(predictions$adult_density, x ='sim_adult_den', 
                                       xlab = expression('Adults/'~m^2), ylab = expression('Seedlings /'~m^2), ylim)
-    plot_grid(p1,p2,p3,p4,p5,p6, labels=letters[1:6], ncol = 2, label_size = 11)
+    plot_grid(p1,p2,p3,p4,p5,p6, labels=LETTERS[1:6], ncol = 2, label_size = 8)
   }
   
   else{
-      plot_grid(p1,p2,p3,p4,p5, labels=letters[1:5], ncol = 2, label_size = 11)
+      plot_grid(p1,p2,p3,p4,p5, labels=LETTERS[1:5], ncol = 2, label_size = 8)
   }
 }
 
@@ -236,7 +236,7 @@ max_ht_plots <- function(greaus_max_ht_model,asttry_max_ht_model, ylim=c(0,35)) 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
   p8 <- partial_plot_density_height(predictions_greaus$pred_ht_twi, x ='sim_twi', 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
-  plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, labels=letters[1:8], ncol = 2, label_size = 11)
+  plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, labels=letters[1:8], ncol = 2, label_size = 7)
 }
 
 gap_dynamics_plot <- function(gap_dynamic_model) {
@@ -244,7 +244,7 @@ gap_dynamics_plot <- function(gap_dynamic_model) {
   predictions <- summarise_otc_model_predictions('gap_dynamics',gap_dynamic_model)
   p1 <- coefficient_plot(coeffs,y_axis_labels = c('Intercept', 'otc'), xlab = 'log coefficients')
   p2 <- gap_dynamics_curve(predictions)
-  plot_grid(p1,p2, labels=letters[1:2], ncol = 2, label_size = 11)
+  plot_grid(p1,p2, labels=LETTERS[1:2], ncol = 2, label_size = 7)
 }
 
 examine_plot_microclimates <- function(hourly_microclimate, 
@@ -330,7 +330,7 @@ microclimate_diff_plots <- function(hourly_microclimate, subset_site='ITEX2.0', 
                                 stat = stat,
                                 ylab = substitute(stat_label~'volumetric water content (%)',list(stat_label=stat_label)))
   
-  plot_grid(p1,p2,p3,p4, labels=letters[1:4], ncol = 2, label_size = 11)
+  plot_grid(p1,p2,p3,p4, labels=LETTERS[1:4], ncol = 2, label_size = 7)
       
 }
 
