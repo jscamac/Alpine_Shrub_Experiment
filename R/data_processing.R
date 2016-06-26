@@ -4,7 +4,7 @@ clean_raw_censored_poa <- function(csv_file) {
   names(poadist) <-tolower(names(poadist))
   
   poadist <- poadist %>%
-    mutate(date = as.Date(as.character(poadist$date), format="%d/%m/%y"),
+    mutate(date = as.Date(as.character(poadist$date), format="%d/%m/%Y"),
            may_sample = ifelse(month(date) >=4 & month(date) <=5, 1,0),
            otc = ifelse(treatment=='CTL',0,1),
            poadist = ifelse(poadist==0,0.5,poadist),
@@ -48,7 +48,7 @@ clean_seedling_data <- function(csv_file) {
            otc = ifelse(otc=='OTC', 1,0),
            spp = factor(spp, labels = c('Asterolasia', 'Grevillea','Phebalium','Prostanthera')),
            inter_tussock = ifelse(inter_tussock=='NORMAL', 0,1),
-           date = as.Date(as.character(date), format="%d/%m/%y"),
+           date = as.Date(as.character(date), format="%d/%m/%Y"),
            year = as.numeric(julian(date, as.Date("2010-05-15", "%Y-%m-%d")))/365.25, 
            may_sample = ifelse(month(date) >=4 & month(date) <=5, 1,0),
            ht = ht/10,
@@ -323,16 +323,14 @@ process_hourly_microclimate <- function(rds_file_path, meta_data_path, subset_si
     stop("Some observations are from plots with no logger. Please double check data. If new logger installed, please add to the metadata file")
   }
   
-  # Below adds a datetime field. This corrects times according to daylight savings. 
-  # The +1000 declares that the times are currently in UTC+1000 (i.e. AEST).
-  # It also removes data that is errenous due to loggers failing or battery power being too low.
+  # Removes data that is errenous due to loggers failing or battery power being too low.
   # Plot 6 has been malfunctioning since October 2011. As such the data collected from this logger is deemed unusable.
   # Plot 2 and 19 have had on going battery issues. Most of the data recorded appears correct but occassionally
   # the day before the logger batteries die the sensors error.
   # Processing rules are based on minimum and maximum temperatures observed from other nearby sites & expert judgement.
   # We purposely didn't make the rules too strict so that rare extremes were not removed.
   dat <- dat %>%
-    mutate(Datetime = fast_strptime(paste(Date, hour(hms(as.character(Time))), '+1000'), '%d/%m/%y %H %z', tz="Australia/Melbourne"),
+    mutate(Datetime = fast_strptime(paste(Date, hour(hms(as.character(Time)))), '%d/%m/%y %H',lt = FALSE),
            Date = as.Date(Datetime),
            Plot = as.integer(as.character(Plot)),
            Time = NULL,
@@ -404,8 +402,7 @@ process_hourly_microclimate <- function(rds_file_path, meta_data_path, subset_si
     summarise(Clim_value = mean(Clim_value, na.rm=TRUE)) %>%
     ungroup()
   
-  all_dates <- data.frame(Datetime = seq.POSIXt(range(dat$Datetime)[1], range(dat$Datetime)[2], 'hour', 
-                                                tz='Australia/Melbourne'))
+  all_dates <- data.frame(Datetime = seq.POSIXt(range(dat$Datetime)[1], range(dat$Datetime)[2], 'hour'))
   
   meta <- select(metalogger, Site, Plot, Treatment)
   meta <- meta[rep(seq_len(nrow(meta)), each=nrow(all_dates)),] %>%
@@ -478,7 +475,7 @@ aggregate_microclimate_to_day <- function(hourly_microclimate, aggregate_level =
 
 calculate_overall_treatment_effects <- function(hourly_microclimate, calculate_trt_difference = TRUE) {
   chamber_dates <- readRDS('raw_data/chamber_dates.rds')
-  no_otc_dates <- findInterval(hourly_microclimate$date, as.Date(t(chamber_dates[, 2:3])), rightmost.closed=TRUE)
+  no_otc_dates <- findInterval(hourly_microclimate$date, as.Date(t(na.omit(chamber_dates[, 2:3]))), rightmost.closed=TRUE)
   hourly_microclimate <- filter(hourly_microclimate, (no_otc_dates %% 2) == 0) # removes periods when no otcs were not on
   
   dat <- aggregate_microclimate_to_day(hourly_microclimate,aggregate_level = 'site')

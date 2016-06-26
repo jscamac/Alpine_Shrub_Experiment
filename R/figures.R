@@ -25,20 +25,19 @@ coefficent_plot_theme <- function() {
 # Plot observed height growth
 plot_obs_growth <- function(observed_data, response ='ht', scales ='free', ncol=4, 
                             ylab = 'Observed height (cm)', 
-                            xlab ='Observation year', 
-                            ylim = c(0,50)) {
+                            xlab ='Observation year') {
   
   summary_obs <- summarise_otc_growth_obs(observed_data, response)
-  summary_obs$year <- as.numeric(year(summary_obs$date))
   observed_data$otc <- factor(ifelse(observed_data$otc==1, 'otc','ctl'))
-  observed_data$year <- as.numeric(year(observed_data$date))
+  ylim <- range(pretty(c(0, max(observed_data[[response]]))))
+  
   ggplot() + 
-  geom_path(data = observed_data, aes_string(x = 'year',y = response, colour='otc', group = 'ind'), alpha = 0.4, size=0.3) +
-  geom_path(data = summary_obs, aes(x=year, y=mean, col=factor(paste0(otc, '_mean'))), alpha=0.6) +
-  geom_pointrange(data= summary_obs,aes(x=year, y=mean,ymin = lower_95ci, ymax=upper_95ci, col=factor(paste0(otc, '_mean'))), size = 0.05) +
-  scale_colour_manual('', values = c("ctl" ="sky blue","otc" ="orange", "otc_mean"="red", "ctl_mean"="blue")) +
+  geom_path(data = observed_data, aes_string(x = 'date',y = response, colour='otc', group = 'ind'), alpha = 0.4, size=0.3) +
+  geom_path(data = summary_obs, aes(x=date, y=mean, col=factor(paste0(otc, '_mean'))), alpha=0.6) +
+  geom_pointrange(data= summary_obs,aes(x=date, y=mean,ymin = lower_95ci, ymax=upper_95ci, col=factor(paste0(otc, '_mean'))), fatten=0.3) +
+  scale_colour_manual(values = c("ctl" ="sky blue","otc" ="orange", "otc_mean"="red", "ctl_mean"="blue")) +
+  scale_x_date(date_breaks="2 years", date_labels="%Y") +
     partial_plot_theme(strips = TRUE) +
-    scale_x_continuous(breaks = c(2010,2012,2014), limits=c(2010,2015)) +
     ylim(ylim) +
     ylab(ylab) + 
     xlab(xlab) + 
@@ -291,15 +290,15 @@ plot_microclim_trt_diff <- function(hourly_microclimate,
   min_date <- min(dat$date)
   max_date <- max(dat$date)
   
-  no_otc_dates <- findInterval(dat$date, as.Date(t(chamber_dates[, 2:3])), rightmost.closed=TRUE)
+  no_otc_dates <- findInterval(dat$date, na.omit(as.Date(t(chamber_dates[, 2:3]))), rightmost.closed=TRUE)
   otc_on_dates <- filter(dat, (no_otc_dates %% 2) == 0)
-  mean_diff <- data.frame(mean = mean(otc_on_dates$difference))
+  mean_diff <- data.frame(mean = mean(otc_on_dates$difference,na.rm=TRUE)) # remove NA's for missing dates
                            
   
   ggplot(dat, aes(x = date,y = difference), axis.line = element_line()) + 
     geom_rect(data = chamber_dates, aes(xmin = chambers_in, xmax = chambers_out, 
                                         ymin = -Inf, ymax = Inf), alpha = 0.2, inherit.aes=FALSE, na.rm=TRUE) + 
-    geom_path() +
+    geom_path(na.rm=TRUE) +
     geom_hline(data = mean_diff, aes(yintercept = mean), col='red', alpha=0.6, size = 1) +
     geom_hline(aes(yintercept = 0), col='blue', alpha=0.6, size= 1) +
     scale_x_date(expand=c(0,0), limits =c(min_date,max_date)) +

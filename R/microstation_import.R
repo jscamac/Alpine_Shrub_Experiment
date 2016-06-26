@@ -1,4 +1,4 @@
-microstation <-readRDS('microstations/microstation_Jan15.rds')
+microstation <-readRDS('raw_data/otc_microstation_data.rds')
 
 
 import_microstation <- function(microstation, filename) {
@@ -28,8 +28,8 @@ import_microstation <- function(microstation, filename) {
 }
 
 # z <- fun(microstation, '~/Desktop/ITEX1U_1OTC.csv')
-ff <- list.files('Needs_to_be_entered/16-Jan15-May15/', patt='OTC\\.csv|CTL\\.csv', full.names=TRUE)
+ff <- list.files('~/Dropbox/Projects/Oz_Alps/Other_datasets/ITEX/ITEX climate/Needs_to_be_entered/micros/may16_microloggers/', patt='OTC\\.csv|CTL\\.csv', full.names=TRUE)
 z <- do.call(rbind, c(lapply(ff, import_microstation, microstation=microstation), list(fill=TRUE)))
-microstation <- rbind(microstation, z, fill=TRUE)
+microstation <- as.data.frame(rbind(microstation, z, fill=TRUE))
 
-saveRDS(microstation, file='microstations/microstation_May15.rds')
+saveRDS(microstation, file='raw_data/otc_microstation_data.rds')
