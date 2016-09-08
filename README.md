@@ -33,10 +33,10 @@ This project also depends on several packages. Now that `remake` is installed we
 ```
 remake::install_missing_packages()
 ```
-This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. As such, we require that you have `rstan` 2.8.0 or greater. If you have an older version of `rstan` you can update it by running:
-```
-install.packages("rstan", dependencies = TRUE)
-```
+This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. rstan has undergone substantial changes recently and as such, we require that you have `rstan` 2.11.0 or greater.
+For installing or upgrading rstan following the instructions [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
+
+
 Lastly, in order to compile a pdf of the manuscript we require the installation of latex:
 
 For Windows users install [MiKTeX](http://miktex.org/download)

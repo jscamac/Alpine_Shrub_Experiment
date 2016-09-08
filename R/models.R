@@ -59,32 +59,32 @@ run_censored_model <- function(data) {
     
     # Random effect for census
     for (t in 1:n_census) {
-      log_census_error[t] <- raw_census[t] * sigma_log_census;
+      log_census_error[t] = raw_census[t] * sigma_log_census;
     }
     
     # Random effect for plot
     for (p in 1:n_plots) {
-      log_plot_error[p] <- raw_plot[p] * sigma_log_plot;
+      log_plot_error[p] = raw_plot[p] * sigma_log_plot;
     }
     
     # Random effect for individual
     for (i in 1:n_inds) {
-      log_ind_error[i] <- raw_ind[i] * sigma_log_ind;
+      log_ind_error[i] = raw_ind[i] * sigma_log_ind;
     }
     
     # Likelihood for observed
     for (i in 1:n_obs){
-      log_y_obs_hat[i] <- log_alpha + log_b_otc * otc[i] + log_census_error[census[i]] + log_plot_error[plot[i]] + log_ind_error[ind[i]];
+      log_y_obs_hat[i] = log_alpha + log_b_otc * otc[i] + log_census_error[census[i]] + log_plot_error[plot[i]] + log_ind_error[ind[i]];
       
       # Adds observations to complete object
-      full_data[obs_index[i]] <- y_obs[obs_index[i]];
+      full_data[obs_index[i]] = y_obs[obs_index[i]];
     }
     # Estimates censored observations
     for (j in 1:n_censored){ 
-      log_y_censored_hat[j] <- log_alpha + log_b_otc * otc[j] + log_census_error[census[j]] + log_plot_error[plot[j]] + log_ind_error[ind[j]];
+      log_y_censored_hat[j] = log_alpha + log_b_otc * otc[j] + log_census_error[census[j]] + log_plot_error[plot[j]] + log_ind_error[ind[j]];
       
       # Adds censored observations to complete object
-      full_data[censored_index[j]] <- y_censored[j];
+      full_data[censored_index[j]] = y_censored[j];
     }
   }
   model{
@@ -119,7 +119,7 @@ run_censored_model <- function(data) {
 ## Gap dynamic model
 
 run_gap_dynamic_model <- function(data, pred_n_years) {
-  data <- filter(data, years!=0) %>% droplevels()
+  data <- filter(data, year!=0) %>% droplevels()
   
   pred_yr <- seq(0,pred_n_years, length.out = 100)
   stan_data <- list(
@@ -170,18 +170,18 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
     
     # Random effect for plot
     for (p in 1:n_plots) {
-      plot_error[p] <- raw_plot[p] * sigma_plot;
+      plot_error[p] = raw_plot[p] * sigma_plot;
     }
     
     # Random effect for individual
     for (i in 1:n_inds) {
-      ind_error[i] <- raw_ind[i] * sigma_ind;
+      ind_error[i] = raw_ind[i] * sigma_ind;
     }
     
     # Likelihood for observed
     for (i in 1:N){
-      beta[i] <- alpha + b_otc * otc[i] + plot_error[plot[i]] + ind_error[ind[i]];
-      log_y_obs_hat[i] <- log(initial_dist[i]) + beta[i] * year[i]; 
+      beta[i] = alpha + b_otc * otc[i] + plot_error[plot[i]] + ind_error[ind[i]];
+      log_y_obs_hat[i] = log(initial_dist[i]) + beta[i] * year[i]; 
       # note above is on log scale due to lognormal everything is on log scale. on normal scale model is init * exp(beta * yr)
     }
   }
@@ -203,8 +203,8 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
     real preds_ctl[n_preds];
     
     for (i in 1:n_preds) {
-      preds_otc[i] <- exp(log(10) + ((alpha + b_otc)  * pred_yr[i]));
-      preds_ctl[i] <- exp(log(10) + (alpha  * pred_yr[i]));
+      preds_otc[i] = exp(log(10) + ((alpha + b_otc)  * pred_yr[i]));
+      preds_ctl[i] = exp(log(10) + (alpha  * pred_yr[i]));
     }
   }'
   
@@ -287,14 +287,14 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
     
     for (i in 1:n_obs) {
       # Estimate individual rate  
-      R[i] <- 
+      R[i] = 
         alpha[spp[i]] +     
         b_otc[spp[i]] * otc[i] +
         ranef_plot[plot[i]] +
         ranef_ind[ind[i]];
       
       #Likelihood
-      height_hat[i] <- hmax[spp[i]] / (1 + (hmax[spp[i]]/initial_height[i] - 1) * exp(-R[i] * (year[i])));
+      height_hat[i] = hmax[spp[i]] / (1 + (hmax[spp[i]]/initial_height[i] - 1) * exp(-R[i] * (year[i])));
       height[i] ~ normal(height_hat[i], sigma_obs)T[0,];
     }
     
@@ -314,12 +314,12 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
     matrix[n_preds,n_spp] pred_height_otc;
     
     for(s in 1:n_spp) {
-      r_ctl[s] <- alpha[s];
-      r_otc[s]  <- alpha[s] + b_otc[s];
+      r_ctl[s] = alpha[s];
+      r_otc[s] = alpha[s] + b_otc[s];
       
       for(i in 1:n_preds){
-        pred_height_ctl[i,s] <- hmax[s] / (1 + (hmax[s]/6 - 1) * exp(-r_ctl[s] * pred_year[i]));
-        pred_height_otc[i,s] <- hmax[s] / (1 + (hmax[s]/6 - 1) * exp(-r_otc[s] * pred_year[i]));
+        pred_height_ctl[i,s] = hmax[s] / (1 + (hmax[s]/6 - 1) * exp(-r_ctl[s] * pred_year[i]));
+        pred_height_otc[i,s] = hmax[s] / (1 + (hmax[s]/6 - 1) * exp(-r_otc[s] * pred_year[i]));
       }
     }
   }"
@@ -406,7 +406,7 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
     
     for (i in 1:n_obs) {
       # Estimate individual rate  
-      R[i] <- 
+      R[i] = 
         alpha +     
         b_otc * otc[i] +
         b_poadist * cs_ln_median_poadist[i] +
@@ -415,7 +415,7 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
         ranef_ind[ind[i]];
       
       #Likelihood
-      height_hat[i] <- hmax / (1 + (hmax/initial_height[i] - 1) * exp(-R[i] * (year[i])));
+      height_hat[i] = hmax / (1 + (hmax/initial_height[i] - 1) * exp(-R[i] * (year[i])));
     }
       height ~ normal(height_hat, sigma_obs);
     
@@ -433,8 +433,8 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
     real r_otc[n_preds];
     
     for(i in 1:n_preds) {
-      r_ctl[i] <- alpha + b_poadist * cs_ln_sim_median_poadist[i];
-      r_otc[i]  <- alpha + b_otc + b_poadist * cs_ln_sim_median_poadist[i] + b_otc_x_poadist * cs_ln_sim_median_poadist[i];
+      r_ctl[i] = alpha + b_poadist * cs_ln_sim_median_poadist[i];
+      r_otc[i] = alpha + b_otc + b_poadist * cs_ln_sim_median_poadist[i] + b_otc_x_poadist * cs_ln_sim_median_poadist[i];
     }
   }"
   
@@ -500,16 +500,16 @@ run_non_tussock_mortalilty_model <- function(data) {
     real ranef_ind[n_inds];
     
     for(s in 1:n_spp){
-      alpha[s] <- raw_alpha[s] * sigma_alpha + mu_alpha; //equivalent to normal(mu_alpha, sigma_alpha) 
-      b_otc[s] <- raw_b_otc[s] * sigma_b_otc + mu_b_otc; //equivalent to normal(mu_b_otc, sigma_b_otc) 
+      alpha[s] = raw_alpha[s] * sigma_alpha + mu_alpha; //equivalent to normal(mu_alpha, sigma_alpha) 
+      b_otc[s] = raw_b_otc[s] * sigma_b_otc + mu_b_otc; //equivalent to normal(mu_b_otc, sigma_b_otc) 
     }
     
     for(p in 1:n_plots) {
-      ranef_plot[p] <- raw_plot[p] * sigma_plot; //equivalent to normal(0, sigma_plot)
+      ranef_plot[p] = raw_plot[p] * sigma_plot; //equivalent to normal(0, sigma_plot)
     }
     
     for(i in 1:n_inds) {
-      ranef_ind[i] <- raw_ind[i] * sigma_ind; //equivalent to normal(0, sigma_ind) 
+      ranef_ind[i] = raw_ind[i] * sigma_ind; //equivalent to normal(0, sigma_ind) 
     }
   }
   model { # Define priors and likelihood
@@ -518,14 +518,14 @@ run_non_tussock_mortalilty_model <- function(data) {
     
     for (i in 1:n_obs) {
       # Estimate individual rate  
-      hazard[i] <- 
+      hazard[i] = 
         alpha[spp[i]] +     
         b_otc[spp[i]] * otc[i] +
         ranef_plot[plot[i]] +
         ranef_ind[ind[i]];
       
       #Likelihood
-      cumalative_hazard[i] <- inv_cloglog(hazard[i] * (census_interval[i]));
+      cumalative_hazard[i] = inv_cloglog(hazard[i] * (census_interval[i]));
     }
     died ~ bernoulli(cumalative_hazard);
     
@@ -546,8 +546,8 @@ run_non_tussock_mortalilty_model <- function(data) {
     real p_death_otc[n_spp];
     
     for(s in 1:n_spp) {
-      p_death_ctl[s] <- inv_cloglog(alpha[s]);
-      p_death_otc[s]  <- inv_cloglog(alpha[s] + b_otc[s]);
+      p_death_ctl[s] = inv_cloglog(alpha[s]);
+      p_death_otc[s] = inv_cloglog(alpha[s] + b_otc[s]);
     }
   }"
   
@@ -621,11 +621,11 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
     real ranef_ind[n_inds];
     
     for(p in 1:n_plots) {
-      ranef_plot[p] <- raw_plot[p] * sigma_plot; //equivalent to normal(0, sigma_plot)
+      ranef_plot[p] = raw_plot[p] * sigma_plot; //equivalent to normal(0, sigma_plot)
     }
     
     for(i in 1:n_inds) {
-      ranef_ind[i] <- raw_ind[i] * sigma_ind; //equivalent to normal(0, sigma_ind) 
+      ranef_ind[i] = raw_ind[i] * sigma_ind; //equivalent to normal(0, sigma_ind) 
     }
   }
   model { # Define priors and likelihood
@@ -634,7 +634,7 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
     
     for (i in 1:n_obs) {
       # Estimate individual rate  
-      hazard[i] <- 
+      hazard[i] = 
         alpha +     
         b_otc * otc[i] +
         b_poadist * cs_ln_median_poadist[i] +
@@ -643,7 +643,7 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
         ranef_ind[ind[i]];
       
       #Likelihood
-      cumalative_hazard[i] <- inv_cloglog(hazard[i] * (census_interval[i]));
+      cumalative_hazard[i] = inv_cloglog(hazard[i] * (census_interval[i]));
     }
     died ~ bernoulli(cumalative_hazard);
     
@@ -662,8 +662,8 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
   real p_death_otc[n_preds];
   
   for(i in 1:n_preds) {
-  p_death_ctl[i] <- inv_cloglog(alpha + b_poadist * cs_ln_sim_median_poadist[i]);
-  p_death_otc[i]  <- inv_cloglog(alpha + b_otc + b_poadist * cs_ln_sim_median_poadist[i] + b_otc_x_poadist * cs_ln_sim_median_poadist[i]);
+  p_death_ctl[i] = inv_cloglog(alpha + b_poadist * cs_ln_sim_median_poadist[i]);
+  p_death_otc[i] = inv_cloglog(alpha + b_otc + b_poadist * cs_ln_sim_median_poadist[i] + b_otc_x_poadist * cs_ln_sim_median_poadist[i]);
   }
   }"
   
@@ -766,15 +766,15 @@ transformed parameters { # Declare and define derived variables used in model
   
 
      for (t in 1:n_transects) {
-     b_transect[t] <- b_raw_transect[t] * b_transect_sigma;
+     b_transect[t] = b_raw_transect[t] * b_transect_sigma;
      }
 
   for (s in 1:n_sites) {
-  alpha[s] <- raw_alpha[s] * alpha_sigma + alpha_mu;
+  alpha[s] = raw_alpha[s] * alpha_sigma + alpha_mu;
   }
   
   for (i in 1:n_obs) {
-    count[i] <- exp(alpha[site[i]] + 
+    count[i] = exp(alpha[site[i]] + 
                     b_unburnt * (1-burnt[site[i]]) + 
                     b_severity * (cs_severity[site[i]] * burnt[site[i]]) +
                     b_altitude * cs_altitude[site[i]] + 
@@ -815,13 +815,13 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
 
   # Partial dependencies
 
-  pred_count_unburnt <- exp(alpha_mu + b_unburnt);
-  pred_count_burnt<- exp(alpha_mu);
+  pred_count_unburnt = exp(alpha_mu + b_unburnt);
+  pred_count_burnt = exp(alpha_mu);
 
   for(i in 1:n_sims) {
-  pred_count_severity[i] <- exp(alpha_mu + b_severity * cs_sim_severity[i]);
-  pred_count_altitude[i] <- exp(alpha_mu + b_altitude * cs_sim_altitude[i]);
-  pred_count_twi[i] <- exp(alpha_mu + b_twi * cs_sim_twi[i]);
+  pred_count_severity[i] = exp(alpha_mu + b_severity * cs_sim_severity[i]);
+  pred_count_altitude[i] = exp(alpha_mu + b_altitude * cs_sim_altitude[i]);
+  pred_count_twi[i] = exp(alpha_mu + b_twi * cs_sim_twi[i]);
   %s
   }
 }",ifelse(species =='Grevillea', "real cs_adult_den[n_transects];", ""),
@@ -830,7 +830,7 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
    ifelse(species =='Grevillea', "b_adult_density * cs_adult_den[transect[i]] +",""),
    ifelse(species =='Grevillea', "b_adult_density ~ normal(0, 2.5);",""),
    ifelse(species =='Grevillea', "real pred_count_adult_density[n_sims];",""),
-   ifelse(species =='Grevillea', "pred_count_adult_density[i] <- exp(alpha_mu + b_adult_density * cs_sim_adult_den[i]);",""))
+   ifelse(species =='Grevillea', "pred_count_adult_density[i] = exp(alpha_mu + b_adult_density * cs_sim_adult_den[i]);",""))
 
 
   rstan_options(auto_write = TRUE)
@@ -914,14 +914,14 @@ stan_data <-
   transformed parameters {
   real log_alpha_site[n_sites];
   for (s in 1:n_sites) {
-  log_alpha_site[s] <- raw_site[s] * sigma_log_site + mu_log_site;
+  log_alpha_site[s] = raw_site[s] * sigma_log_site + mu_log_site;
   }
   }
   model {
   real log_max_ht_hat[n_obs];
 
   for (i in 1:n_obs) {
-  log_max_ht_hat[i] <- log_alpha_site[site[i]] +
+  log_max_ht_hat[i] = log_alpha_site[site[i]] +
                    log_b_severity * cs_severity[site[i]] +
                    log_b_altitude * cs_altitude[site[i]] +
                    log_b_twi * cs_twi[site[i]];
@@ -948,9 +948,9 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
   # Partial dependencies
 
   for(i in 1:n_sims) {
-  pred_ht_severity[i] <- exp((mu_log_site + log_b_severity * cs_sim_severity[i]) + (sigma_log_obs^2)/2);
-  pred_ht_altitude[i] <- exp((mu_log_site + log_b_altitude * cs_sim_altitude[i]) + (sigma_log_obs^2)/2);
-  pred_ht_twi[i] <- exp((mu_log_site + log_b_twi * cs_sim_twi[i]) + (sigma_log_obs^2)/2);
+  pred_ht_severity[i] = exp((mu_log_site + log_b_severity * cs_sim_severity[i]) + (sigma_log_obs^2)/2);
+  pred_ht_altitude[i] = exp((mu_log_site + log_b_altitude * cs_sim_altitude[i]) + (sigma_log_obs^2)/2);
+  pred_ht_twi[i] = exp((mu_log_site + log_b_twi * cs_sim_twi[i]) + (sigma_log_obs^2)/2);
   }
 }'
 rstan_options(auto_write = TRUE)
@@ -1003,11 +1003,11 @@ transformed parameters { # Declare and define derived variables used in model
   real plot_ranef[n_plots];
 
   for (p in 1:n_plots) {
-  plot_ranef[p] <- raw_plot[p] * plot_sigma;
+  plot_ranef[p] = raw_plot[p] * plot_sigma;
   }
   
   for (i in 1:n_obs) {
-    count[i] <- exp(alpha + b_time * time[i] + b_otc * otc[i] + plot_ranef[plot[i]]);
+    count[i] = exp(alpha + b_time * time[i] + b_otc * otc[i] + plot_ranef[plot[i]]);
   }
 }
 model { # Define priors and likelihood
@@ -1031,10 +1031,10 @@ generated quantities {
   real pred_count_otc_t1;
   real pred_count_otc_t2;
 
-  pred_count_ctl_t1 <- exp(alpha);
-  pred_count_ctl_t2 <- exp(alpha + b_time);
-  pred_count_otc_t1 <- exp(alpha + b_otc);
-  pred_count_otc_t2 <- exp(alpha + b_time + b_otc);
+  pred_count_ctl_t1 = exp(alpha);
+  pred_count_ctl_t2 = exp(alpha + b_time);
+  pred_count_otc_t1 = exp(alpha + b_otc);
+  pred_count_otc_t2 = exp(alpha + b_time + b_otc);
 }
 "
   

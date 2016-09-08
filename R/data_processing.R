@@ -23,8 +23,9 @@ calculate_median_poa_distances <- function(data, censored_model) {
     group_by(otc, plot, id, ind, date) %>%
     summarise(median_poadist = median(pred_dist)) %>%
     mutate(initial_median_poadist = median_poadist[date=='2010-05-15'],
-           years = as.vector(julian(date, as.Date("2010-05-15", "%Y-%m-%d")))/365.25) %>%
-    select(otc,plot,id,date,years,initial_median_poadist,median_poadist)
+           year = as.vector(julian(date, as.Date("2010-05-15", "%Y-%m-%d")))/365.25) %>%
+    select(otc,plot,id,ind,date,year,initial_median_poadist,median_poadist) %>%
+    ungroup()
 }
 
 dead_next_census <- function(status){
@@ -78,7 +79,7 @@ clean_seedling_data <- function(csv_file) {
 
 # merges predicted median poa distances with otc seedling data
 merge_seedling_poa <- function(cleaned_seedling_data, median_poa_distances) {
-  data <-merge(cleaned_seedling_data,median_poa_distances, by=c('plot','otc','ind','date'), all.x=TRUE)
+  data <-merge(cleaned_seedling_data,median_poa_distances, by=c('plot','otc','ind','date','year'), all.x=TRUE)
   data <- select(data,site,community,plot,otc,inter_tussock,spp,ind,census,may_sample,
                  date,year,initial_median_poadist,median_poadist,initial_ht,ht,
                  initial_fbd,fbd,initial_bd,bd,initial_stem_diam,stem_diam,died)
