@@ -93,12 +93,12 @@ poadist_plot <- function(summarised_predictions, xlab=NULL,ylab=NULL) {
 }
 
 # Predicted mortality in OTC vs CTL for non tussock seedlings
-non_tussock_mortality_plot <- function(non_tussock_mortality_model, ylab ='Annual probability of death', xlab ='Species') {
+non_tussock_mortality_plot <- function(non_tussock_mortality_model, ylab ='Annual probability of death (%)', xlab ='Species') {
   mortality <- summarise_otc_model_predictions('non_tussock_mortality',non_tussock_mortality_model)
   
   
-  ggplot(mortality, aes(x = spp,y = mean, group= treatment, colour=treatment)) + 
-    geom_pointrange(aes(ymin = `2.5%`, ymax=`97.5%`), position=position_dodge(.1)) +
+  ggplot(mortality, aes(x = spp,y = mean*100, group= treatment, colour=treatment)) + 
+    geom_pointrange(aes(ymin = `2.5%`*100, ymax=`97.5%`*100), position=position_dodge(.1)) +
     scale_colour_manual('',values = c("ctl" ="blue","otc" ="red")) +
     ylab(ylab) + 
     xlab(xlab) +
