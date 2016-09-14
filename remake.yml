@@ -385,8 +385,8 @@ targets:
     command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
       - figures
-      - manuscript/pnas-new.cls
-      - manuscript/pnasresearcharticle.sty
+      - manuscript/gcb.cls
+      - manuscript/gcbresearcharticle.sty
       - manuscript/widetext.sty
 
   manuscript/supplementary.tex:
@@ -409,6 +409,6 @@ targets:
     command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
       - figures
-      - manuscript/pnas-new.cls
-      - manuscript/pnasresearcharticle.sty
+      - manuscript/gcb.cls
+      - manuscript/gcbresearcharticle.sty
       - manuscript/widetext.sty
