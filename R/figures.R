@@ -98,7 +98,7 @@ non_tussock_mortality_plot <- function(non_tussock_mortality_model, ylab ='Annua
   
   
   ggplot(mortality, aes(x = spp,y = mean*100, group= treatment, colour=treatment)) + 
-    geom_pointrange(aes(ymin = `2.5%`*100, ymax=`97.5%`*100), position=position_dodge(.1)) +
+    geom_pointrange(aes(ymin = `2.5%`*100, ymax=`97.5%`*100), position=position_dodge(.2), size= 0.3) +
     scale_colour_manual('',values = c("ctl" ="blue","otc" ="red")) +
     ylab(ylab) + 
     xlab(xlab) +
@@ -162,7 +162,7 @@ gap_dynamics_curve <- function(summarised_predictions, xlab='Year',ylab='Inter-t
 obs_pred_ht_growth <- function(observed_data, non_tussock_otc_growth_model) {
   p1 <- plot_obs_growth(observed_data,'ht')
   p2 <- plot_growth_curves(non_tussock_otc_growth_model)
-  print(plot_grid(p1,p2, labels=LETTERS[1:2], ncol = 1, label_size = 7),vp=viewport(layout.pos.row = 1, layout.pos.col = 1))
+  print(plot_grid(p1,p2, labels=letters[1:2], ncol = 1, label_size = 7),vp=viewport(layout.pos.row = 1, layout.pos.col = 1))
 }
   
 # Partial plots for growth and mortality against poa distance size
@@ -178,7 +178,7 @@ tussock_plots <- function(tussock_growth_model, tussock_mortality_model) {
                          xlab = 'Mortality coefficents')
   
   p4 <- poadist_plot(mortality_preds, xlab = 'Inter-tussock gap radius (cm)',ylab = 'Annual probability of death')
-  plot_grid(p1,p2,p3,p4, labels=LETTERS[1:4], ncol = 2, label_size = 7)
+  plot_grid(p1,p2,p3,p4, labels=letters[1:4], ncol = 2, label_size = 7)
 }
 
 density_count_plots <- function(density_model, species, ylim=c(0,35)) {
@@ -204,11 +204,11 @@ density_count_plots <- function(density_model, species, ylim=c(0,35)) {
   if(species=='Grevillea') {
     p6 <- partial_plot_density_height(predictions$adult_density, x ='sim_adult_den', 
                                       xlab = expression('Adults/'~m^2), ylab = expression('Seedlings /'~m^2), ylim)
-    plot_grid(p1,p2,p3,p4,p5,p6, labels=LETTERS[1:6], ncol = 2, label_size = 8)
+    plot_grid(p1,p2,p3,p4,p5,p6, labels=letters[1:6], ncol = 2, label_size = 8)
   }
   
   else{
-      plot_grid(p1,p2,p3,p4,p5, labels=LETTERS[1:5], ncol = 2, label_size = 8)
+      plot_grid(p1,p2,p3,p4,p5, labels=letters[1:5], ncol = 2, label_size = 8)
   }
 }
 
@@ -235,7 +235,7 @@ max_ht_plots <- function(greaus_max_ht_model,asttry_max_ht_model, ylim=c(0,35)) 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
   p8 <- partial_plot_density_height(predictions_greaus$pred_ht_twi, x ='sim_twi', 
                                     xlab ='Topographic wetness index', ylab ='Maximum height (cm)',ylim)
-  plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, labels=LETTERS[1:8], ncol = 2, label_size = 7)
+  plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, labels=letters[1:8], ncol = 2, label_size = 7)
 }
 
 gap_dynamics_plot <- function(gap_dynamic_model) {
@@ -243,7 +243,7 @@ gap_dynamics_plot <- function(gap_dynamic_model) {
   predictions <- summarise_otc_model_predictions('gap_dynamics',gap_dynamic_model)
   p1 <- coefficient_plot(coeffs,y_axis_labels = c('Intercept', 'otc'), xlab = 'log coefficients')
   p2 <- gap_dynamics_curve(predictions)
-  plot_grid(p1,p2, labels=LETTERS[1:2], ncol = 2, label_size = 7)
+  plot_grid(p1,p2, labels=letters[1:2], ncol = 2, label_size = 7)
 }
 
 examine_plot_microclimates <- function(hourly_microclimate, 
@@ -329,7 +329,7 @@ microclimate_diff_plots <- function(hourly_microclimate, subset_site='ITEX2.0', 
                                 stat = stat,
                                 ylab = substitute(stat_label~'volumetric water content (%)',list(stat_label=stat_label)))
   
-  plot_grid(p1,p2,p3,p4, labels=LETTERS[1:4], ncol = 2, label_size = 7)
+  plot_grid(p1,p2,p3,p4, labels=letters[1:4], ncol = 2, label_size = 7)
       
 }
 

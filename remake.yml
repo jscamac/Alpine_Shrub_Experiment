@@ -382,12 +382,13 @@ targets:
     knitr: TRUE
 
   manuscript/manuscript.pdf:
-    command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=TRUE)
+    command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=FALSE)
     depends:
       - figures
       - manuscript/gcb.cls
       - manuscript/gcbresearcharticle.sty
       - manuscript/widetext.sty
+      - manuscript/supplementary.pdf
 
   manuscript/supplementary.tex:
     depends:
@@ -406,7 +407,7 @@ targets:
     knitr: TRUE
     
   manuscript/supplementary.pdf:
-    command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=TRUE)
+    command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=FALSE)
     depends:
       - figures
       - manuscript/gcb.cls
