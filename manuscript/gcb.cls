@@ -225,7 +225,7 @@
 
 %% Section/subsection/paragraph set-up
 \RequirePackage[explicit]{titlesec}
-\renewcommand{\thesubsection}{\Alph{subsection}}
+%\renewcommand{\thesubsection}{\Alph{subsection}}
 
 \titleformat{\section}
   {\large\sffamily\bfseries}
@@ -350,26 +350,27 @@ THE ABSTRACT\vskip12pt}\let\go\relax\fi
 
 
 %% Supplementary title page
+
 \newcommand{\suppmaketitle}{
 \renewcommand{\@maketitle}{%
 {%
 \ifthenelse{\boolean{shortarticle}}
 {\ifthenelse{\boolean{singlecolumn}}{}{
-{\raggedright\baselineskip= 24pt\titlefont \@title\par}%
+{\center\baselineskip= 24pt\titlefont \@title\par}%
 \vskip10pt% 21pts between base of title and base of author line
-{\raggedright \@author\par}
+{\center \@author\par}
 \vskip8pt% 16pts between base of affiliations and base of dates line 
-{\raggedright \datesfont \@ifundefined{@dates}{}{\@dates}\par}
+{\center \datesfont \@ifundefined{@dates}{}{\@dates}\par}
 \vskip12pt%
 }}
 {% else
 %
 \vskip10pt%
-{\raggedright\baselineskip= 24pt\titlefont \@title\par}%
+{\center\baselineskip= 24pt\titlefont \@title\par}%
 \vskip10pt% 21pts between base of title and base of author line
-{\raggedright \@author\par}
+{\center \@author\par}
 \vskip8pt% 16pts between base of affiliations and base of dates line 
-{\raggedright \datesfont \@ifundefined{@dates}{}{\@dates}\par}
+{\center \datesfont \@ifundefined{@dates}{}{\@dates}\par}
 \vskip12pt
 }%
 %%%
