@@ -241,7 +241,7 @@ max_ht_plots <- function(greaus_max_ht_model,asttry_max_ht_model, ylim=c(0,35)) 
 gap_dynamics_plot <- function(gap_dynamic_model) {
   coeffs <- summarise_coefficients(gap_dynamic_model, params = c('alpha','b_otc'))
   predictions <- summarise_otc_model_predictions('gap_dynamics',gap_dynamic_model)
-  p1 <- coefficient_plot(coeffs,y_axis_labels = c('Intercept', 'otc'), xlab = 'log coefficients')
+  p1 <- coefficient_plot(coeffs,y_axis_labels = c('Intercept', 'warmed'), xlab = 'log coefficients')
   p2 <- gap_dynamics_curve(predictions)
   plot_grid(p1,p2, labels=letters[1:2], ncol = 2, label_size = 7)
 }
