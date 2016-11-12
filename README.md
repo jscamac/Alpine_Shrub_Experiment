@@ -67,7 +67,8 @@ A list of all available targets can be found within the `remake.yml` file. You c
 object <- remake::make("target_name")
 ```
 
-**NOTE**
+**HAVING ISSUES?**
+
 Some packages such as `dplyr`, `tidyr` and `ggplot2` have undergone several changes recently. So if you are having problems with running this code please ensure you have the latest packages. Otherwise feel free to contact me.
 
 In the near future I will create a docker image with the relavant package versions to avoid this in the future.
