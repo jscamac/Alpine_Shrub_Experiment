@@ -33,6 +33,9 @@ This project also depends on several packages. Now that `remake` is installed we
 ```
 remake::install_missing_packages()
 ```
+Note: This will only install packages you haven't already installed. Some packages (e.g. `dplyr`, `ggplot2`, `tidyr`) have had recent updates that are not backwards compatible. Please check your package versions meet the software requirements mentioned below.
+
+
 This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. rstan has undergone substantial changes recently and as such, we require that you have `rstan` 2.12.0 or greater.
 For installing or upgrading rstan following the instructions [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
 
@@ -67,9 +70,26 @@ A list of all available targets can be found within the `remake.yml` file. You c
 object <- remake::make("target_name")
 ```
 
-**HAVING ISSUES?**
+##Software requirements
 
-Some packages such as `dplyr`, `tidyr` and `ggplot2` have undergone several changes recently. So if you are having problems with running this code please ensure you have the latest packages. Otherwise feel free to contact me.
+Below are the system requirements this workflow has been tested on:
 
-In the near future I will create a docker image with the relavant package versions to avoid this in the future.
+`R` 3.3.2
+
+**R packages tested with this workflow:**
+
+ `knitr` v1.15 <br />
+ `plyr` v1.8.4 <br />
+ `dplyr` v0.5.0 <br />
+ `tidyr` v0.6.0 <br />
+ `rstan` v2.12.1 <br />
+ `cowplot` v0.7.0 <br />
+ `ggplot2` v2.2.0 <br />
+ `grid` v3.3.1 <br />
+ `lubridate` v1.6.0 <br />
+ `reshape2` v1.4.2 <br />
+ 
+##HAVING ISSUES?
+
+Some packages such as `dplyr`, `tidyr` and `ggplot2` have undergone several changes recently which have lead to breakage of some code. If you find a problem please report it to me. In the near future I will create a docker image with the relavant package versions to avoid this problem in the future.
 
