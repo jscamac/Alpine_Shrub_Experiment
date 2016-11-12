@@ -33,7 +33,7 @@ This project also depends on several packages. Now that `remake` is installed we
 ```
 remake::install_missing_packages()
 ```
-This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. rstan has undergone substantial changes recently and as such, we require that you have `rstan` 2.11.0 or greater.
+This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. rstan has undergone substantial changes recently and as such, we require that you have `rstan` 2.12.0 or greater.
 For installing or upgrading rstan following the instructions [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
 
 
@@ -67,4 +67,8 @@ A list of all available targets can be found within the `remake.yml` file. You c
 object <- remake::make("target_name")
 ```
 
+**NOTE**
+Some packages such as `dplyr`, `tidyr` and `ggplot2` have undergone several changes recently. So if you are having problems with running this code please ensure you have the latest packages. Otherwise feel free to contact me.
+
+In the near future I will create a docker image with the relavant package versions to avoid this in the future.
 
