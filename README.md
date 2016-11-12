@@ -91,5 +91,5 @@ Below are the system requirements this workflow has been tested on:
  
 ##HAVING ISSUES?
 
-Some packages such as `dplyr`, `tidyr` and `ggplot2` have undergone several changes recently which have lead to breakage of some code. If you find a problem please report it to me. In the near future I will create a docker image with the relavant package versions to avoid this problem in the future.
+Some packages are continually being upgraded which may result in some parts of the workflow failing. If this happens please report it to me and I will fix it ASAP. In the near future I will create a docker image with the relavant package versions to avoid this problem.
 
