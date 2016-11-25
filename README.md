@@ -40,22 +40,27 @@ This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-S
 For installing or upgrading rstan following the instructions [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
 
 
-Lastly, in order to compile a pdf of the manuscript we require the installation of latex:
+Lastly, in order to compile a pdf of the manuscript we require the installation of latex.
+
+For Windows and Mac users download the complete install. This will ensure you have all the relevant TeX packages:
 
 For Windows users install [MiKTeX](http://miktex.org/download)
 
 For Mac users install [MacTeX](https://tug.org/mactex/mactex-download.html)
 
-For Linux users install [TeX Live](https://www.tug.org/texlive/quickinstall.html)
+For TeX users:
+install [TeX Live](https://www.tug.org/texlive/quickinstall.html)
 
-NOTE: TeX Live users require installing additional add ons. This can be achieved by running the following in the terminal:
+**NOTE:** TeX Live users require installing additional add ons. This can be achieved by running the following in the terminal:
 ```
 apt-get install texlive texlive-latex-extra texlive-humanities
 ```
 Now we have everything we need to process the raw data, run the models, produce the figures and manuscript. We can do all of this using a single command in R.
 
+**NOTE:** the following involves running 11 stan models. This will take an hour or possibly longer to run (depending on your hardware specifications). 
+
 ```
-remake::make() #NOTE: This involves running 11 stan models and can take up to 1 hour or longer depending on computer hardware specifications.
+remake::make()
 ```
 
 If you only wish to extract the processed (i.e. errors removed) datasets just run:
