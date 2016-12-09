@@ -36,10 +36,10 @@ RUN installGithub.r \
 RUN rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # Clone shrub repository
-#RUN git clone https://github.com/jscamac/Alpine_Shrub_Experiment /home/Alpine_Shrub_Experiment
+RUN git clone https://github.com/jscamac/Alpine_Shrub_Experiment /home/Alpine_Shrub_Experiment
 
 # Set working directory
-#WORKDIR /home/Alpine_Shrub_Experiment
+WORKDIR /home/Alpine_Shrub_Experiment
 
 # Open R
-#CMD ["R"]
+CMD ["R"]
