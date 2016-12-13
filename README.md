@@ -11,88 +11,76 @@ Climate change is increasing fire frequency and severity worldwide, but it is no
 * How fire, fire severity, altitude, adult density and topographic wetness influence shrub seedling occurrence and density and across the landscape
 * How fire severity, altitude and topographic wetness influence maximum seedling heights 10 years post-fire.
 
-## Rebuilding repository
-We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate this reproducibility the entire workflow has been written in [remake](https://github.com/richfitz/remake). Below outlines the instructions on how to clone this repository and build the entire analysis and figures.
+## Rerunning analysis
+We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate the reproducibility of this work, we have created a docker image and set up the entire workflow using [remake](https://github.com/richfitz/remake). Below we outline the steps required to reproduce the analyses, figures and manuscript.
 
-First copy the repository to your local computer. Then open R in this directory.
+## Copy respository
+First copy the repository to your a desired directory on you local computer. 
 
-**NOTE** *This project is currently under peer review and subject to change. If you wish to replicate the manuscript as found at [bioRxiv](http://biorxiv.org/content/early/2016/03/16/043919) please download the release version.*
-
-Once this is done we must install `remake` dependencies that are not on CRAN.
-To do this install [devtools](https://github.com/hadley/devtools) if you haven't already by running the following in R:
-```
-install.packages("devtools")
-```
-Now we can install `remake` (Not on CRAN)
-```
-devtools::install_github("richfitz/remake", dependencies=TRUE)
-```
-
-This project also depends on several packages. Now that `remake` is installed we can install them all by simply running:
+This can either be done using the terminal (assuming git is installed)
 
 ```
-remake::install_missing_packages()
+git clone git@github.com:jscamac/Alpine_Shrub_Experiment.git
 ```
-Note: This will only install packages you haven't already installed. Some packages (e.g. `dplyr`, `ggplot2`, `tidyr`) have had recent updates that are not backwards compatible. Please check your package versions meet the software requirements mentioned below.
 
+Or can be downloaded manually by clicking [here](https://github.com/jscamac/Alpine_Shrub_Experiment/archive/master.zip).
 
-This project uses [rstan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started), a package that provides a probabilistic programming language for Bayesian inference. Because this project runs 10 Bayesian models, we are using stan's inbuilt chain parallelisation to reduce computing time. rstan has undergone substantial changes recently and as such, we require that you have `rstan` 2.12.0 or greater.
-For installing or upgrading rstan following the instructions [here](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
+**NOTE** This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.
 
+## Setting up Docker
+Next we set up a Docker virtual machine. If you haven't installed docker please see [here](https://www.docker.com/products/overview).
 
-Lastly, in order to compile a pdf of the manuscript we require the installation of latex.
+We can set up docker two ways. The simplest, fastest and *preferred approach* is to pull docker image we have already created:
 
-For Windows and Mac users download the complete install. This will ensure you have all the relevant TeX packages:
-
-For Windows users install [MiKTeX](http://miktex.org/download)
-
-For Mac users install [MacTeX](https://tug.org/mactex/mactex-download.html)
-
-For TeX users:
-install [TeX Live](https://www.tug.org/texlive/quickinstall.html)
-
-**NOTE:** TeX Live users require installing additional add ons. This can be achieved by running the following in the terminal:
 ```
-apt-get install texlive texlive-latex-extra texlive-humanities
+docker pull jscamac/Alpine_Shrub_Experiment
 ```
-Now we have everything we need to process the raw data, run the models, produce the figures and manuscript. We can do all of this using a single command in R.
+This image contains all required software (e.g. R, Latex, R packages). Furthermore, it contains the software versions used to originally run these analyses. As such, it hopefully bypasses potential issues with different software versions.
 
-**NOTE:** the following involves running 11 stan models. This will take an hour or possibly longer to run (depending on your hardware specifications). 
+
+We can also rebuild it from scratch, although this option is much slower as it requires recompiling the entire image**. To do this open a terminal, navigate to the repository and run:
+
+```
+docker build -t alpine_shrub_experiment .
+
+```
+
+## Rerunning workflow
+
+Now we are all set to reproduce this manuscript!
+
+Start up the Docker container (i.e. the virtual machine containing the environment) by opening a terminal and running:
+
+**For Mac & Linux users**
+
+```
+docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/Alpine_Shrub_Sxperiment
+```
+
+
+**For Windows users**
+
+```
+docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/Alpine_Shrub_Sxperiment
+```
+
+The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the host directory `/Users/path/to/Alpine_Shrub_Experiment`, into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
+
+Now the final stage is to rerun the entire workflow by simply running:
 
 ```
 remake::make()
 ```
+**NOTE** The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.
 
-If you only wish to extract the processed (i.e. errors removed) datasets just run:
 
-```
-remake::make("export_processed_data") # Note this still requires some models to run in order to estimate missing poa distances.
-```
+You don't have to rerun all components of this project. If you are interested in a particular component you can simply look at the `remake.yml` file find the appropriate component you want to run and simply run the relevant target name. It will build all the relevant dependencies needed to produce that particular component.
 
-A list of all available targets can be found within the `remake.yml` file. You can examine any one of them by simply using:
+For example. Lets say you were just interested in exporting a particular dataset - say the complete/processed OTC experiment dataset. This could be extracted within the docker container by running:
 
 ```
-object <- remake::make("target_name")
+otc_data <- remake::make("complete_otc_seedling_data") # Note this still requires some models to run in order to estimate missing poa distances.
 ```
-
-##Software requirements
-
-Below are the system requirements this workflow has been tested on:
-
-`R` 3.3.2
-
-**R packages tested with this workflow:**
-
- `knitr` v1.15 <br />
- `plyr` v1.8.4 <br />
- `dplyr` v0.5.0 <br />
- `tidyr` v0.6.0 <br />
- `rstan` v2.12.1 <br />
- `cowplot` v0.7.0 <br />
- `ggplot2` v2.2.0 <br />
- `grid` v3.3.1 <br />
- `lubridate` v1.6.0 <br />
- `reshape2` v1.4.2 <br />
  
 ##HAVING ISSUES?
 
