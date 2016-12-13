@@ -11,10 +11,10 @@ Climate change is increasing fire frequency and severity worldwide, but it is no
 * How fire, fire severity, altitude, adult density and topographic wetness influence shrub seedling occurrence and density and across the landscape
 * How fire severity, altitude and topographic wetness influence maximum seedling heights 10 years post-fire.
 
-## Rerunning analysis
+## Reproducing analysis
 We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate the reproducibility of this work, we have created a docker image and set up the entire workflow using [remake](https://github.com/richfitz/remake). Below we outline the steps required to reproduce the analyses, figures and manuscript.
 
-## Copy respository
+### Copy repository
 First copy the repository to your a desired directory on you local computer. 
 
 This can either be done using the terminal (assuming git is installed)
@@ -25,9 +25,9 @@ git clone git@github.com:jscamac/Alpine_Shrub_Experiment.git
 
 Or can be downloaded manually by clicking [here](https://github.com/jscamac/Alpine_Shrub_Experiment/archive/master.zip).
 
-**NOTE** This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.
+**NOTE:** *This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.*
 
-## Setting up Docker
+### Set up Docker
 Next we set up a Docker virtual machine. If you haven't installed docker please see [here](https://www.docker.com/products/overview).
 
 We can set up docker two ways. The simplest, fastest and *preferred approach* is to pull docker image we have already created:
@@ -71,7 +71,7 @@ Now the final stage is to rerun the entire workflow by simply running:
 ```
 remake::make()
 ```
-**NOTE** *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.*
+**NOTE:** *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.*
 
 
 You don't have to rerun all components of this project. If you are interested in a particular component you can simply look at the `remake.yml` file find the appropriate component you want to run and simply run the relevant target name. It will build all the relevant dependencies needed to produce that particular component.
