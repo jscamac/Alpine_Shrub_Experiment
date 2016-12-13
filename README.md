@@ -33,7 +33,7 @@ Next we set up a Docker virtual machine. If you haven't installed docker please 
 We can set up docker two ways. The simplest, fastest and *preferred approach* is to pull docker image we have already created:
 
 ```
-docker pull jscamac/Alpine_Shrub_Experiment
+docker pull jscamac/alpine_shrub_experiment
 ```
 This image contains all required software (e.g. R, Latex, R packages). Furthermore, it contains the software versions used to originally run these analyses.
 
