@@ -41,7 +41,7 @@ This image contains all required software (e.g. R, Latex, R packages). Furthermo
 We can also rebuild it from scratch, although this option is much slower as it requires recompiling the entire image**. To do this open a terminal, navigate to the repository and run:
 
 ```
-docker build -t alpine_shrub_experiment .
+docker build -t Alpine_Shrub_Experiment .
 
 ```
 
@@ -82,7 +82,5 @@ For example. Lets say you were just interested in exporting a particular dataset
 otc_data <- remake::make("complete_otc_seedling_data") # Note this still requires some models to run in order to estimate missing poa distances.
 ```
  
-##HAVING ISSUES?
-
-Some packages are continually being upgraded which may result in some parts of the workflow failing. If this happens please report it to me and I will fix it ASAP. In the near future I will create a docker image with the relavant package versions to avoid this problem.
-
+##Problems?
+If you have any problems getting the workflow to run please create an issue and I will endevour to remedy it ASAP.
