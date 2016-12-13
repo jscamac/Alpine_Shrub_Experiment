@@ -79,7 +79,7 @@ You don't have to rerun all components of this project. If you are interested in
 For example. Lets say you were just interested in exporting a particular dataset - say the complete/processed OTC experiment dataset. This could be extracted within the docker container by running:
 
 ```
-otc_data <- remake::make("complete_otc_seedling_data") # Note this still requires some models to run in order to estimate missing poa distances.
+otc_data <- remake::make("complete_otc_seedling_data")
 ```
  
 ##Problems?
