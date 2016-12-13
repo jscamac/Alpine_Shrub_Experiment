@@ -20,7 +20,8 @@ RUN    apt-get update \
 # Global site-wide config
 RUN mkdir -p $HOME/.R/ \
     && echo "\nCXXFLAGS=-O3 -mtune=native -march=native -Wno-unused-variable -Wno-unused-function\n" >> $HOME/.R/Makevars \
-    && echo "CXXFLAGS+=-flto -ffat-lto-objects  -Wno-unused-local-typedefs\n" >> $HOME/.R/Makevars
+    && echo "\nCXX=clang++ -ftemplate-depth-256\n" >> $HOME/.R/Makevars \
+    && echo "CC=clang\n" >> $HOME/.R/Makevars
 
 # Install other dependent R packages
 RUN install2.r -r "https://mran.revolutionanalytics.com/snapshot/2016-11-25/" --error \
