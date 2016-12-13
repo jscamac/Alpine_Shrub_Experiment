@@ -71,7 +71,8 @@ Now the final stage is to rerun the entire workflow by simply running:
 ```
 remake::make()
 ```
-**NOTE** \br
+**NOTE**
+
 *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.*
 
 
