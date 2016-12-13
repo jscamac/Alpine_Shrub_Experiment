@@ -238,7 +238,7 @@ targets:
     cleanup_level: purge
     
   processed_data/grevillea_recruit_data.rds:
-    command: saveRDS(greaus_recruit_data)
+    command: saveRDS(greaus_recruit_data, target_name)
     cleanup_level: purge
     
   processed_data/complete_field_survey_data.rds:
