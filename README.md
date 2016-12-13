@@ -11,10 +11,10 @@ Climate change is increasing fire frequency and severity worldwide, but it is no
 * How fire, fire severity, altitude, adult density and topographic wetness influence shrub seedling occurrence and density and across the landscape
 * How fire severity, altitude and topographic wetness influence maximum seedling heights 10 years post-fire.
 
-## Rerunning analysis
+## Reproducing analysis
 We are committed to reproducible science. As such, this repository contains all the data and code necessary to fully reproduce our results. To facilitate the reproducibility of this work, we have created a docker image and set up the entire workflow using [remake](https://github.com/richfitz/remake). Below we outline the steps required to reproduce the analyses, figures and manuscript.
 
-## Copy respository
+### Copy repository
 First copy the repository to your a desired directory on you local computer. 
 
 This can either be done using the terminal (assuming git is installed)
@@ -25,7 +25,7 @@ git clone git@github.com:jscamac/Alpine_Shrub_Experiment.git
 
 Or can be downloaded manually by clicking [here](https://github.com/jscamac/Alpine_Shrub_Experiment/archive/master.zip).
 
-**NOTE** This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.
+**NOTE:** *This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.*
 
 ## Setting up Docker
 Next we set up a Docker virtual machine. If you haven't installed docker please see [here](https://www.docker.com/products/overview). Here we use Docker because it can readily be used across platforms and is set to install the appropriate software, and software versions used in the original analysis. As such it hopefully safeguards this work from potential changes in software and cross platform issues.
@@ -41,7 +41,7 @@ This image contains all required software (e.g. R, Latex, R packages). Furthermo
 We can also rebuild it from scratch, although this option is much slower as it requires recompiling the entire image**. To do this open a terminal, navigate to the repository and run:
 
 ```
-docker build -t alpine_shrub_experiment .
+docker build -t Alpine_Shrub_Experiment .
 
 ```
 
@@ -71,7 +71,7 @@ Now the final stage is to rerun the entire workflow by simply running:
 ```
 remake::make()
 ```
-**NOTE** The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.
+**NOTE:** *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.*
 
 
 You don't have to rerun all components of this project. If you are interested in a particular component you can simply look at the `remake.yml` file find the appropriate component you want to run and simply run the relevant target name. It will build all the relevant dependencies needed to produce that particular component.
@@ -79,10 +79,14 @@ You don't have to rerun all components of this project. If you are interested in
 For example. Lets say you were just interested in exporting a particular dataset - say the complete/processed OTC experiment dataset. This could be extracted within the docker container by running:
 
 ```
-otc_data <- remake::make("complete_otc_seedling_data") # Note this still requires some models to run in order to estimate missing poa distances.
+otc_data <- remake::make("complete_otc_seedling_data")
 ```
  
-##HAVING ISSUES?
+## Docker Image metadata
 
-Some packages are continually being upgraded which may result in some parts of the workflow failing. If this happens please report it to me and I will fix it ASAP. In the near future I will create a docker image with the relavant package versions to avoid this problem.
+| Docker Hub Build Status and URL                                | Image Size
+| :-----------------------------------------                     | :--------------
+| [good](https://registry.hub.docker.com/u/jscamac/alpine_shrub_experiment/)  | [![Layers and Size](https://images.microbadger.com/badges/image/jscamac/alpine_shrub_experiment.svg)](https://registry.hub.docker.com/u/jscamac/alpine_shrub_experiment/)
 
+##Problems?
+If you have any problems getting the workflow to run please create an issue and I will endevour to remedy it ASAP.
