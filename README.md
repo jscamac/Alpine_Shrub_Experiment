@@ -33,7 +33,7 @@ Next we set up a Docker virtual machine. If you haven't installed docker please 
 We can set up docker two ways. The simplest, fastest and *preferred approach* is to pull docker image we have already created:
 
 ```
-docker pull jscamac/alpine_shrub_experiment
+docker pull jscamac/Alpine_Shrub_Experiment
 ```
 This image contains all required software (e.g. R, Latex, R packages). Furthermore, it contains the software versions used to originally run these analyses. As such, it hopefully bypasses potential issues with different software versions.
 
@@ -41,7 +41,7 @@ This image contains all required software (e.g. R, Latex, R packages). Furthermo
 We can also rebuild it from scratch, although this option is much slower as it requires recompiling the entire image**. To do this open a terminal, navigate to the repository and run:
 
 ```
-docker build -t alpine_shrub_experiment .
+docker build -t Alpine_Shrub_Experiment .
 
 ```
 
@@ -54,14 +54,14 @@ Start up the Docker container (i.e. the virtual machine containing the environme
 **For Mac & Linux users**
 
 ```
-docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
+docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/Alpine_Shrub_Sxperiment
 ```
 
 
 **For Windows users**
 
 ```
-docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
+docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/Alpine_Shrub_Sxperiment
 ```
 
 The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the host directory `/Users/path/to/Alpine_Shrub_Experiment`, into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
@@ -82,5 +82,11 @@ For example. Lets say you were just interested in exporting a particular dataset
 otc_data <- remake::make("complete_otc_seedling_data")
 ```
  
+## Docker Image metadata
+
+| Docker Hub Build Status and URL                                | Image Size
+| :-----------------------------------------                     | :--------------
+| [good](https://registry.hub.docker.com/u/jscamac/alpine_shrub_experiment/)  | [![Layers and Size](https://images.microbadger.com/badges/image/jscamac/alpine_shrub_experiment.svg)](https://registry.hub.docker.com/u/jscamac/alpine_shrub_experiment/)
+
 ##Problems?
 If you have any problems getting the workflow to run please create an issue and I will endevour to remedy it ASAP.
