@@ -54,14 +54,14 @@ Start up the Docker container (i.e. the virtual machine containing the environme
 **For Mac & Linux users**
 
 ```
-docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/Alpine_Shrub_Sxperiment
+docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
 ```
 
 
 **For Windows users**
 
 ```
-docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/Alpine_Shrub_Sxperiment
+docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
 ```
 
 The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the host directory `/Users/path/to/Alpine_Shrub_Experiment`, into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
@@ -88,5 +88,5 @@ otc_data <- remake::make("complete_otc_seedling_data")
 | :-----------------------------------------                     | :--------------
 | [good](https://registry.hub.docker.com/u/jscamac/alpine_shrub_experiment/)  | [![Layers and Size](https://images.microbadger.com/badges/image/jscamac/alpine_shrub_experiment.svg)](https://registry.hub.docker.com/u/jscamac/alpine_shrub_experiment/)
 
-##Problems?
+## Problems?
 If you have any problems getting the workflow to run please create an issue and I will endevour to remedy it ASAP.
