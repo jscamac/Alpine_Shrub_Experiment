@@ -28,14 +28,14 @@ Or can be downloaded manually by clicking [here](https://github.com/jscamac/Alpi
 **NOTE** This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.
 
 ## Setting up Docker
-Next we set up a Docker virtual machine. If you haven't installed docker please see [here](https://www.docker.com/products/overview).
+Next we set up a Docker virtual machine. If you haven't installed docker please see [here](https://www.docker.com/products/overview). Here we use Docker because it can readily be used across platforms and is set to install the appropriate software, and software versions used in the original analysis. As such it hopefully safeguards this work from potential changes in software and cross platform issues.
 
 We can set up docker two ways. The simplest, fastest and *preferred approach* is to pull docker image we have already created:
 
 ```
 docker pull jscamac/Alpine_Shrub_Experiment
 ```
-This image contains all required software (e.g. R, Latex, R packages). Furthermore, it contains the software versions used to originally run these analyses. As such, it hopefully bypasses potential issues with different software versions.
+This image contains all required software (e.g. R, Latex, R packages). Furthermore, it contains the software versions used to originally run these analyses.
 
 
 We can also rebuild it from scratch, although this option is much slower as it requires recompiling the entire image**. To do this open a terminal, navigate to the repository and run:
