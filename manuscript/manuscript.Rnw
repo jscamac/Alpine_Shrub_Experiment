@@ -2,9 +2,7 @@
 % Use the lineno option to display guide line numbers if required.
 % Note that the use of elements such as single-column equations
 % may affect the guide line number alignment. 
-% Enable cross referencing to Evidence document
-\usepackage{xr}
-\externaldocument{supplementary}
+
 \pdfminorversion=4
 \templatetype{gcbresearcharticle} % Choose template 
 % {pnasresearcharticle} = Template for a two-column research article

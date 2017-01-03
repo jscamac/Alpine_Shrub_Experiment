@@ -323,8 +323,8 @@ THE ABSTRACT\vskip12pt}\let\go\relax\fi
 {\raggedright\baselineskip= 24pt\titlefont \@title\par}%
 \vskip10pt% 21pts between base of title and base of author line
 {\raggedright \@author\par}
-\vskip8pt% 16pts between base of affiliations and base of dates line 
-{\raggedright \datesfont \@ifundefined{@dates}{}{\@dates}\par}
+%\vskip8pt% 16pts between base of affiliations and base of dates line 
+%{\raggedright \datesfont \@ifundefined{@dates}{}{\@dates}\par}
 \vskip12pt%
 }}
 {% else
@@ -333,8 +333,8 @@ THE ABSTRACT\vskip12pt}\let\go\relax\fi
 {\raggedright\baselineskip= 24pt\titlefont \@title\par}%
 \vskip10pt% 21pts between base of title and base of author line
 {\raggedright \@author\par}
-\vskip8pt% 16pts between base of affiliations and base of dates line 
-{\raggedright \datesfont \@ifundefined{@dates}{}{\@dates}\par}
+%\vskip8pt% 16pts between base of affiliations and base of dates line 
+%{\raggedright \datesfont \@ifundefined{@dates}{}{\@dates}\par}
 \vskip12pt
 {%
 \abscontent
@@ -358,8 +358,8 @@ THE ABSTRACT\vskip12pt}\let\go\relax\fi
 {\center\baselineskip= 24pt\titlefont \@title\par}%
 \vskip10pt% 21pts between base of title and base of author line
 {\center \@author\par}
-\vskip8pt% 16pts between base of affiliations and base of dates line 
-{\center \datesfont \@ifundefined{@dates}{}{\@dates}\par}
+%\vskip8pt% 16pts between base of affiliations and base of dates line 
+%{\center \datesfont \@ifundefined{@dates}{}{\@dates}\par}
 \vskip12pt%
 }}
 {% else
@@ -368,8 +368,8 @@ THE ABSTRACT\vskip12pt}\let\go\relax\fi
 {\center\baselineskip= 24pt\titlefont \@title\par}%
 \vskip10pt% 21pts between base of title and base of author line
 {\center \@author\par}
-\vskip8pt% 16pts between base of affiliations and base of dates line 
-{\center \datesfont \@ifundefined{@dates}{}{\@dates}\par}
+%\vskip8pt% 16pts between base of affiliations and base of dates line 
+%{\center \datesfont \@ifundefined{@dates}{}{\@dates}\par}
 \vskip12pt
 }%
 %%%
