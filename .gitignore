@@ -3,11 +3,14 @@
 .Rhistory
 .remake
 *.pdf
+*.jpg
 processed_data
 models
 figures
 *.tex
 *.xwm
+*.lof
+
 
 
 
