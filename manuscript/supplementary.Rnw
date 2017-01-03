@@ -27,9 +27,9 @@
 
 % Please give the surname of the lead author for the running footer
 \leadauthor{Camac} 
-\correspondingauthor{\textsuperscript{1}To whom correspondence should be addressed. E-mail: james.camac@gmail.com}
-\dates{This manuscript was compiled on \today}
-\doi{\url{doi:10.1111/GCB.XXXXX}}
+\correspondingauthor{To whom correspondence should be addressed. E-mail: james.camac@gmail.com}
+%\dates{This manuscript was compiled on \today}
+%\doi{\url{doi:10.1111/GCB.XXXXX}}
 
 \begin{document}
 \suppmaketitle

@@ -41,8 +41,8 @@
 Climate change is expected to increase fire activity and woody plant encroachment in arctic and alpine landscapes. However, the extent to which these increases interact to affect the structure, function and composition of alpine ecosystems is largely unknown. Here we use field surveys and experimental manipulations to examine how warming and fire affect recruitment, seedling growth and seedling survival in four dominant Australian alpine shrubs. We found that fire increased establishment of shrub seedlings by as much as \Sexpr{density_ratios(greaus_seedling_density_model, 'Grevillea')}\textendash fold. Experimental warming also doubled growth rates of tall shrub seedlings and could potentially increase their survival. By contrast, warming had no effect on shrub recruitment, post-fire tussock regeneration, or how tussock grass affected shrub seedling growth and survival. These findings indicate that warming, coupled with more frequent or severe fires, will likely result in an increase in the cover and abundance of evergreen shrubs. Given shrubs are one of the most flammable components in alpine and tundra environments, warming is likely to strengthen an existing feedback between woody species abundance and fire in these ecosystems.
 \end{abstract}
 
-\dates{This manuscript was compiled on \today}
-\doi{\url{doi:10.1111/GCB.XXXXX}}
+%\dates{This manuscript was compiled on \today}
+%\doi{\url{doi:10.1111/GCB.XXXXX}}
 
 \begin{document}
 % Optional adjustment to line up main text (after abstract) of first page with line numbers, when using both lineno and twocolumn options.
