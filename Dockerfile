@@ -24,7 +24,7 @@ RUN mkdir -p $HOME/.R/ \
     && echo "CC=clang\n" >> $HOME/.R/Makevars
 
 # Install other dependent R packages
-RUN install2.r -r "https://mran.revolutionanalytics.com/snapshot/2016-11-25/" --error \
+RUN install2.r -r "https://mran.revolutionanalytics.com/snapshot/2017-01-01/" --error \
     --deps "TRUE" \
     rstan reshape2 cowplot lubridate
 

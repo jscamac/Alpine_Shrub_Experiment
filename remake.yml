@@ -86,13 +86,13 @@ targets:
       - manuscript/figures/fig4.pdf
       - manuscript/figures/fig5.pdf
       - manuscript/figures/fig6.pdf
-      - manuscript/figures/figS2.pdf
-      - manuscript/figures/figS3.pdf
-      - manuscript/figures/figS4.pdf
-      - manuscript/figures/figS5.pdf
       - manuscript/figures/figS6.pdf
       - manuscript/figures/figS7.pdf
       - manuscript/figures/figS8.pdf
+      - manuscript/figures/figS11.pdf
+      - manuscript/figures/figS12.pdf
+      - manuscript/figures/figS13.pdf
+      - manuscript/figures/figS14.pdf
   #------------- Clean data --------------------------- 
   
   cleaned_poa_distances:
@@ -324,23 +324,7 @@ targets:
   manuscript/figures/fig6.pdf:
     command: gap_dynamics_plot(gap_dynamic_model)
     plot: 1col_widenarrow_rectangle
-    
-  manuscript/figures/figS2.pdf:
-    command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'),I(c(0,50)))
-    plot: 1col_tall_rectangle
-    
-  manuscript/figures/figS3.pdf:
-    command: recruit_plot(recruit_model)
-    plot: 1col_wide_rectangle
-    
-  manuscript/figures/figS4.pdf:
-    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (cm)'))
-    plot: 2col_widenarrow_rectangle
-    
-  manuscript/figures/figS5.pdf:
-    command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
-    plot: 1col_tall_rectangle
-  
+
   manuscript/figures/figS6.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean'), stat_label = I('Mean'))
     plot: 2col_square
@@ -352,6 +336,26 @@ targets:
   manuscript/figures/figS8.pdf:
     command: microclimate_diff_plots(hourly_microclimate_data,I('ITEX2.0'),I('mean_max'), stat_label = I('Mean maximum'))
     plot: 2col_square
+
+  manuscript/figures/figS11.pdf:
+    command: density_count_plots(asttry_seedling_density_model, I('Asterolasia'),I(c(0,50)))
+    plot:
+      width: 4
+      height: 6
+    
+  manuscript/figures/figS12.pdf:
+    command: recruit_plot(recruit_model)
+    plot: 1col_wide_rectangle
+    
+  manuscript/figures/figS13.pdf:
+    command: plot_obs_growth(non_tussock_otc_growth_data,I('stem_diam'), ylab =I('Observed stem diameter (cm)'))
+    plot: 2col_widenarrow_rectangle
+    
+  manuscript/figures/figS14.pdf:
+    command: max_ht_plots(greaus_seedling_max_ht_model, asttry_seedling_max_ht_model)
+    plot:
+      width: 4
+      height: 6
 
   #------------- make manuscript ---------------------------
 
@@ -372,13 +376,12 @@ targets:
     knitr: TRUE
 
   manuscript/manuscript.pdf:
-    command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=FALSE)
+    command: latex_build("manuscript/manuscript.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
       - figures
       - manuscript/gcb.cls
       - manuscript/gcbresearcharticle.sty
       - manuscript/widetext.sty
-      - manuscript/supplementary.pdf
 
   manuscript/supplementary.tex:
     depends:
@@ -397,7 +400,7 @@ targets:
     knitr: TRUE
     
   manuscript/supplementary.pdf:
-    command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=FALSE)
+    command: latex_build("manuscript/supplementary.tex", "manuscript/refs.bib", clean=TRUE)
     depends:
       - figures
       - manuscript/gcb.cls
