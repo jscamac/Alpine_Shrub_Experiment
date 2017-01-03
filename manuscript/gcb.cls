@@ -97,7 +97,7 @@
 %% Watermark 
 \usepackage[printwatermark]{xwatermark}
 \newboolean{displaywatermark}
-\setboolean{displaywatermark}{true} % Set to false to remove the watermark
+\setboolean{displaywatermark}{false} % Set to false to remove the watermark
 \ifthenelse{\boolean{displaywatermark}}{%
 \newwatermark[allpages,color=gray!20,angle=45,scale=3,xpos=0,ypos=0]{DRAFT}}{}
 
