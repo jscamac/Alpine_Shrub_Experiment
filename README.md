@@ -25,8 +25,6 @@ git clone git@github.com:jscamac/Alpine_Shrub_Experiment.git
 
 Or can be downloaded manually by clicking [here](https://github.com/jscamac/Alpine_Shrub_Experiment/archive/master.zip).
 
-**NOTE:** *This step isn't strictly necessary, but is useful so that docker has a local directory that it can copy results to.*
-
 ## Setting up Docker
 Next we set up a Docker virtual machine. If you haven't installed docker please see [here](https://www.docker.com/products/overview). Here we use Docker because it can readily be used across platforms and is set to install the appropriate software, and software versions used in the original analysis. As such it hopefully safeguards this work from potential changes in software and cross platform issues.
 
@@ -64,7 +62,7 @@ docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experime
 docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
 ```
 
-The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the host directory `/Users/path/to/Alpine_Shrub_Experiment`, into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
+The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the local directory `/Users/path/to/Alpine_Shrub_Experiment`, into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
 
 Now the final stage is to rerun the entire workflow by simply running:
 
