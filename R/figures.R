@@ -306,7 +306,7 @@ plot_microclim_trt_diff <- function(hourly_microclimate,
   chamber_dates <- readRDS('raw_data/chamber_dates.rds')
   dat <- filter(hourly_microclimate, sensor == subset_sensor & site == subset_site)
   dat <- aggregate_microclimate_to_day(dat, aggregate_level = 'site') %>%
-    select(site,sensor,date,treatment, get(stat)) %>%
+    select(site,sensor,date,treatment, stat) %>%
     dcast(site + sensor + date ~ treatment, value.var = stat) %>%
     mutate(difference = OTC - CTL)
   min_date <- min(dat$date)

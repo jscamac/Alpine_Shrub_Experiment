@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.3.2
+FROM rocker/tidyverse:3.5.3
 MAINTAINER James Camac <james.camac@gmail.com>
 
 # Install latex, git and clang then clean up tmp files
@@ -11,6 +11,7 @@ RUN    apt-get update \
          texlive-fonts-recommended \
          texlive-science \
          lmodern \
+         libomp-dev \
          git \
          clang \
     && apt-get clean \
@@ -24,9 +25,9 @@ RUN mkdir -p $HOME/.R/ \
     && echo "CC=clang\n" >> $HOME/.R/Makevars
 
 # Install other dependent R packages
-RUN install2.r -r "https://mran.revolutionanalytics.com/snapshot/2017-01-01/" --error \
-    --deps "TRUE" \
-    rstan reshape2 cowplot lubridate
+RUN install2.r -r "https://mran.revolutionanalytics.com/snapshot/2019-04-01/" --error \
+    --deps "FALSE" \
+    Rcpp RcppEigen BH matrixStats backports checkmate loo inline gridExtra StanHeaders rstan plyr stringr reshape2 cowplot lubridate
 
 # Install remake
 RUN installGithub.r \
@@ -36,11 +37,5 @@ RUN installGithub.r \
 # Remove unnecesarry tmp files
 RUN rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
-# Clone shrub repository
-RUN git clone https://github.com/jscamac/Alpine_Shrub_Experiment /home/Alpine_Shrub_Experiment
-
 # Set working directory
 WORKDIR /home/Alpine_Shrub_Experiment
-
-# Open R
-CMD ["R"]

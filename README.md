@@ -39,7 +39,7 @@ This image contains all required software (e.g. R, Latex, R packages). Furthermo
 We can also rebuild it from scratch, although this option is much slower as it requires recompiling the entire image**. To do this open a terminal, navigate to the repository and run:
 
 ```
-docker build -t Alpine_Shrub_Experiment .
+docker build --rm --no-cache -t jscamac/alpine_shrub_experiment .
 
 ```
 
@@ -49,26 +49,25 @@ Now we are all set to reproduce this manuscript!
 
 Start up the Docker container (i.e. the virtual machine containing the environment) by opening a terminal and running:
 
-**For Mac & Linux users**
-
 ```
-docker run -v /Users/path/to/Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
-```
-
-
-**For Windows users**
-
-```
-docker run -v c:\path\to\Alpine_Shrub_Experiment:/home/Alpine_Shrub_Experiment  -it jscamac/alpine_shrub_experiment
+docker run -d -v $(pwd):/home/rstudio/ -p 127.0.0.1:8787:8787 \  
+-e DISABLE_AUTH=true jscamac/alpine_shrub_experiment
 ```
 
-The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the local directory `/Users/path/to/Alpine_Shrub_Experiment`, into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
+**NOTE:** Windows users may need to replace $(pwd) with the path to the downloaded repository or possibly %cd%.
 
-Now the final stage is to rerun the entire workflow by simply running:
+
+The above creates a Docker container (i.e. a virtual machine) and opens the terminal in `R`. The flag `-v` mounts the local directory into the container at `/home/Alpine_Shrub_Experiment`. What this allows is for any results produced in the container to automatically be saved onto the local directory. This means that you can play with the results, data and figures outside the docker container later.
+
+
+Now you can open up an Rstudio session by opening your web browser and going to the following: localhost:8787/
+
+In this Rstudio session the entire workflow can be rerun by simply running:
 
 ```
 remake::make()
 ```
+
 **NOTE:** *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.*
 
 

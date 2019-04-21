@@ -18,7 +18,7 @@ run_censored_model <- function(data) {
   
   model <-'
     data {
-      # Required for estimating distances
+      // Required for estimating distances
       int<lower=1> N; 
       int<lower = 1> n_obs; 
       int<lower = 1> n_censored;
@@ -30,13 +30,13 @@ run_censored_model <- function(data) {
       int<lower = 0, upper=1> otc[N];
       int<lower = 0> census[N];
       real<lower=0> y_obs[n_obs];
-      # For merging back into one object
+      // For merging back into one object
       int<lower=1, upper = N> censored_index[n_censored];
       int<lower=1, upper = N>  obs_index[n_obs];
     }
   
   parameters{
-    #Estimating distances model
+    // Estimating distances model
     real log_alpha;
     real log_b_otc;
     real raw_census[n_census];
@@ -46,7 +46,7 @@ run_censored_model <- function(data) {
     real<lower=0> sigma_log_plot;
     real<lower=0> sigma_log_census;
     real<lower=0> sigma_log_obs;
-    real<lower=26, upper=100> y_censored[n_censored]; #Censored data lower limit = 26cm
+    real<lower=26, upper=100> y_censored[n_censored]; // Censored data lower limit = 26cm
   }
   
   transformed parameters{
@@ -57,38 +57,38 @@ run_censored_model <- function(data) {
     real log_y_censored_hat[n_censored];
     real full_data[N];
     
-    # Random effect for census
+    // Random effect for census
     for (t in 1:n_census) {
       log_census_error[t] = raw_census[t] * sigma_log_census;
     }
     
-    # Random effect for plot
+    // Random effect for plot
     for (p in 1:n_plots) {
       log_plot_error[p] = raw_plot[p] * sigma_log_plot;
     }
     
-    # Random effect for individual
+    // Random effect for individual
     for (i in 1:n_inds) {
       log_ind_error[i] = raw_ind[i] * sigma_log_ind;
     }
     
-    # Likelihood for observed
+    // Likelihood for observed
     for (i in 1:n_obs){
       log_y_obs_hat[i] = log_alpha + log_b_otc * otc[i] + log_census_error[census[i]] + log_plot_error[plot[i]] + log_ind_error[ind[i]];
       
-      # Adds observations to complete object
+      // Adds observations to complete object
       full_data[obs_index[i]] = y_obs[obs_index[i]];
     }
-    # Estimates censored observations
+    // Estimates censored observations
     for (j in 1:n_censored){ 
       log_y_censored_hat[j] = log_alpha + log_b_otc * otc[j] + log_census_error[census[j]] + log_plot_error[plot[j]] + log_ind_error[ind[j]];
       
-      # Adds censored observations to complete object
+      // Adds censored observations to complete object
       full_data[censored_index[j]] = y_censored[j];
     }
   }
   model{
-    # PRIORS
+    // PRIORS
     log_alpha ~ normal(0,2.5);
     log_b_otc ~ normal(0, 2.5);
     raw_census ~ normal(0,1);
@@ -137,7 +137,7 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
   
   model <- '
     data {
-      # Required for estimating distances
+      // Required for estimating distances
       int<lower=1> N; 
       int<lower = 1> n_inds;
       int<lower = 1> n_plots;
@@ -152,7 +152,7 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
     }
   
   parameters{
-    #Estimating distances model
+    // Estimating distances model
     real alpha;
     real b_otc;
     real raw_plot[n_plots];
@@ -168,26 +168,26 @@ run_gap_dynamic_model <- function(data, pred_n_years) {
     real beta[N];
     real log_y_obs_hat[N];
     
-    # Random effect for plot
+    // Random effect for plot
     for (p in 1:n_plots) {
       plot_error[p] = raw_plot[p] * sigma_plot;
     }
     
-    # Random effect for individual
+    // Random effect for individual
     for (i in 1:n_inds) {
       ind_error[i] = raw_ind[i] * sigma_ind;
     }
     
-    # Likelihood for observed
+    // Likelihood for observed
     for (i in 1:N){
       beta[i] = alpha + b_otc * otc[i] + plot_error[plot[i]] + ind_error[ind[i]];
       log_y_obs_hat[i] = log(initial_dist[i]) + beta[i] * year[i]; 
-      # note above is on log scale due to lognormal everything is on log scale. on normal scale model is init * exp(beta * yr)
+      // note above is on log scale due to lognormal everything is on log scale. on normal scale model is init * exp(beta * yr)
     }
   }
   model{
     
-    # PRIORS
+    // PRIORS
     alpha ~ normal(0, 5);
     b_otc ~ normal(0, 5);
     raw_plot ~ normal(0,1);
@@ -258,7 +258,7 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
       int<lower=1> n_preds;
       real<lower=0> pred_year[n_preds];
     }
-  parameters { # Declare parameters the models must estimate
+  parameters { // Declare parameters the models must estimate
     real alpha[n_spp];
     real mu_alpha;
     real<lower=0> sigma_alpha;
@@ -271,34 +271,34 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
     real ranef_plot[n_plots];
     real ranef_ind[n_inds];
   }
-  model { # Define priors and likelihood
+  model { // Define priors and likelihood
     real R[n_obs];
     real height_hat[n_obs];
     
-    #Species random effects
+    // Species random effects
     alpha ~ normal(mu_alpha, sigma_alpha);
     b_otc ~ normal(mu_b_otc, sigma_b_otc);
     
-    #Plot random effects
+    // Plot random effects
     ranef_plot ~ normal(0, sigma_plot);
     
-    # Estimate individual random effect
+    // Estimate individual random effect
     ranef_ind ~ normal(0, sigma_ind);
     
     for (i in 1:n_obs) {
-      # Estimate individual rate  
+      // Estimate individual rate  
       R[i] = 
         alpha[spp[i]] +     
         b_otc[spp[i]] * otc[i] +
         ranef_plot[plot[i]] +
         ranef_ind[ind[i]];
       
-      #Likelihood
+      // Likelihood
       height_hat[i] = hmax[spp[i]] / (1 + (hmax[spp[i]]/initial_height[i] - 1) * exp(-R[i] * (year[i])));
       height[i] ~ normal(height_hat[i], sigma_obs)T[0,];
     }
     
-    #Priors
+    // Priors
     mu_alpha ~ normal(0,0.5);
     mu_b_otc ~ normal(0,0.5);
     sigma_alpha ~ cauchy(0,25);
@@ -335,7 +335,7 @@ run_non_tussock_growth_analysis <- function(data, pred_n_years) {
                                   "sigma_alpha","sigma_b_otc","sigma_obs","sigma_ind",
                                   "alpha","b_otc","sigma_plot", "r_ctl","r_otc","pred_height_ctl","pred_height_otc"), 
                          chains = 3,
-                         control=list(stepsize=0.1),
+                         control=list(adapt_delta=0.9 stepsize=0.1, max_treedepth =15),
                          iter = 2000))
               return(fit)
 }
@@ -383,7 +383,7 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
       int<lower=1> n_preds;
       real cs_ln_sim_median_poadist[n_preds];
     }
-  parameters{ # Declare parameters the models must estimate
+  parameters{ // Declare parameters the models must estimate
     real alpha;
     real b_otc;
     real b_poadist;
@@ -394,18 +394,18 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
     real ranef_plot[n_plots];
     real ranef_ind[n_inds];
   }
-  model { # Define priors and likelihood
+  model { // Define priors and likelihood
     real R[n_obs];
     real height_hat[n_obs];
     
-    #Plot random effects
+    // Plot random effects
     ranef_plot ~ normal(0, sigma_plot);
     
-    # Estimate individual random effect
+    // Estimate individual random effect
     ranef_ind ~ normal(0, sigma_ind);
     
     for (i in 1:n_obs) {
-      # Estimate individual rate  
+      // Estimate individual rate  
       R[i] = 
         alpha +     
         b_otc * otc[i] +
@@ -414,12 +414,12 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
         ranef_plot[plot[i]] +
         ranef_ind[ind[i]];
       
-      #Likelihood
+      // Likelihood
       height_hat[i] = hmax / (1 + (hmax/initial_height[i] - 1) * exp(-R[i] * (year[i])));
     }
       height ~ normal(height_hat, sigma_obs);
     
-    #Priors
+    // Priors
     alpha ~ normal(0, 0.5);
     b_otc ~ normal(0, 0.5);
     b_poadist ~ normal(0, 0.5);
@@ -449,7 +449,7 @@ run_tussock_growth_analysis <- function(data, pred_poadist_range = NULL) {
                                   "sigma_plot","sigma_ind","sigma_obs",
                                   "r_ctl","r_otc"), 
                          chains = 3,
-                         control=list(stepsize=0.1),
+                         control=list(adapt_delta=0.9 stepsize=0.1, max_treedepth =15),
                          iter = 2000))
   return(fit)
 }
@@ -481,7 +481,7 @@ run_non_tussock_mortalilty_model <- function(data) {
       int<lower=0, upper=1> otc[n_obs];
       int<lower=0> died[n_obs];
     }
-  parameters { # Declare parameters the models must estimate
+  parameters { // Declare parameters the models must estimate
     real raw_alpha[n_spp];
     real raw_b_otc[n_spp];
     real raw_plot[n_plots];
@@ -500,36 +500,36 @@ run_non_tussock_mortalilty_model <- function(data) {
     real ranef_ind[n_inds];
     
     for(s in 1:n_spp){
-      alpha[s] = raw_alpha[s] * sigma_alpha + mu_alpha; //equivalent to normal(mu_alpha, sigma_alpha) 
-      b_otc[s] = raw_b_otc[s] * sigma_b_otc + mu_b_otc; //equivalent to normal(mu_b_otc, sigma_b_otc) 
+      alpha[s] = raw_alpha[s] * sigma_alpha + mu_alpha; // equivalent to normal(mu_alpha, sigma_alpha) 
+      b_otc[s] = raw_b_otc[s] * sigma_b_otc + mu_b_otc; // equivalent to normal(mu_b_otc, sigma_b_otc) 
     }
     
     for(p in 1:n_plots) {
-      ranef_plot[p] = raw_plot[p] * sigma_plot; //equivalent to normal(0, sigma_plot)
+      ranef_plot[p] = raw_plot[p] * sigma_plot; // equivalent to normal(0, sigma_plot)
     }
     
     for(i in 1:n_inds) {
-      ranef_ind[i] = raw_ind[i] * sigma_ind; //equivalent to normal(0, sigma_ind) 
+      ranef_ind[i] = raw_ind[i] * sigma_ind; // equivalent to normal(0, sigma_ind) 
     }
   }
-  model { # Define priors and likelihood
+  model { // Define priors and likelihood
     real hazard[n_obs];
     real cumalative_hazard[n_obs];
     
     for (i in 1:n_obs) {
-      # Estimate individual rate  
+      // Estimate individual rate  
       hazard[i] = 
         alpha[spp[i]] +     
         b_otc[spp[i]] * otc[i] +
         ranef_plot[plot[i]] +
         ranef_ind[ind[i]];
       
-      #Likelihood
+      // Likelihood
       cumalative_hazard[i] = inv_cloglog(hazard[i] * (census_interval[i]));
     }
     died ~ bernoulli(cumalative_hazard);
     
-    #Priors
+    // Priors
     raw_alpha ~ normal(0,1);
     raw_b_otc ~ normal(0,1);
     raw_plot ~ normal(0,1);
@@ -605,7 +605,7 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
   int<lower=1> n_preds;
   real cs_ln_sim_median_poadist[n_preds];
   }
-  parameters{ # Declare parameters the models must estimate
+  parameters{ // Declare parameters the models must estimate
   real alpha;
   real b_otc;
   real b_poadist;
@@ -621,19 +621,19 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
     real ranef_ind[n_inds];
     
     for(p in 1:n_plots) {
-      ranef_plot[p] = raw_plot[p] * sigma_plot; //equivalent to normal(0, sigma_plot)
+      ranef_plot[p] = raw_plot[p] * sigma_plot; // equivalent to normal(0, sigma_plot)
     }
     
     for(i in 1:n_inds) {
-      ranef_ind[i] = raw_ind[i] * sigma_ind; //equivalent to normal(0, sigma_ind) 
+      ranef_ind[i] = raw_ind[i] * sigma_ind; // equivalent to normal(0, sigma_ind) 
     }
   }
-  model { # Define priors and likelihood
+  model { // Define priors and likelihood
     real hazard[n_obs];
     real cumalative_hazard[n_obs];
     
     for (i in 1:n_obs) {
-      # Estimate individual rate  
+      // Estimate individual rate  
       hazard[i] = 
         alpha +     
         b_otc * otc[i] +
@@ -642,12 +642,12 @@ run_tussock_mortality_model <- function(data, pred_poadist_range = NULL) {
         ranef_plot[plot[i]] +
         ranef_ind[ind[i]];
       
-      #Likelihood
+      // Likelihood
       cumalative_hazard[i] = inv_cloglog(hazard[i] * (census_interval[i]));
     }
     died ~ bernoulli(cumalative_hazard);
     
-    #Priors
+    // Priors
     raw_plot ~ normal(0,1);
     raw_ind ~ normal(0,1);
     alpha ~ cauchy(0,2.5);
@@ -726,7 +726,7 @@ stan_data <-
 
 
 model=sprintf("
-  data{ # Declare what each data variable is
+  data{ // Declare what each data variable is
     int<lower=1> n_obs;
     int<lower=1> n_sites;
     int<lower=1> n_transects;
@@ -744,7 +744,7 @@ model=sprintf("
     real cs_sim_twi[n_sims];
     %s
   }
-parameters{ # Declare parameters the models must estimate
+parameters{ // Declare parameters the models must estimate
 
   real alpha_mu;
   real<lower=0> alpha_sigma;
@@ -758,7 +758,7 @@ parameters{ # Declare parameters the models must estimate
   real b_raw_transect[n_transects];
   %s
 }
-transformed parameters { # Declare and define derived variables used in model
+transformed parameters { // Declare and define derived variables used in model
   real count[n_obs];
   real alpha[n_sites];
   real a_transect[n_transects];
@@ -783,9 +783,9 @@ transformed parameters { # Declare and define derived variables used in model
                     b_transect[transect[i]]);
   }
 }
-model { # Define priors and likelihood
+model { // Define priors and likelihood
   
-  # PRIORS
+  // PRIORS
   raw_alpha ~ normal(0,1);
   alpha_mu ~ normal(0, 2.5);
   alpha_sigma ~ cauchy(0, 25);
@@ -798,14 +798,14 @@ model { # Define priors and likelihood
   %s
 
   
-  # Likelihood
+  // Likelihood
     y ~ poisson(count);
 }
-generated quantities { # Calculate log likelihood, residuals or make predictions
+generated quantities { // Calculate log likelihood, residuals or make predictions
   
-  # Parameters to calculate log likelihood
+  // Parameters to calculate log likelihood
   
-  # Predictions
+  // Predictions
   real pred_count_unburnt;
   real pred_count_burnt;
   real pred_count_severity[n_sims];
@@ -813,7 +813,7 @@ generated quantities { # Calculate log likelihood, residuals or make predictions
   real pred_count_twi[n_sims];
   %s
 
-  # Partial dependencies
+  // Partial dependencies
 
   pred_count_unburnt = exp(alpha_mu + b_unburnt);
   pred_count_burnt = exp(alpha_mu);
@@ -889,7 +889,7 @@ stan_data <-
       y = data$max_seedling_height_cm)
 
   model <- '
-  data{ # Declare what each data variable is
+  data{ // Declare what each data variable is
     int<lower=1> n_obs;
     int<lower=1> n_sites;
     int<lower=1> site[n_obs];
@@ -936,16 +936,16 @@ stan_data <-
   sigma_log_site ~ cauchy(0,25);
   sigma_log_obs ~ cauchy(0, 25);
 }
-generated quantities { # Calculate log likelihood, residuals or make predictions
+generated quantities { // Calculate log likelihood, residuals or make predictions
   
-  # Parameters to calculate log likelihood
+  // Parameters to calculate log likelihood
   
-  # Predictions
+  // Predictions
   real pred_ht_severity[n_sims];
   real pred_ht_altitude[n_sims];
   real pred_ht_twi[n_sims];
 
-  # Partial dependencies
+  // Partial dependencies
 
   for(i in 1:n_sims) {
   pred_ht_severity[i] = exp((mu_log_site + log_b_severity * cs_sim_severity[i]) + (sigma_log_obs^2)/2);
@@ -982,7 +982,7 @@ stan_data <-
       y = data$recruits)
 
 model="
-  data{ # Declare what each data variable is
+  data{ // Declare what each data variable is
     int<lower=1> n_obs;
     int<lower=1> n_plots;
     int<lower=1> plot[n_obs];
@@ -990,7 +990,7 @@ model="
     int<lower=0> otc[n_obs];
     int<lower=0> time[n_obs];
   }
-parameters{ # Declare parameters the models must estimate
+parameters{ // Declare parameters the models must estimate
   real alpha;
   real b_otc;
   real b_time;
@@ -998,7 +998,7 @@ parameters{ # Declare parameters the models must estimate
   real<lower=0> plot_sigma;
   real<lower=0> phi;
 }
-transformed parameters { # Declare and define derived variables used in model
+transformed parameters { // Declare and define derived variables used in model
   real count[n_obs];
   real plot_ranef[n_plots];
 
@@ -1010,9 +1010,9 @@ transformed parameters { # Declare and define derived variables used in model
     count[i] = exp(alpha + b_time * time[i] + b_otc * otc[i] + plot_ranef[plot[i]]);
   }
 }
-model { # Define priors and likelihood
+model { // Define priors and likelihood
   
-  # PRIORS
+  // PRIORS
   alpha ~ normal(0, 2.5);
   plot_sigma ~ cauchy(0, 25);
   raw_plot ~ normal(0,1);
@@ -1021,7 +1021,7 @@ model { # Define priors and likelihood
   phi ~ cauchy(0, 25);
 
   
-  # Likelihood
+  // Likelihood
   y ~ neg_binomial_2(count, phi);
 }
 

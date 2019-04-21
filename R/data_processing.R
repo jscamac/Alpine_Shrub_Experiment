@@ -4,7 +4,7 @@ clean_raw_censored_poa <- function(csv_file) {
   names(poadist) <-tolower(names(poadist))
   
   poadist <- poadist %>%
-    mutate(date = as.Date(as.character(poadist$date), format="%d/%m/%Y"),
+    mutate(date = as.Date(as.character(date), format="%d/%m/%Y"),
            may_sample = ifelse(month(date) >=4 & month(date) <=5, 1,0),
            otc = ifelse(treatment=='CTL',0,1),
            poadist = ifelse(poadist==0,0.5,poadist),
@@ -203,6 +203,7 @@ clean_burnt_ht <- function(csv_file) {
     droplevels() %>%
     group_by(site,year,transect,greaus_tran_adultden,plot,poa,bare_ground,rock,species) %>%
     summarise(max_seedling_height_cm = max(height, na.rm=TRUE)) %>%
+    filter(max_seedling_height_cm != -Inf) %>%
     ungroup() %>%
     mutate(site = as.character(site),
            adult_density = 0,
