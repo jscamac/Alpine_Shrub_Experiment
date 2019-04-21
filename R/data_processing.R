@@ -244,9 +244,9 @@ summarise_otc_growth_obs <- function(observed_data, response ='ht') {
   observed_data %>%
     mutate(otc = factor(otc,labels = c('ctl','otc'))) %>%
     group_by(otc, spp, date) %>%
-    summarise_(n = ~n(),
-              ln_mn = lazyeval::interp(~mean(log(response)), response = as.symbol(response)),
-              ln_sd = lazyeval::interp(~sd(log(response)), response = as.symbol(response))) %>%
+    summarise(n = n(),
+              ln_mn = mean(log(!! sym(response))),
+              ln_sd = sd(log(!! sym(response)))) %>%
     mutate(ln_ci = 1.96* (ln_sd/sqrt(n)),
            ln_lower_95_ci = ln_mn - ln_ci,
            ln_upper_95_ci = ln_mn + ln_ci) %>%
