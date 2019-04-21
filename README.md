@@ -50,8 +50,9 @@ Now we are all set to reproduce this manuscript!
 Start up the Docker container (i.e. the virtual machine containing the environment) by opening a terminal and running:
 
 ```
-docker run -d -v $(pwd):/home/rstudio/ -p 127.0.0.1:8787:8787 \  
+docker run -d -v $(pwd):/home/rstudio/ -p 127.0.0.1:8787:8787 \
 -e DISABLE_AUTH=true jscamac/alpine_shrub_experiment
+
 ```
 
 **NOTE:** Windows users may need to replace $(pwd) with the path to the downloaded repository or possibly %cd%.
