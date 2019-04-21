@@ -69,7 +69,7 @@ In this Rstudio session the entire workflow can be rerun by simply running:
 remake::make()
 ```
 
-**NOTE:** *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. Depending on the local machine this can take anywhere from 1 to 2 hours.*
+**NOTE:** *The above function will process the data, run 11 [stan](http://mc-stan.org) models, produce the figures and compile a pdf of the manuscript. The time taken will depend on the machine, but will likely take at least 2.5 hours to run.*
 
 
 You don't have to rerun all components of this project. If you are interested in a particular component you can simply look at the `remake.yml` file find the appropriate component you want to run and simply run the relevant target name. It will build all the relevant dependencies needed to produce that particular component.
